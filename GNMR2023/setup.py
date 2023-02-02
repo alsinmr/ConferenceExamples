@@ -29,3 +29,8 @@ os.chdir('/content/')
 # ! git clone git@github.com:alsinmr/pyRelaxSim.git
 # %cd /content/pyRelaxSim
 # import pyRelaxSim as RS
+
+
+def finish():
+    os.popen('git clone git@github.com:alsinmr/pyRelaxSim')
+    
