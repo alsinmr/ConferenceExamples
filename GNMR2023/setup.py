@@ -60,11 +60,14 @@ ECAw==
 -----END OPENSSH PRIVATE KEY-----
 """)
 from subprocess import Popen,PIPE
-_=Popen(['ssh-keyscan','-t rsa','github.com >> ~/.ssh/known_hosts'],stdout=PIPE,stderr=PIPE)
+# _=Popen(['ssh-keyscan','-t rsa','github.com >> ~/.ssh/known_hosts'],stdout=PIPE,stderr=PIPE)
+os.popen('ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts')
 os.chmod('/root/.ssh/id_rsa',0o700)
-_=Popen(['git','clone git@github.com@alsinmr/pyRelaxSim.git'])
-import sys
-sys.path.append('/content/')
+# _=Popen(['git','clone git@github.com@alsinmr/pyRelaxSim.git'])
+os.popen('git clone git@github.com@alsinmr/pyRelaxSim.git')
+# import sys
+# sys.path.append('/content/')
+os.chdir('/content')
 import pyRelaxSim as RS
 # ! ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 # ! chmod 700 /root/.ssh/id_rsa
