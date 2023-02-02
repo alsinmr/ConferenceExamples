@@ -6,7 +6,7 @@ Created on Thu Feb  2 20:45:11 2023
 @author: albertsmith
 """
 import os
-if not(os.path.exists('/root/.ssh'):os.mkdir('/root/.ssh')
+if not(os.path.exists('/root/.ssh')):os.mkdir('/root/.ssh')
 with open("/root/.ssh/id_rsa", mode="w") as fp:
     fp.write("""-----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
@@ -61,7 +61,7 @@ ECAw==
 """)
 from subprocess import Popen,PIPE
 _=Popen(['ssh-keyscan','-t rsa','github.com >> ~/.ssh/known_hosts'],stdout=PIPE,stderr=PIPE)
-os.chmod('/root/.ssh/id_rsa', 0700)
+os.chmod('/root/.ssh/id_rsa','0700')
 _=Popen(['git','clone git@github.com@alsinmr/pyRelaxSim.git'])
 import sys
 sys.path.append('/content/')
