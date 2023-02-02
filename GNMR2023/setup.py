@@ -34,3 +34,4 @@ os.chdir('/content/')
 from time import sleep
 sleep(1)
 os.popen('git clone git@github.com:alsinmr/pyRelaxSim')
+sleep(1)
