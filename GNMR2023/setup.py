@@ -6,7 +6,7 @@ Created on Thu Feb  2 20:45:11 2023
 @author: albertsmith
 """
 import os
-os.mkdir('/root/.ssh')
+if not(os.path.exists('/root/.ssh'):os.mkdir('/root/.ssh')
 with open("/root/.ssh/id_rsa", mode="w") as fp:
     fp.write("""-----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
