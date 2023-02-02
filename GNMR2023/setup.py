@@ -61,7 +61,7 @@ ECAw==
 """)
 from subprocess import Popen,PIPE
 _=Popen(['ssh-keyscan','-t rsa','github.com >> ~/.ssh/known_hosts'],stdout=PIPE,stderr=PIPE)
-os.chmod('/root/.ssh/id_rsa','0700')
+os.chmod('/root/.ssh/id_rsa',0o700)
 _=Popen(['git','clone git@github.com@alsinmr/pyRelaxSim.git'])
 import sys
 sys.path.append('/content/')
