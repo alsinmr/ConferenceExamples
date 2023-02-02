@@ -19,11 +19,11 @@ os.chmod('/root/.ssh/id_rsa',0o700)
 # _=Popen(['git','clone git@github.com@alsinmr/pyRelaxSim.git'])
 os.chdir('/content/')
 
-os.popen('git clone git@github.com:alsinmr/pyRelaxSim')
-# import sys
-# sys.path.append('/content/')
-os.chdir('/content/')
-import pyRelaxSim as RS
+# os.popen('git clone git@github.com:alsinmr/pyRelaxSim')
+# # import sys
+# # sys.path.append('/content/')
+# os.chdir('/content/')
+# import pyRelaxSim as RS
 # ! ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 # ! chmod 700 /root/.ssh/id_rsa
 # ! git clone git@github.com:alsinmr/pyRelaxSim.git
