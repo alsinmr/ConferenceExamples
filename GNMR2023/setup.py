@@ -18,7 +18,8 @@ os.popen('ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts')
 os.chmod('/root/.ssh/id_rsa',0o700)
 # _=Popen(['git','clone git@github.com@alsinmr/pyRelaxSim.git'])
 os.chdir('/content/')
-os.popen('git clone git@github.com:alsinmr/pyRelaxSim.git')
+
+os.popen('git clone git@github.com:alsinmr/pyRelaxSim')
 # import sys
 # sys.path.append('/content/')
 os.chdir('/content/')
