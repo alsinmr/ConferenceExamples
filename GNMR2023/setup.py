@@ -25,4 +25,5 @@ def dummy():
 dummy()
 from time import sleep
 sleep(1)
-os.popen('git clone git@github.com:alsinmr/pyRelaxSim')
+if IN_COLAB:
+                                                                                                                                                                                                                                                                                                                                                                                    os.popen('git clone git@github.com:alsinmr/pyRelaxSim')
