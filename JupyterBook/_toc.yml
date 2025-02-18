@@ -1,0 +1,14 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- chapters:
+  - file: Software
+- caption: Tutorials
+  numbered: false
+  chapters:
+  - file: GNMR2025/GNMR2025
+    sections:
+    - file: GNMR2025/Exchange
