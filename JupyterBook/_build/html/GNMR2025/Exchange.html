@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Exchange &#8212; Conference Tutorials</title>
+    <title>Chemical Exchange &#8212; Conference Tutorials</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="G-NMR 2025" href="GNMR2025.html" />
@@ -132,7 +134,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Exchange
+     Chemical Exchange
     </a>
    </li>
   </ul>
@@ -339,23 +341,134 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1">
+   Exercise 1:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2">
+   Exercise 2:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1">
+     Part 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2">
+     Part 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3">
+     Part 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-4">
+     Part 4
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3">
+   Exercise 3
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Exchange</h1>
+                <h1>Chemical Exchange</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1">
+   Exercise 1:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2">
+   Exercise 2:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-1">
+     Part 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-2">
+     Part 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-3">
+     Part 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-4">
+     Part 4
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3">
+   Exercise 3
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -363,8 +476,237 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="exchange">
-<h1>Exchange<a class="headerlink" href="#exchange" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="chemical-exchange">
+<h1>Chemical Exchange<a class="headerlink" href="#chemical-exchange" title="Permalink to this headline">#</a></h1>
+<p>Chemical exchange is an important phenomenon in magnetic resonance, where a chemical or physical change in a molecule gives rise to a modulation in the chemical shift for a given spin. Depending on the rate of exchange between two or more chemical shifts, we may observe the effects of exchange using a number of different experiments.</p>
+<p>The following tutorial will introduce this concept and investigate effects of various parameters on several different experiments. We’ll use SLEEPY (http://sleepy-nmr.org) to support our investigations, so take some time to experiment with the software as you go.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">SLEEPY</span> <span class="k">as</span> <span class="nn">sl</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">sl</span><span class="o">.</span><span class="n">Defaults</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The most basic experiment for observing chemical exchange is a simple 1D experiment, where we exchange between chemical shifts. In this experiment, evolution of a coherence under the chemical shift depends on the state of the system, for example:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\frac{d}{dt}\langle\hat{S}^+\rangle_1^+&amp;=&amp;-i\Omega_1\langle\hat{S}^+\rangle_2 \:\mathrm{ : state 1} \\
+\frac{d}{dt}\langle\hat{S}^+\rangle_2^+&amp;=&amp;-i\Omega_2\langle\hat{S}^+\rangle_2 \:\mathrm{ : state 2}
+\end{eqnarray}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span>    <span class="c1">#Experimental system at 500 MHz with one 1H</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>     <span class="c1">#Add a chemical shift to the system</span>
+<span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>                      <span class="c1">#Copy system for second system in exchange </span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>    <span class="c1">#Add a chemical shift to the second system</span>
+<span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span>               <span class="c1">#Generate a Liouvillian for the system</span>
+<span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">40000</span><span class="p">))</span>       <span class="c1">#Sequence with a 25 microsecond length</span>
+
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;1Hx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;1Hp&#39;</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Exchange_6_0.png" src="../_images/Exchange_6_0.png" />
+</div>
+</div>
+<p>As we see, the system simply oscillates at the given input frequencies. Below, we can check what that frequency actually is, by taking the Fourier transform of the above signal, where we see that indeed it oscillates at +2 kHz and -1 kHz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FT</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Exchange_8_0.png" src="../_images/Exchange_8_0.png" />
+</div>
+</div>
+</section>
+<section id="exercise-1">
+<h2>Exercise 1:<a class="headerlink" href="#exercise-1" title="Permalink to this headline">#</a></h2>
+<p>Typing any of the above objects at the command line will produce a description of the object. Objects also have a plot function (<code class="docutils literal notranslate"><span class="pre">ex0</span></code>,<code class="docutils literal notranslate"><span class="pre">ex1</span></code> have a <code class="docutils literal notranslate"><span class="pre">plot_inter</span></code> function, although this is not so informative for isotropic interactions). Try this to get a feeling for what the critical settings are in this simulation. What is the role of each object in the simulation?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use this cell to investigate the different objects</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="toggle docutils container">
+<ul class="simple">
+<li><p>ExpSys (ex0,ex1) : defines spins in the magnetic field, spins in the system, and interactions</p></li>
+<li><p>Liouvillian (L) : Contains each of the ExpSys objects and the Liouvillian matrix, as well as an exchange matrix (currently set to zeros).</p></li>
+<li><p>Sequence (seq) : Contains definitions of the field strengths, and defines length of propagation steps.</p></li>
+<li><p>Rho (rho) : Contains the initial state of the system and the detection matrix, as well as the signal.</p></li>
+</ul>
+</div>
+<p>Now, assume that the system is in one of two states, with chemical shift frequencies <span class="math notranslate nohighlight">\(\Omega_1\)</span> and <span class="math notranslate nohighlight">\(\Omega_2\)</span>. Depending on which state we’re in, we have either</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\frac{d}{dt}\langle\hat{S}^+\rangle&amp;=&amp;-i\Omega_1\langle\hat{S}^+\rangle \\
+\frac{d}{dt}\langle\hat{S}^+\rangle&amp;=&amp;-i\Omega_2\langle\hat{S}^+\rangle
+\end{eqnarray}
+\end{split}\]</div>
+<p>Then, if we hop randomly from state 1 to 2 and vice versa, with rate constants <span class="math notranslate nohighlight">\(k_{12}\)</span> and <span class="math notranslate nohighlight">\(k_{21}\)</span>, we have the following exchange matrix.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{k}=
+\begin{pmatrix}
+-i\Omega_1 - k_{12} &amp; k_{21} \\ k_{12} &amp; -i\Omega_2 - k_{21}
+\end{pmatrix}
+\end{split}\]</div>
+<p>This can be combined into a single matrix including the oscillation, which yields the following differential equation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{d}{dt}
+\begin{pmatrix}
+\langle\hat{S}^+_1\rangle \\ \langle\hat{S}^+_1\rangle
+\end{pmatrix}
+=
+\begin{pmatrix}
+-i\Omega_1 - k_{12} &amp; k_{21} \\ k_{12} &amp; -i\Omega_2 - k_{21}
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+\langle\hat{S}^+_1\rangle \\ \langle\hat{S}^+_1\rangle
+\end{pmatrix}
+\end{split}\]</div>
+<p>This matrix indicates that if we are in state 1, the phase of <span class="math notranslate nohighlight">\(\hat{S}_1^+\)</span> will oscillate with frequency of <span class="math notranslate nohighlight">\(\Omega_1\)</span>, but it will also diffuse with rate <span class="math notranslate nohighlight">\(k_{12}\)</span> to state 2, where it will oscillate with frequency <span class="math notranslate nohighlight">\(\Omega_2\)</span> and also potentially diffuse back to state one (with rate <span class="math notranslate nohighlight">\(k_{21}\)</span>).</p>
+</section>
+<section id="exercise-2">
+<h2>Exercise 2:<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h2>
+<p>To understand exchange analytically, we often make some simplifying assumptions about the terms. First, we set <span class="math notranslate nohighlight">\(\Omega_1=\Delta\Omega/2\)</span> and <span class="math notranslate nohighlight">\(\Omega_2=-\Delta\Omega/2\)</span>. We also assume symmetric exchange, such that <span class="math notranslate nohighlight">\(k_{12}=k_{21}=k\)</span>. This yields the following exchange matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{k}=
+\begin{pmatrix}
+-i\Delta\Omega/2 - k &amp; k \\ k &amp; i\Delta\Omega/2 - k
+\end{pmatrix}
+\end{split}\]</div>
+<p>Find the eigenvalues of this matrix, where each eigenvalue represents the evolution of a signal in the NMR spectrum. We won’t solve for the eigenvectors here, but these also play a role in the contributions of each signal.</p>
+<p>Under what conditions do we observe two separated chemical shifts? What is <span class="math notranslate nohighlight">\(T_2\)</span> in this case? What is <span class="math notranslate nohighlight">\(T_2\)</span> if there is only one chemical shift?</p>
+<p>Hint: <span class="math notranslate nohighlight">\(T_2\)</span> is the negative inverse of the real part of the eigenvalues, whereas the imaginary part yields oscillation frequencies</p>
+<p>The answer is given in multiple steps, so if you’re not sure how to start, go ahead and open the first answer.</p>
+<section id="part-1">
+<h3>Part 1<a class="headerlink" href="#part-1" title="Permalink to this headline">#</a></h3>
+<div class="toggle docutils container">
+<p>Eigenvalues are found by calculating the determinant of the matrix minus <span class="math notranslate nohighlight">\(\lambda\cdot\mathbb{1}\)</span>, setting it to zero, and solving for the values of <span class="math notranslate nohighlight">\(\lambda\)</span> (<span class="math notranslate nohighlight">\(\mathbb{1}\)</span> is an identity matrix)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+0=\det
+\begin{pmatrix}
+-i\Delta\Omega/2-k-\lambda &amp; k \\ k &amp; i\Delta\Omega/2-k-\lambda
+\end{pmatrix}
+\end{split}\]</div>
+</div>
+</section>
+<section id="part-2">
+<h3>Part 2<a class="headerlink" href="#part-2" title="Permalink to this headline">#</a></h3>
+<div class="toggle docutils container">
+<p>The determinant for a 2x2 matrix is calculated by taking the (0,0) element times the (1,1) element minus the (0,1) element times the (1,0) element.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+0&amp;=&amp;(-i\Delta\Omega/2-k-\lambda)\cdot(i\Delta\Omega/2-k-\lambda)-k^2 \\
+0&amp;=&amp;\lambda^2+2k\lambda+\frac{(\Delta\Omega)^2}{4}
+\end{eqnarray}
+\end{split}\]</div>
+</div>
+</section>
+<section id="part-3">
+<h3>Part 3<a class="headerlink" href="#part-3" title="Permalink to this headline">#</a></h3>
+<div class="toggle docutils container">
+<p>We can solve for the eigenvalues using the quadratic formula.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+0&amp;=&amp;ax^2+bx+c \\
+x&amp;=&amp;\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Then,
+$<span class="math notranslate nohighlight">\(
+\lambda=\frac{-2k\pm\sqrt{4k^2-(\Delta\Omega)^2}}{2}
+\)</span>$</p>
+</div>
+</section>
+<section id="part-4">
+<h3>Part 4<a class="headerlink" href="#part-4" title="Permalink to this headline">#</a></h3>
+<div class="toggle docutils container">
+<p>The real part of the eigenvalues is the negative inverse of <span class="math notranslate nohighlight">\(T_2\)</span>, whereas the imaginary part is the frequency. When <span class="math notranslate nohighlight">\(2k&gt;\Delta\Omega\)</span>, then the eigenvalues are strictly real. This means that there is only a single frequency (at 0) in the spectrum, but a complex lineshape with two decay rates. On the other hand, if <span class="math notranslate nohighlight">\(2k&lt;\Delta\Omega\)</span>, then two distinct frequencies emerge. The real part is then only <span class="math notranslate nohighlight">\(-k\)</span>, so <span class="math notranslate nohighlight">\(T_2=1/k\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+2k&gt;&gt;\Delta\Omega &amp; T_2=\infty,1/(2k) &amp; \Omega=0 \\
+2k&gt;\Delta\Omega &amp; T_2=1/(k\mp\sqrt{k^2-(\Delta\Omega/2)^2}) &amp; \Omega=0 \\
+2k=\Delta\Omega &amp; T_2=1/k &amp; \Omega=0 \\
+2k&lt;\Delta\Omega &amp; T_2=1/k &amp; \Omega=\pm\sqrt{(\Delta\Omega/2)^2-k^2} \\
+2k&lt;&lt;\Delta\Omega &amp; T_2=1/k &amp; \Omega=\pm\Delta\Omega/2
+\end{matrix}
+\end{split}\]</div>
+<p>Note that when <span class="math notranslate nohighlight">\(k&gt;\Delta\Omega\)</span>, there are two peaks with the same apparent chemical shift. As <span class="math notranslate nohighlight">\(k\)</span> gets large, the contribution of <span class="math notranslate nohighlight">\(T_2=1/(2k)\)</span> becomes smaller, such that the peak becomes increasingly narrow, rather than wide.</p>
+</div>
+</section>
+</section>
+<section id="exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">#</a></h2>
+<p>Below, we set up a simulation with two different chemical shifts in exchange (<span class="math notranslate nohighlight">\(\pm\)</span>2000 Hz, so <span class="math notranslate nohighlight">\(\Delta\Omega=2*\pi*4000\)</span> rad/s). Adjust <span class="math notranslate nohighlight">\(k\)</span> to the different conditions in the solution above to observe the effect.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+<span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=-</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="p">[[</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">],[</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="n">k</span><span class="p">]]</span>
+
+<span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">32000</span><span class="p">)</span>
+
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;S0x&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;S0p&#39;</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">4096</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FT</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Exchange_19_0.png" src="../_images/Exchange_19_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">14</span><span class="p">,</span><span class="mf">2.8</span><span class="p">])</span>
+<span class="n">sqrt0</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">4000</span><span class="o">/</span><span class="mi">2</span>   <span class="c1">#This is where the square root is zero</span>
+<span class="n">k0</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="o">*</span><span class="n">sqrt0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">sqrt0</span><span class="p">,</span><span class="n">sqrt0</span><span class="p">,</span><span class="n">sqrt0</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">sqrt0</span><span class="o">/</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">titles</span><span class="o">=</span><span class="p">[</span><span class="sa">rf</span><span class="s1">&#39;$2k</span><span class="si">{</span><span class="n">sign</span><span class="si">}</span><span class="s1">\Delta\Omega$&#39;</span> <span class="k">for</span> <span class="n">sign</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;\gg&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="s1">&#39;\ll&#39;</span><span class="p">]]</span>
+
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">k0</span><span class="p">,</span><span class="n">titles</span><span class="p">):</span>
+    <span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="p">[[</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">],[</span><span class="n">k</span><span class="p">,</span><span class="o">-</span><span class="n">k</span><span class="p">]]</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">4096</span><span class="p">)</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FT</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Exchange_20_0.png" src="../_images/Exchange_20_0.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
