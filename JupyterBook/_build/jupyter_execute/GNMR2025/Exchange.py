@@ -588,10 +588,10 @@ _=CEST(L,dly=.01,v1=500)
 # ### Exercise 4.2
 # How does the CEST experiment depend on the rate of exchange? Adjust `k` below to determine where CEST works or fails. Don't forget to fix `dly` and `v1` based on your investigation above.
 
-# In[25]:
+# In[134]:
 
 
-k=1
+k=50
 L.kex=sl.Tools.twoSite_kex(tc=1/(2*k),p1=0.98)
 
 _=CEST(L,dly=5,v1=25)
@@ -602,7 +602,7 @@ _=CEST(L,dly=5,v1=25)
 # ```
 
 # ## Matching Game
-# Below, we have prepared four Liouvillian matrices (objects), corresponding to different populations and correlation times. Which experiment would you apply for each Liouvillian? Try out each experiment (use CPMG or $R_{1p}$, but not both, since their performance is very similar)
+# Below, we have prepared four Liouvillian matrices (objects), corresponding to different populations and correlation times. Which experiment would you apply for each Liouvillian? Try out each experiment (use CPMG or $R_{1p}$, but not both, since their performance is very similar). Once  you reveal the answer, you will also see the rate constants (`k`) and populations (`p1`).
 # 
 # Hint: There is some overlap for which experiment could work with each Liouvillian, but there is a "best" one-to-one assigment. You can adjust the input parameters for the experiments, but this should not be required.
 
