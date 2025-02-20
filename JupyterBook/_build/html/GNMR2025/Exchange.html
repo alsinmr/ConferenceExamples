@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -419,6 +419,11 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-1-rho-and-cpmg"><span class="math notranslate nohighlight">\(R_{1\rho}\)</span> and CPMG</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-1">Exercise 3.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-2">Exercise 3.2</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cest">CEST</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-1">Exercise 4.1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-2">Exercise 4.2</a></li>
@@ -545,8 +550,8 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">voff0</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span><span class="n">voff0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">ax</span>
 
-<span class="k">def</span> <span class="nf">R1p</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">v10</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">2000</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">40000</span><span class="p">),</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">R1p</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">v10</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">40000</span><span class="p">),</span><span class="mi">7</span><span class="p">)</span>
     <span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;S0x&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;S0p&#39;</span><span class="p">)</span>
     <span class="n">leg</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">v1</span> <span class="ow">in</span> <span class="n">v10</span><span class="p">:</span>
@@ -560,8 +565,8 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">leg</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ax</span>
 
-<span class="k">def</span> <span class="nf">CPMG</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">f0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">2000</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">40000</span><span class="p">),</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">CPMG</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">f0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">40000</span><span class="p">),</span><span class="mi">7</span><span class="p">)</span>
     <span class="n">v1</span><span class="o">=</span><span class="mi">50000</span>
     <span class="n">pi2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="mi">4</span>
     <span class="n">dly0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">f0</span><span class="o">/</span><span class="mi">4</span>
@@ -593,8 +598,8 @@
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-\frac{d}{dt}\langle\hat{S}^+\rangle_1^+&amp;=&amp;-i\Omega_1\langle\hat{S}^+\rangle_2 \:\mathrm{ : state 1} \\
-\frac{d}{dt}\langle\hat{S}^+\rangle_2^+&amp;=&amp;-i\Omega_2\langle\hat{S}^+\rangle_2 \:\mathrm{ : state 2}
+\frac{d}{dt}\langle\hat{S}_1^+\rangle^+&amp;=&amp;-i\Omega_1\langle\hat{S}_1^+\rangle \:\mathrm{ : state\:1} \\
+\frac{d}{dt}\langle\hat{S}_2^+\rangle^+&amp;=&amp;-i\Omega_2\langle\hat{S}_2^+\rangle \:\mathrm{ : state\:2}
 \end{eqnarray}
 \end{split}\]</div>
 <div class="cell docutils container">
@@ -613,7 +618,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5fdb271ef173a736c0329274812c684203b5ca77a11a5e7ef0af9d26873e14a8.png" src="../_images/5fdb271ef173a736c0329274812c684203b5ca77a11a5e7ef0af9d26873e14a8.png" />
+<img alt="../_images/0f576ef2bc87a5009222efe5e451be1ab32aa28b04993cebde930acc9d9c990e.png" src="../_images/0f576ef2bc87a5009222efe5e451be1ab32aa28b04993cebde930acc9d9c990e.png" />
 </div>
 </div>
 <p>As we see, the system simply oscillates at the given input frequencies. Below, we can check what that frequency actually is, by taking the Fourier transform of the above signal, where we see that indeed it oscillates at +500 and -500 Hz.</p>
@@ -625,7 +630,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/20f6b7435316ef7eed4619fc2fefda5043f4e969b1bcd3c7019a1901b15b7230.png" src="../_images/20f6b7435316ef7eed4619fc2fefda5043f4e969b1bcd3c7019a1901b15b7230.png" />
+<img alt="../_images/2b29a1870c2fd1f31e792224d4721fe91664f051cc5f4604219d23c587853898.png" src="../_images/2b29a1870c2fd1f31e792224d4721fe91664f051cc5f4604219d23c587853898.png" />
 </div>
 </div>
 <p>However, we may couple the two states together with an exchange matrix, yielding broadening in the spectrum, or if fast enough, coalescence of the peaks.</p>
@@ -639,7 +644,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dc5b623c57565d05f0fc78efcf92aefde98b435239173a25e1b845c276eb87df.png" src="../_images/dc5b623c57565d05f0fc78efcf92aefde98b435239173a25e1b845c276eb87df.png" />
+<img alt="../_images/ebe7d43fa42d613f7dfb282bdb21aeb2cf18cbc99af3c9398d2b7a0512ad9a69.png" src="../_images/ebe7d43fa42d613f7dfb282bdb21aeb2cf18cbc99af3c9398d2b7a0512ad9a69.png" />
 </div>
 </div>
 <section id="exercise-1-1">
@@ -660,28 +665,30 @@
 <li><p>Rho (rho) : Contains the initial state of the system and the detection matrix, as well as the signal.</p></li>
 </ul>
 </div>
-<p>Now, assume that the system is in one of two states, with chemical shift frequencies <span class="math notranslate nohighlight">\(\Omega_1\)</span> and <span class="math notranslate nohighlight">\(\Omega_2\)</span>. Depending on which state we’re in, we have either</p>
+<p>Now, assume that the system is in one of two states, with chemical shift frequencies <span class="math notranslate nohighlight">\(\Omega_1\)</span> and <span class="math notranslate nohighlight">\(\Omega_2\)</span>. Depending on which state we’re in, we have either:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-\frac{d}{dt}\langle\hat{S}^+\rangle&amp;=&amp;-i\Omega_1\langle\hat{S}^+\rangle \\
-\frac{d}{dt}\langle\hat{S}^+\rangle&amp;=&amp;-i\Omega_2\langle\hat{S}^+\rangle
+\frac{d}{dt}\langle\hat{S}_1^+\rangle&amp;=&amp;-i\Omega_1\langle\hat{S}_1^+\rangle+k_{21}\langle\hat{S}_2^+\rangle-k_{12}\langle\hat{S}_1^+\rangle \\
+\frac{d}{dt}\langle\hat{S}_2^+\rangle&amp;=&amp;-i\Omega_2\langle\hat{S}_2^+\rangle-k_{21}\langle\hat{S}_2^+\rangle+k_{12}\langle\hat{S}_1^+\rangle
 \end{eqnarray}
 \end{split}\]</div>
-<p>Then, if we hop randomly from state 1 to 2 and vice versa, with rate constants <span class="math notranslate nohighlight">\(k_{12}\)</span> and <span class="math notranslate nohighlight">\(k_{21}\)</span>, we have the following exchange matrix.</p>
+<p>These equations express both the transfer between state 1 and state 2, and the evolution due to the oscillation frequencies.</p>
+<p>We may express the exchange process as a matrix.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \mathbf{k}=
 \begin{pmatrix}
-k_{12} &amp; k_{21} \\ k_{12} &amp;- k_{21}
+-k_{12} &amp; k_{21} \\ k_{12} &amp;- k_{21}
 \end{pmatrix}
 \end{split}\]</div>
+<p>Note that for this to be a valid exchange matrix, the columns must sum to one, and it must satisfy detailed balance, that is <span class="math notranslate nohighlight">\(p_m/p_n=k_{n,m}/k_{m,n}\)</span>.</p>
 <p>This can be combined into a single matrix including the oscillation, which yields the following differential equation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \frac{d}{dt}
 \begin{pmatrix}
-\langle\hat{S}^+_1\rangle \\ \langle\hat{S}^+_1\rangle
+\langle\hat{S}^+_1\rangle \\ \langle\hat{S}^+_2\rangle
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -689,7 +696,7 @@ k_{12} &amp; k_{21} \\ k_{12} &amp;- k_{21}
 \end{pmatrix}
 \cdot
 \begin{pmatrix}
-\langle\hat{S}^+_1\rangle \\ \langle\hat{S}^+_1\rangle
+\langle\hat{S}^+_1\rangle \\ \langle\hat{S}^+_2\rangle
 \end{pmatrix}
 \end{split}\]</div>
 <p>This matrix indicates that if we are in state 1, the phase of <span class="math notranslate nohighlight">\(\hat{S}_1^+\)</span> will oscillate with frequency of <span class="math notranslate nohighlight">\(\Omega_1\)</span>, but it will also diffuse with rate <span class="math notranslate nohighlight">\(k_{12}\)</span> to state 2, where it will oscillate with frequency <span class="math notranslate nohighlight">\(\Omega_2\)</span> and also potentially diffuse back to state one (with rate <span class="math notranslate nohighlight">\(k_{21}\)</span>).</p>
@@ -787,7 +794,7 @@ x&amp;=&amp;\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a1df3c528d7de607c32df2860eb317b53f2d7b1acb4f609945402261b91dcb48.png" src="../_images/a1df3c528d7de607c32df2860eb317b53f2d7b1acb4f609945402261b91dcb48.png" />
+<img alt="../_images/3983ad87e3774d9d1311f22dec3fbe72fba8eebda8c427e0dc9d3fb5cd81573e.png" src="../_images/3983ad87e3774d9d1311f22dec3fbe72fba8eebda8c427e0dc9d3fb5cd81573e.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -813,7 +820,7 @@ x&amp;=&amp;\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9c552d2d0fda76565815ffb4245f2e8a88456d936e5531443ac2fc736443e862.png" src="../_images/9c552d2d0fda76565815ffb4245f2e8a88456d936e5531443ac2fc736443e862.png" />
+<img alt="../_images/c1240360cdbb906cb7e605dc7516d59116fda83fedbae7673c9212044ee91d11.png" src="../_images/c1240360cdbb906cb7e605dc7516d59116fda83fedbae7673c9212044ee91d11.png" />
 </div>
 </details>
 </div>
@@ -861,7 +868,7 @@ k=6e+01 s^-1, T2=15.92 ms, T2=15.92 ms,f=-499.9 Hz, f= 499.9 Hz
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dbfb146a3e0960d82436e1b25a23b9a5b59007c383f8d7d4ab2644277646dae2.png" src="../_images/dbfb146a3e0960d82436e1b25a23b9a5b59007c383f8d7d4ab2644277646dae2.png" />
+<img alt="../_images/7defa4168fc2950e501051f372687e317a87dbfdb7879b283c9e3da7c623e340.png" src="../_images/7defa4168fc2950e501051f372687e317a87dbfdb7879b283c9e3da7c623e340.png" />
 </div>
 </div>
 <p>We repeat the eigenvalue calculation.</p>
@@ -894,7 +901,7 @@ k=6e+01 s^-1,T2=11.37 ms, T2=26.53 ms,f=-499.9 Hz, f=499.9 Hz
 <h3>Exercise 1.4<a class="headerlink" href="#exercise-1-4" title="Link to this heading">#</a></h3>
 <p>What do you see that’s different about the results of the eigenvalue calculation above vs. symmetric exchange.</p>
 <div class="toggle docutils container">
-<p>The critical point is that there are always two unique frequencies for asymmetric exchange. In symmetric exchange, when <span class="math notranslate nohighlight">\(2k&gt;\Delta\Omega\)</span>, a coalescence condition occured and the two peaks both had the same frequency. In asymmetric exchange, no coalescence exists. One peak just becomes increasingly weak until it is effectively invisible.</p>
+<p>There are always two unique frequencies for asymmetric exchange. In symmetric exchange, when <span class="math notranslate nohighlight">\(2k&gt;\Delta\Omega\)</span>, a coalescence condition occured and the two peaks collapse into a single frequency. In asymmetric exchange, no coalescence condition exists. One peak just becomes increasingly weak until it is effectively invisible.</p>
 </div>
 <p>In chemical exchange in 1D, in principle, we can extract populations of the two states and rates of exchange between them, simply by fitting the spectrum. However, other sources of relaxation (e.g. tumbling in solution) will contribute to the broadening, complicating the extraction of exchange rates and populations from the spectra alone. In this case, we usually need a reference sample which should have the same <span class="math notranslate nohighlight">\(T_2\)</span> without exchange present. This is not always available, so one may need to consider other approaches.</p>
 <p>A second challenge is what to do when there is not significant broadening in the 1D experiment; indeed, unless <span class="math notranslate nohighlight">\(2k\approx\Delta\Omega\)</span>, this is the case.</p>
@@ -915,7 +922,7 @@ k=6e+01 s^-1,T2=11.37 ms, T2=26.53 ms,f=-499.9 Hz, f=499.9 Hz
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a627cdd84a4db939db71dd0bb5b2ede18576a889cb75bb00ad888cb71bae21bc.png" src="../_images/a627cdd84a4db939db71dd0bb5b2ede18576a889cb75bb00ad888cb71bae21bc.png" />
+<img alt="../_images/4086993743c97f05b78417567feb800d60cfcc69596b36367daa329c788ee2b0.png" src="../_images/4086993743c97f05b78417567feb800d60cfcc69596b36367daa329c788ee2b0.png" />
 </div>
 </div>
 <section id="exercise-2-1">
@@ -938,6 +945,7 @@ I_{2,2}&amp;=&amp;p_2^2
 <h3>Exercise 2.2<a class="headerlink" href="#exercise-2-2" title="Link to this heading">#</a></h3>
 <p>For a given delay, <span class="math notranslate nohighlight">\(\tau\)</span>, and exchange rate constants <span class="math notranslate nohighlight">\(k_{12}\)</span> and <span class="math notranslate nohighlight">\(k_{21}\)</span>, give the peak intensities.</p>
 <p>Hint: Give your answer in terms of <span class="math notranslate nohighlight">\(p_1\)</span>, <span class="math notranslate nohighlight">\(p_2\)</span>, and <span class="math notranslate nohighlight">\(k\)</span> (<span class="math notranslate nohighlight">\(k=k_1+k_2\)</span>).</p>
+<div class="toggle docutils container">
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -947,6 +955,7 @@ I_{2,1}(\tau)&amp;=&amp;p_1p_2(1-\exp(-k\tau)) \\
 I_{2,2}(\tau)&amp;=&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau)
 \end{eqnarray}
 \end{split}\]</div>
+</div>
 <p>Below, we plot the buildup of peak intensities for our system, where we observe the expected behavior. Dotted lines show the result from the formulas above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -963,13 +972,12 @@ I_{2,2}(\tau)&amp;=&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb86832b3c8&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb400b54100&gt;]
 </pre></div>
 </div>
-<img alt="../_images/b94f7b6e6788293c1f0f8a651af79f295e6175a1300717bd1eeea039aec94e46.png" src="../_images/b94f7b6e6788293c1f0f8a651af79f295e6175a1300717bd1eeea039aec94e46.png" />
+<img alt="../_images/aab8383dafb10154949547f96a4c37687252046700e6ef7e015c12963cff66a9.png" src="../_images/aab8383dafb10154949547f96a4c37687252046700e6ef7e015c12963cff66a9.png" />
 </div>
 </div>
-<p>The agreement is not quite perfect. Indeed, some exchange may occur during the indirect and direct dimensions, so that there is some cross-peak amplitude even when the delays are zero. Nonetheless, this is a good model of the buildup.</p>
 </section>
 <section id="exercise-2-3">
 <h3>Exercise 2.3<a class="headerlink" href="#exercise-2-3" title="Link to this heading">#</a></h3>
@@ -990,7 +998,7 @@ I_{2,2}(\tau)&amp;=&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c02cae56406075d01bb1566965c272ca6095206ad60036650cd34e0d098eb39c.png" src="../_images/c02cae56406075d01bb1566965c272ca6095206ad60036650cd34e0d098eb39c.png" />
+<img alt="../_images/298253f8eecbe9f16cc77e5a7a29118527662116337ed8d6dc61fc4a246af3a5.png" src="../_images/298253f8eecbe9f16cc77e5a7a29118527662116337ed8d6dc61fc4a246af3a5.png" />
 </div>
 </div>
 <div class="toggle docutils container">
@@ -1006,7 +1014,12 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 \end{split}\]</div>
 <p>Then, the relevant parameters are <span class="math notranslate nohighlight">\(\Delta\Omega\)</span>, where if <span class="math notranslate nohighlight">\(k&gt;&gt;\DeltaOmega\)</span>, peaks become too broad, and if <span class="math notranslate nohighlight">\(k&lt;&lt;1/T_1\)</span>, then signal intensity is lost too quickly to use EXSY</p>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">),</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
@@ -1027,6 +1040,123 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 <div class="cell_output docutils container">
 <img alt="../_images/85f0df8e22008ac85b3112734f6897d024414cbf820d7d5da99e275fb1dae7d5.png" src="../_images/85f0df8e22008ac85b3112734f6897d024414cbf820d7d5da99e275fb1dae7d5.png" />
 </div>
+</details>
+</div>
+</section>
+</section>
+<section id="r-1-rho-and-cpmg">
+<h2><span class="math notranslate nohighlight">\(R_{1\rho}\)</span> and CPMG<a class="headerlink" href="#r-1-rho-and-cpmg" title="Link to this heading">#</a></h2>
+<p>Thus far, our rate of exchange has been near the difference in chemical shift (<span class="math notranslate nohighlight">\(\Delta\Omega\)</span>), or slower. The next question is, what can we do when it is faster? In this case, we have the options of measuring <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> or CPMG (Carr-Purcell-Meiboom-Gill). The former experiment simply applies a spin-locking field to magnetization with a given frequency, whereas the latter uses a train of pulses to periodically refocus the magnetization. Applied on-resonance, the performance of the two experiments is fairly similar.</p>
+<p>Below, we first calculate the lineshape for <span class="math notranslate nohighlight">\(k=1\cdot10^5\)</span> s, where we note that the resulting line is fairly narrow and from which it would be difficult to extract dynamics information.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mf">1e5</span>
+<span class="n">L</span><span class="o">.</span><span class="n">clear_relax</span><span class="p">()</span>
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">))</span>
+<span class="n">_</span><span class="o">=</span><span class="n">OneD</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/53ebe6c47fa625e80f09b3bf73bc39b9b329a06c119ae1152d67521386ca7e27.png" src="../_images/53ebe6c47fa625e80f09b3bf73bc39b9b329a06c119ae1152d67521386ca7e27.png" />
+</div>
+</div>
+<p>Then, we would like to obtain more information. For this we can apply the <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> or CPMG experiments. These are shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">R1p</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$R_{1\rho}$&#39;</span><span class="p">)</span>
+<span class="n">CPMG</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;CPMG&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1e86c4372950efb8c8884b87f404fa9328540254948a5d6a1d0597ad17343a86.png" src="../_images/1e86c4372950efb8c8884b87f404fa9328540254948a5d6a1d0597ad17343a86.png" />
+</div>
+</div>
+<p>Note that the two sets of experiments yield fairly similar results; for this case, the information content is about the same. However, <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> may be applied off-resonance, yield some additional information about the relaxation (not investigated here).</p>
+<section id="exercise-3-1">
+<h3>Exercise 3.1<a class="headerlink" href="#exercise-3-1" title="Link to this heading">#</a></h3>
+<p>The dispersion as a function of spin-lock strength or pulse-frequency can be fit to obtain the amplitude and correlation time of exchange. At what rate does the dispersion vanish for each experiment? Adjust <code class="docutils literal notranslate"><span class="pre">k</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mf">1e3</span>
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">R1p</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$R_{1\rho}$&#39;</span><span class="p">)</span>
+<span class="n">CPMG</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;CPMG&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eb2f1b0abadb5190600c918566dc0b352492589761d0f5a93833b743235d0626.png" src="../_images/eb2f1b0abadb5190600c918566dc0b352492589761d0f5a93833b743235d0626.png" />
+</div>
+</div>
+<div class="toggle docutils container">
+<p>Differences between <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> curves are effectively gone for <span class="math notranslate nohighlight">\(k&gt;10^6\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>. For CPMG, there are some differences in the curves, but these never vanish, and so cannot be used for extracting the rate of exchange.</p>
+</div>
+</section>
+<section id="exercise-3-2">
+<h3>Exercise 3.2<a class="headerlink" href="#exercise-3-2" title="Link to this heading">#</a></h3>
+<p>Below, we plot <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> curves for <span class="math notranslate nohighlight">\(k=1\cdot10^4\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>, first with <span class="math notranslate nohighlight">\(\Delta\Omega/(2\pi)\)</span>=1000 Hz, and <span class="math notranslate nohighlight">\(p_1=p_2=0.5\)</span>. In the second calculation, we adjust <span class="math notranslate nohighlight">\(p_1=0.9\)</span> and <span class="math notranslate nohighlight">\(p_2=0.1\)</span>, but increase <span class="math notranslate nohighlight">\(\Delta\Omega/(2\pi)\)</span>=1667 Hz. What do you notice about the two sets of curves?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mf">1e4</span>
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">))</span>
+
+<span class="n">p1</span><span class="o">=</span><span class="mf">0.9</span>
+<span class="n">DelCS0</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Hz&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Hz&#39;</span><span class="p">]</span>
+<span class="n">DelCS</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">.25</span><span class="o">*</span><span class="n">DelCS0</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">p1</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p1</span><span class="p">)))</span>
+
+<span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span>    <span class="c1">#Experimental system at 500 MHz with one 1H</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="n">DelCS</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p1</span><span class="p">))</span>     <span class="c1">#Add a chemical shift to the system</span>
+<span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>                      <span class="c1">#Copy system for second system in exchange </span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=-</span><span class="n">DelCS</span><span class="o">*</span><span class="n">p1</span><span class="p">)</span>    <span class="c1">#Add a chemical shift to the second system</span>
+<span class="n">L1</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span>               <span class="c1">#Generate a Liouvillian for the system</span>
+<span class="n">L1</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">),</span><span class="n">p1</span><span class="o">=</span><span class="n">p1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">R1p</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">R1p</span><span class="p">(</span><span class="n">L1</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/518ceb73440e459dc8b1b41acdf099ecdd81a4cee66fc90137b2c797d2b367b7.png" src="../_images/518ceb73440e459dc8b1b41acdf099ecdd81a4cee66fc90137b2c797d2b367b7.png" />
+</div>
+</div>
+<div class="toggle docutils container">
+<p>Despite having different input parameters, the two sets of relaxation curves are all nearly the same. This is because for faster exchange, the term <span class="math notranslate nohighlight">\(p_1p_2\Delta\Omega^2\)</span> scales the relaxation. Then, it is not possible to separate the populations from the change in chemical shift.</p>
+</div>
+<p>Adjust <code class="docutils literal notranslate"><span class="pre">k</span></code> below. Can you introduce differences in the curves? Under what conditions? See our more extensive tutorial <a class="reference external" href="http://sleepy-nmr.org/html/Chapter2/Ch2_BMRD.html">here</a> for further explanation, and the following reference:</p>
+<p>V.Z. Miloushev, A.G. Palmer. <a class="reference external" href="https://doi.org/10.1016/j.jmr.2005.07.023"><em>J. Magn. Reson.</em></a>, <strong>2015</strong>, 177, 221-227</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mf">1e3</span>
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">))</span>
+<span class="n">L1</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">),</span><span class="n">p1</span><span class="o">=</span><span class="n">p1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">R1p</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">.25</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">R1p</span><span class="p">(</span><span class="n">L1</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">.25</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/57016d09e19d5a7d3e3ad57d84bb26ffdfc9aec7f46669e4c5949d7253545338.png" src="../_images/57016d09e19d5a7d3e3ad57d84bb26ffdfc9aec7f46669e4c5949d7253545338.png" />
+</div>
+</div>
+<div class="toggle docutils container">
+<p>Diffences in the curves emerge for <span class="math notranslate nohighlight">\(k&lt;1\cdot10^3\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>, with these becoming more clear around <span class="math notranslate nohighlight">\(k=1\cdot10^2\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>. For slower exchange and low powers, it becomes again possible to separate populations from the change in chemical shift (see the reference above for more details).</p>
 </div>
 </section>
 </section>
@@ -1054,7 +1184,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/bea48d3eb4882650d09534f6bff25fe730b005207200b30ed4f5a0635adf8e5a.png" src="../_images/bea48d3eb4882650d09534f6bff25fe730b005207200b30ed4f5a0635adf8e5a.png" />
+<img alt="../_images/f4a9fd405e6dc14f089b0dd18dee7f904a1432a44c2e45f53704012211296718.png" src="../_images/f4a9fd405e6dc14f089b0dd18dee7f904a1432a44c2e45f53704012211296718.png" />
 </div>
 </div>
 <p>The above simulation has set the second peak to be just 2% of the total signal. However, the peak is easily visible in the saturation profile.</p>
@@ -1068,7 +1198,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/368254775b678855c29af6c981e2ab523aa99b599a6af4afd84d39876cbb7246.png" src="../_images/368254775b678855c29af6c981e2ab523aa99b599a6af4afd84d39876cbb7246.png" />
+<img alt="../_images/fb4837173743256eaf91558416bf2ae2c5bfae09f75d03cda8cc7f92cba58326.png" src="../_images/fb4837173743256eaf91558416bf2ae2c5bfae09f75d03cda8cc7f92cba58326.png" />
 </div>
 </div>
 <div class="toggle docutils container">
@@ -1084,12 +1214,12 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">50</span>
 <span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">),</span><span class="n">p1</span><span class="o">=</span><span class="mf">0.98</span><span class="p">)</span>
 
-<span class="n">_</span><span class="o">=</span><span class="n">CEST</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">CEST</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mf">.01</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e2995d6bf30d1fdc9fc013fa3e392e769b976889e0cc93bf434e8dbc837dcbc4.png" src="../_images/e2995d6bf30d1fdc9fc013fa3e392e769b976889e0cc93bf434e8dbc837dcbc4.png" />
+<img alt="../_images/fb4837173743256eaf91558416bf2ae2c5bfae09f75d03cda8cc7f92cba58326.png" src="../_images/fb4837173743256eaf91558416bf2ae2c5bfae09f75d03cda8cc7f92cba58326.png" />
 </div>
 </div>
 <div class="toggle docutils container">
@@ -1103,7 +1233,11 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 <p>Hint: There is some overlap for which experiment could work with each Liouvillian, but there is a “best” one-to-one assigment. You can adjust the input parameters for the experiments, but this should not be required.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="p">,</span><span class="n">L3</span><span class="p">,</span><span class="n">L4</span><span class="o">=</span><span class="p">[</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span>    <span class="c1">#Experimental system at 500 MHz with one 1H</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>     <span class="c1">#Add a chemical shift to the system</span>
+<span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>                      <span class="c1">#Copy system for second system in exchange </span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=-</span><span class="mi">500</span><span class="p">)</span>    <span class="c1">#Add a chemical shift to the second system</span>
+<span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="p">,</span><span class="n">L3</span><span class="p">,</span><span class="n">L4</span><span class="o">=</span><span class="p">[</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
 <span class="k">for</span> <span class="n">L</span><span class="p">,(</span><span class="n">k</span><span class="p">,</span><span class="n">p1</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="p">,</span><span class="n">L3</span><span class="p">,</span><span class="n">L4</span><span class="p">],</span><span class="n">pars</span><span class="p">):</span>
     <span class="n">L</span><span class="o">.</span><span class="n">add_relax</span><span class="p">(</span><span class="s1">&#39;T2&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">T2</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
     <span class="n">L</span><span class="o">.</span><span class="n">add_relax</span><span class="p">(</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">T1</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -1139,7 +1273,7 @@ L3: k=5.0, p1=0.35
 L4: k=5e+02, p1=0.60
 </pre></div>
 </div>
-<img alt="../_images/0649fe05e60ec83cfd38a5f5d8f59e2c25975138f9fef6c76480b3ec925bd2f1.png" src="../_images/0649fe05e60ec83cfd38a5f5d8f59e2c25975138f9fef6c76480b3ec925bd2f1.png" />
+<img alt="../_images/dbb1e5604c9d712e1f1dfba3609ecadd34e0cbd5c2be8778d438f4a6bec56e6f.png" src="../_images/dbb1e5604c9d712e1f1dfba3609ecadd34e0cbd5c2be8778d438f4a6bec56e6f.png" />
 </div>
 </details>
 </div>
@@ -1224,6 +1358,11 @@ L4: k=5e+02, p1=0.60
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-1">Exercise 2.1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-2">Exercise 2.2</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-1-rho-and-cpmg"><span class="math notranslate nohighlight">\(R_{1\rho}\)</span> and CPMG</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-1">Exercise 3.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-2">Exercise 3.2</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cest">CEST</a><ul class="nav section-nav flex-column">
