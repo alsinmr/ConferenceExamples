@@ -1,106 +1,160 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Chemical Exchange &#8212; Conference Tutorials</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'GNMR2025/Exchange';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="G-NMR 2025" href="GNMR2025.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="container-fluid" id="banner"></div>
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Conference Tutorials</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Conference Tutorials</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -110,516 +164,286 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Software.html">
-   Software
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../Software.html">Software</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Tutorials
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="GNMR2025.html">
-   G-NMR 2025
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Chemical Exchange
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="GNMR2025.html">G-NMR 2025</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Chemical Exchange</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/alsinmr/ConferenceExamples/master?urlpath=lab/tree/JupyterBook/GNMR2025/Exchange.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/alsinmr/ConferenceExamples/blob/master/JupyterBook/GNMR2025/Exchange.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="headerbtn__text-container">Colab</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/alsinmr/ConferenceExamples/blob/master/JupyterBook/GNMR2025/Exchange.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/alsinmr/ConferenceExamples" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/alsinmr/ConferenceExamples/issues/new?title=Issue%20on%20page%20%2FGNMR2025/Exchange.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/GNMR2025/Exchange.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/alsinmr/ConferenceExamples/"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/alsinmr/ConferenceExamples//issues/new?title=Issue%20on%20page%20%2FGNMR2025/Exchange.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/GNMR2025/Exchange.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button>
 
-      </li>
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup">
-   Setup
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation-functions">
-   Simulation functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#chemical-exchange-in-1d">
-   Chemical Exchange in 1D
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-1-1">
-     Exercise 1.1:
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#some-hints-on-2x2-exchange-matrices">
-       Some hints on 2x2 exchange matrices
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-1-2">
-     Exercise 1.2:
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#part-1">
-       Part 1
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#part-2">
-       Part 2
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#part-3">
-       Part 3
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#part-4">
-       Part 4
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-1-3">
-     Exercise 1.3
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-1-4">
-     Exercise 1.4
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#chemical-exchange-in-2d">
-   Chemical Exchange in 2D
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-2-1">
-     Exercise 2.1
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-2-2">
-     Exercise 2.2
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-2-3">
-     Exercise 2.3
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cest">
-   CEST
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-4-1">
-     Exercise 4.1
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-4-2">
-     Exercise 4.2
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matching-game">
-   Matching Game
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chemical Exchange</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup">
-   Setup
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation-functions">
-   Simulation functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#chemical-exchange-in-1d">
-   Chemical Exchange in 1D
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-1-1">
-     Exercise 1.1:
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#some-hints-on-2x2-exchange-matrices">
-       Some hints on 2x2 exchange matrices
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-1-2">
-     Exercise 1.2:
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#part-1">
-       Part 1
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#part-2">
-       Part 2
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#part-3">
-       Part 3
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#part-4">
-       Part 4
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-1-3">
-     Exercise 1.3
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-1-4">
-     Exercise 1.4
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#chemical-exchange-in-2d">
-   Chemical Exchange in 2D
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-2-1">
-     Exercise 2.1
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-2-2">
-     Exercise 2.2
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-2-3">
-     Exercise 2.3
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cest">
-   CEST
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-4-1">
-     Exercise 4.1
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-4-2">
-     Exercise 4.2
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matching-game">
-   Matching Game
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chemical Exchange</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-functions">Simulation functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-exchange-in-1d">Chemical Exchange in 1D</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-1">Exercise 1.1:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-hints-on-2x2-exchange-matrices">Some hints on 2x2 exchange matrices</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-2">Exercise 1.2:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4">Part 4</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-3">Exercise 1.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-4">Exercise 1.4</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-exchange-in-2d">Chemical Exchange in 2D</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-1">Exercise 2.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-2">Exercise 2.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cest">CEST</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-1">Exercise 4.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-2">Exercise 4.2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matching-game">Matching Game</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="chemical-exchange">
-<h1>Chemical Exchange<a class="headerlink" href="#chemical-exchange" title="Permalink to this headline">#</a></h1>
+<h1>Chemical Exchange<a class="headerlink" href="#chemical-exchange" title="Link to this heading">#</a></h1>
 <p>Chemical exchange is an important phenomenon in magnetic resonance, where a chemical or physical change in a molecule gives rise to a modulation in the chemical shift for a given spin. Depending on the rate of exchange between two or more chemical shifts, we may observe the effects of exchange using a number of different experiments.</p>
 <p>The following tutorial will introduce this concept and investigate effects of various parameters on several different experiments. We’ll use SLEEPY <a class="reference external" href="http://sleepy-nmr.org">http://sleepy-nmr.org</a> to support our investigations, so take some time to experiment with the software as you go.</p>
 <p>The basic formulas for calculating the influence of exchange on a 1D spectrum are the Bloch-McConnell equations:</p>
 <p>H.M. McConnell. <a class="reference external" href="https://doi.org/10.1063/1.1744152"><em>J. Chem. Phys.</em></a>, <strong>1958</strong>, 28, 430-431.</p>
 <section id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">SLEEPY</span> <span class="k">as</span> <span class="nn">sl</span>
@@ -632,7 +456,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="simulation-functions">
-<h2>Simulation functions<a class="headerlink" href="#simulation-functions" title="Permalink to this headline">#</a></h2>
+<h2>Simulation functions<a class="headerlink" href="#simulation-functions" title="Link to this heading">#</a></h2>
 <p>The hidden cell below (visibile in Colab) defines 5 different experiments that we’ll apply in this tutorial:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">OneD</span></code> : Simple, 1D spectrum</p></li>
@@ -642,6 +466,11 @@ title="Print to PDF"
 <li><p><code class="docutils literal notranslate"><span class="pre">CPMG</span></code> : Carr-Purcell-Meiboom-Gill pulse train. 4 frequencies applied (matches the first four field strengths of <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> experiment</p></li>
 </ul>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">OneD</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">4000</span><span class="p">)</span>
@@ -755,10 +584,11 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 <section id="chemical-exchange-in-1d">
-<h2>Chemical Exchange in 1D<a class="headerlink" href="#chemical-exchange-in-1d" title="Permalink to this headline">#</a></h2>
+<h2>Chemical Exchange in 1D<a class="headerlink" href="#chemical-exchange-in-1d" title="Link to this heading">#</a></h2>
 <p>The most basic experiment for observing chemical exchange is a simple 1D experiment, where we exchange between chemical shifts. In this experiment, evolution of a coherence under the chemical shift depends on the state of the system, for example:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -783,7 +613,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_9_0.png" src="../_images/Exchange_9_0.png" />
+<img alt="../_images/5fdb271ef173a736c0329274812c684203b5ca77a11a5e7ef0af9d26873e14a8.png" src="../_images/5fdb271ef173a736c0329274812c684203b5ca77a11a5e7ef0af9d26873e14a8.png" />
 </div>
 </div>
 <p>As we see, the system simply oscillates at the given input frequencies. Below, we can check what that frequency actually is, by taking the Fourier transform of the above signal, where we see that indeed it oscillates at +500 and -500 Hz.</p>
@@ -795,7 +625,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_11_0.png" src="../_images/Exchange_11_0.png" />
+<img alt="../_images/20f6b7435316ef7eed4619fc2fefda5043f4e969b1bcd3c7019a1901b15b7230.png" src="../_images/20f6b7435316ef7eed4619fc2fefda5043f4e969b1bcd3c7019a1901b15b7230.png" />
 </div>
 </div>
 <p>However, we may couple the two states together with an exchange matrix, yielding broadening in the spectrum, or if fast enough, coalescence of the peaks.</p>
@@ -809,11 +639,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_13_0.png" src="../_images/Exchange_13_0.png" />
+<img alt="../_images/dc5b623c57565d05f0fc78efcf92aefde98b435239173a25e1b845c276eb87df.png" src="../_images/dc5b623c57565d05f0fc78efcf92aefde98b435239173a25e1b845c276eb87df.png" />
 </div>
 </div>
 <section id="exercise-1-1">
-<h3>Exercise 1.1:<a class="headerlink" href="#exercise-1-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 1.1:<a class="headerlink" href="#exercise-1-1" title="Link to this heading">#</a></h3>
 <p>Typing any of the above objects at the command line will produce a description of the object. Objects also have a plot function (<code class="docutils literal notranslate"><span class="pre">ex0</span></code>,<code class="docutils literal notranslate"><span class="pre">ex1</span></code> have a <code class="docutils literal notranslate"><span class="pre">plot_inter</span></code> function, although this is not so informative for isotropic interactions). Try this to get a feeling for what the critical settings are in this simulation. What is the role of each object in the simulation?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -864,12 +694,12 @@ k_{12} &amp; k_{21} \\ k_{12} &amp;- k_{21}
 \end{split}\]</div>
 <p>This matrix indicates that if we are in state 1, the phase of <span class="math notranslate nohighlight">\(\hat{S}_1^+\)</span> will oscillate with frequency of <span class="math notranslate nohighlight">\(\Omega_1\)</span>, but it will also diffuse with rate <span class="math notranslate nohighlight">\(k_{12}\)</span> to state 2, where it will oscillate with frequency <span class="math notranslate nohighlight">\(\Omega_2\)</span> and also potentially diffuse back to state one (with rate <span class="math notranslate nohighlight">\(k_{21}\)</span>).</p>
 <section id="some-hints-on-2x2-exchange-matrices">
-<h4>Some hints on 2x2 exchange matrices<a class="headerlink" href="#some-hints-on-2x2-exchange-matrices" title="Permalink to this headline">#</a></h4>
+<h4>Some hints on 2x2 exchange matrices<a class="headerlink" href="#some-hints-on-2x2-exchange-matrices" title="Link to this heading">#</a></h4>
 <p>A 2x2 exchange matrix has two eigenvalues. One must always be zero, corresponding to the equilibrium of the exchange. Any evolution of the matrix occurs with a rate constant given by the other eigenvalue. This eigenvalue is equal to <span class="math notranslate nohighlight">\(-(k_{12}+k_{21})\)</span>. We therefore often define <span class="math notranslate nohighlight">\(k=(k_{12}+k_{21})/2\)</span>, and <span class="math notranslate nohighlight">\(\tau_c=1/(2k)\)</span>.</p>
 </section>
 </section>
 <section id="exercise-1-2">
-<h3>Exercise 1.2:<a class="headerlink" href="#exercise-1-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 1.2:<a class="headerlink" href="#exercise-1-2" title="Link to this heading">#</a></h3>
 <p>To understand exchange analytically, we often make some simplifying assumptions about the terms. First, we set <span class="math notranslate nohighlight">\(\Omega_1=\Delta\Omega/2\)</span> and <span class="math notranslate nohighlight">\(\Omega_2=-\Delta\Omega/2\)</span>. We also assume symmetric exchange, such that <span class="math notranslate nohighlight">\(k_{12}=k_{21}=k\)</span>. This yields the following exchange matrix:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -883,7 +713,7 @@ k_{12} &amp; k_{21} \\ k_{12} &amp;- k_{21}
 <p>Hint: <span class="math notranslate nohighlight">\(T_2\)</span> is the negative inverse of the real part of the eigenvalues, whereas the imaginary part yields oscillation frequencies</p>
 <p>The answer is given in multiple steps, so if you’re not sure how to start, go ahead and open the first answer.</p>
 <section id="part-1">
-<h4>Part 1<a class="headerlink" href="#part-1" title="Permalink to this headline">#</a></h4>
+<h4>Part 1<a class="headerlink" href="#part-1" title="Link to this heading">#</a></h4>
 <div class="toggle docutils container">
 <p>Eigenvalues are found by calculating the determinant of the matrix minus <span class="math notranslate nohighlight">\(\lambda\cdot\mathbb{1}\)</span>, setting it to zero, and solving for the values of <span class="math notranslate nohighlight">\(\lambda\)</span> (<span class="math notranslate nohighlight">\(\mathbb{1}\)</span> is an identity matrix)</p>
 <div class="math notranslate nohighlight">
@@ -896,7 +726,7 @@ k_{12} &amp; k_{21} \\ k_{12} &amp;- k_{21}
 </div>
 </section>
 <section id="part-2">
-<h4>Part 2<a class="headerlink" href="#part-2" title="Permalink to this headline">#</a></h4>
+<h4>Part 2<a class="headerlink" href="#part-2" title="Link to this heading">#</a></h4>
 <div class="toggle docutils container">
 <p>The determinant for a 2x2 matrix is calculated by taking the (0,0) element times the (1,1) element minus the (0,1) element times the (1,0) element.</p>
 <div class="math notranslate nohighlight">
@@ -909,7 +739,7 @@ k_{12} &amp; k_{21} \\ k_{12} &amp;- k_{21}
 </div>
 </section>
 <section id="part-3">
-<h4>Part 3<a class="headerlink" href="#part-3" title="Permalink to this headline">#</a></h4>
+<h4>Part 3<a class="headerlink" href="#part-3" title="Link to this heading">#</a></h4>
 <div class="toggle docutils container">
 <p>We can solve for the eigenvalues using the quadratic formula.</p>
 <div class="math notranslate nohighlight">
@@ -927,7 +757,7 @@ x&amp;=&amp;\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 </div>
 </section>
 <section id="part-4">
-<h4>Part 4<a class="headerlink" href="#part-4" title="Permalink to this headline">#</a></h4>
+<h4>Part 4<a class="headerlink" href="#part-4" title="Link to this heading">#</a></h4>
 <div class="toggle docutils container">
 <p>The real part of the eigenvalues is the negative inverse of <span class="math notranslate nohighlight">\(T_2\)</span>, whereas the imaginary part is the frequency. When <span class="math notranslate nohighlight">\(2k&gt;\Delta\Omega\)</span>, then the eigenvalues are strictly real. This means that there is only a single frequency (at 0) in the spectrum, but a complex lineshape with two decay rates. On the other hand, if <span class="math notranslate nohighlight">\(2k&lt;\Delta\Omega\)</span>, then two distinct frequencies emerge. The real part is then only <span class="math notranslate nohighlight">\(-k\)</span>, so <span class="math notranslate nohighlight">\(T_2=1/k\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -945,7 +775,7 @@ x&amp;=&amp;\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 </section>
 </section>
 <section id="exercise-1-3">
-<h3>Exercise 1.3<a class="headerlink" href="#exercise-1-3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 1.3<a class="headerlink" href="#exercise-1-3" title="Link to this heading">#</a></h3>
 <p>Above, we set up a simulation with two different chemical shifts in exchange (<span class="math notranslate nohighlight">\(\pm\)</span>500 Hz, so <span class="math notranslate nohighlight">\(\Delta\Omega=2*\pi*1000\)</span> rad/s). Adjust <span class="math notranslate nohighlight">\(k\)</span> to the different conditions in the solution above to observe the effect.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -957,10 +787,15 @@ x&amp;=&amp;\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_25_0.png" src="../_images/Exchange_25_0.png" />
+<img alt="../_images/a1df3c528d7de607c32df2860eb317b53f2d7b1acb4f609945402261b91dcb48.png" src="../_images/a1df3c528d7de607c32df2860eb317b53f2d7b1acb4f609945402261b91dcb48.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
@@ -978,8 +813,9 @@ x&amp;=&amp;\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_26_0.png" src="../_images/Exchange_26_0.png" />
+<img alt="../_images/9c552d2d0fda76565815ffb4245f2e8a88456d936e5531443ac2fc736443e862.png" src="../_images/9c552d2d0fda76565815ffb4245f2e8a88456d936e5531443ac2fc736443e862.png" />
 </div>
+</details>
 </div>
 <p>The full Liouville matrix for the above system is an 8x8 matrix, but most terms do not actually enter into the calculation, reducing to the 2x2 matrix already discussed. SLEEPY will automatically pick out the required terms. We may then adjust the exchange matrix and extract the eigenvalues of the Liouville matrix for the conditions above, in order to find <span class="math notranslate nohighlight">\(T_2\)</span> and the resonance frequencies.</p>
 <div class="cell docutils container">
@@ -1025,7 +861,7 @@ k=6e+01 s^-1, T2=15.92 ms, T2=15.92 ms,f=-499.9 Hz, f= 499.9 Hz
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_30_0.png" src="../_images/Exchange_30_0.png" />
+<img alt="../_images/dbfb146a3e0960d82436e1b25a23b9a5b59007c383f8d7d4ab2644277646dae2.png" src="../_images/dbfb146a3e0960d82436e1b25a23b9a5b59007c383f8d7d4ab2644277646dae2.png" />
 </div>
 </div>
 <p>We repeat the eigenvalue calculation.</p>
@@ -1055,7 +891,7 @@ k=6e+01 s^-1,T2=11.37 ms, T2=26.53 ms,f=-499.9 Hz, f=499.9 Hz
 </div>
 </section>
 <section id="exercise-1-4">
-<h3>Exercise 1.4<a class="headerlink" href="#exercise-1-4" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 1.4<a class="headerlink" href="#exercise-1-4" title="Link to this heading">#</a></h3>
 <p>What do you see that’s different about the results of the eigenvalue calculation above vs. symmetric exchange.</p>
 <div class="toggle docutils container">
 <p>The critical point is that there are always two unique frequencies for asymmetric exchange. In symmetric exchange, when <span class="math notranslate nohighlight">\(2k&gt;\Delta\Omega\)</span>, a coalescence condition occured and the two peaks both had the same frequency. In asymmetric exchange, no coalescence exists. One peak just becomes increasingly weak until it is effectively invisible.</p>
@@ -1065,7 +901,7 @@ k=6e+01 s^-1,T2=11.37 ms, T2=26.53 ms,f=-499.9 Hz, f=499.9 Hz
 </section>
 </section>
 <section id="chemical-exchange-in-2d">
-<h2>Chemical Exchange in 2D<a class="headerlink" href="#chemical-exchange-in-2d" title="Permalink to this headline">#</a></h2>
+<h2>Chemical Exchange in 2D<a class="headerlink" href="#chemical-exchange-in-2d" title="Link to this heading">#</a></h2>
 <p>In the oneD spectra above, we get significant broadening for the case that rate of exchange (<span class="math notranslate nohighlight">\(2k\)</span>) is on the order of the size in chemical shift. However, what should we do if this is not the case? The first situation is if motion is much slower. Then, we obtain narrow lines, where broadening is likely dominated by other sources of relaxation so that we cannot easily extract exchange rates.</p>
 <p>In this case, we may use Exchange Spectroscopy (EXSY). This is a 2D experiment, where we evolve in the indirect dimension, flip the magnetization to the <em>z</em>-axis, wait to allow exchange to occur, and then flip magnetization back to the <em>x</em>-axis to observe the emergence of new frequencies.</p>
 <p>We include some <span class="math notranslate nohighlight">\(T_2\)</span> relaxation to broaden the spectra slightly.</p>
@@ -1079,11 +915,11 @@ k=6e+01 s^-1,T2=11.37 ms, T2=26.53 ms,f=-499.9 Hz, f=499.9 Hz
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_37_0.png" src="../_images/Exchange_37_0.png" />
+<img alt="../_images/a627cdd84a4db939db71dd0bb5b2ede18576a889cb75bb00ad888cb71bae21bc.png" src="../_images/a627cdd84a4db939db71dd0bb5b2ede18576a889cb75bb00ad888cb71bae21bc.png" />
 </div>
 </div>
 <section id="exercise-2-1">
-<h3>Exercise 2.1<a class="headerlink" href="#exercise-2-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 2.1<a class="headerlink" href="#exercise-2-1" title="Link to this heading">#</a></h3>
 <p>Write formulas for the peak integrals for a delay much longer than the length of the correlation time of exchange. That is, what is <span class="math notranslate nohighlight">\(I_{1,1}\)</span>, <span class="math notranslate nohighlight">\(I_{1,2}\)</span>, <span class="math notranslate nohighlight">\(I_{2,1}\)</span>, <span class="math notranslate nohighlight">\(I_{2,2}\)</span> as a function of <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span>, where <span class="math notranslate nohighlight">\(I_{1,2}\)</span> is the peak corresponding to magnetization starting in state one and ending in state 2, for example, and <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span></p>
 <p>We can take the populations as probabilities, and so the probability of starting in state 1 and ending in state one is simply <span class="math notranslate nohighlight">\(p_1*p_1\)</span>. By analogy:</p>
 <div class="toggle docutils container">
@@ -1099,7 +935,7 @@ I_{2,2}&amp;=&amp;p_2^2
 </div>
 </section>
 <section id="exercise-2-2">
-<h3>Exercise 2.2<a class="headerlink" href="#exercise-2-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 2.2<a class="headerlink" href="#exercise-2-2" title="Link to this heading">#</a></h3>
 <p>For a given delay, <span class="math notranslate nohighlight">\(\tau\)</span>, and exchange rate constants <span class="math notranslate nohighlight">\(k_{12}\)</span> and <span class="math notranslate nohighlight">\(k_{21}\)</span>, give the peak intensities.</p>
 <p>Hint: Give your answer in terms of <span class="math notranslate nohighlight">\(p_1\)</span>, <span class="math notranslate nohighlight">\(p_2\)</span>, and <span class="math notranslate nohighlight">\(k\)</span> (<span class="math notranslate nohighlight">\(k=k_1+k_2\)</span>).</p>
 <div class="math notranslate nohighlight">
@@ -1130,13 +966,13 @@ I_{2,2}(\tau)&amp;=&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb86832b3c8&gt;]
 </pre></div>
 </div>
-<img alt="../_images/Exchange_41_1.png" src="../_images/Exchange_41_1.png" />
+<img alt="../_images/b94f7b6e6788293c1f0f8a651af79f295e6175a1300717bd1eeea039aec94e46.png" src="../_images/b94f7b6e6788293c1f0f8a651af79f295e6175a1300717bd1eeea039aec94e46.png" />
 </div>
 </div>
 <p>The agreement is not quite perfect. Indeed, some exchange may occur during the indirect and direct dimensions, so that there is some cross-peak amplitude even when the delays are zero. Nonetheless, this is a good model of the buildup.</p>
 </section>
 <section id="exercise-2-3">
-<h3>Exercise 2.3<a class="headerlink" href="#exercise-2-3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 2.3<a class="headerlink" href="#exercise-2-3" title="Link to this heading">#</a></h3>
 <p>When, roughly, is exchange too fast (or two slow) for the EXSY experiment? What are the problems that arise? Edit <code class="docutils literal notranslate"><span class="pre">k</span></code> in the cell below. When <code class="docutils literal notranslate"><span class="pre">k</span></code> is large, you may want to shorten the total delay in the second call to EXSY. Note that we have added <span class="math notranslate nohighlight">\(T_1\)</span> relaxation to the Liouvillian (why is this relevant? Can you edit the buildup formulas accordingly?)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1154,7 +990,7 @@ I_{2,2}(\tau)&amp;=&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_44_0.png" src="../_images/Exchange_44_0.png" />
+<img alt="../_images/c02cae56406075d01bb1566965c272ca6095206ad60036650cd34e0d098eb39c.png" src="../_images/c02cae56406075d01bb1566965c272ca6095206ad60036650cd34e0d098eb39c.png" />
 </div>
 </div>
 <div class="toggle docutils container">
@@ -1189,15 +1025,20 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_46_0.png" src="../_images/Exchange_46_0.png" />
+<img alt="../_images/85f0df8e22008ac85b3112734f6897d024414cbf820d7d5da99e275fb1dae7d5.png" src="../_images/85f0df8e22008ac85b3112734f6897d024414cbf820d7d5da99e275fb1dae7d5.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="cest">
-<h2>CEST<a class="headerlink" href="#cest" title="Permalink to this headline">#</a></h2>
+<h2>CEST<a class="headerlink" href="#cest" title="Link to this heading">#</a></h2>
 <p>Our experiments up until now assume a relatively large population on both states in exchange. However, what can we do if one population is too small to observe as a resonance in the spectrum, we may use the Chemical Exchange Saturation Transfer experiment, or CEST. This experiment applies a saturating field onto longitudinal magnetization followed by detection. If the saturating field is on-resonance with the main peak, then as expected, the signal is reduced. However, if a peak corresponding to a low population is on-resonance, then the main peak also saturates. This is demonstrated below, where we first plot the 1D experiment, followed by the CEST saturation profile.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">clear_relax</span><span class="p">()</span>
 <span class="n">L</span><span class="o">.</span><span class="n">add_relax</span><span class="p">(</span><span class="s1">&#39;T2&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">T2</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>
@@ -1211,13 +1052,14 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_48_0.png" src="../_images/Exchange_48_0.png" />
+<img alt="../_images/bea48d3eb4882650d09534f6bff25fe730b005207200b30ed4f5a0635adf8e5a.png" src="../_images/bea48d3eb4882650d09534f6bff25fe730b005207200b30ed4f5a0635adf8e5a.png" />
 </div>
 </div>
 <p>The above simulation has set the second peak to be just 2% of the total signal. However, the peak is easily visible in the saturation profile.</p>
 <section id="exercise-4-1">
-<h3>Exercise 4.1<a class="headerlink" href="#exercise-4-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 4.1<a class="headerlink" href="#exercise-4-1" title="Link to this heading">#</a></h3>
 <p>Below, <code class="docutils literal notranslate"><span class="pre">dly</span></code> gives the length of the CEST saturation period in seconds, and <code class="docutils literal notranslate"><span class="pre">v1</span></code> gives the strength of the saturation field in Hz. Fix the experiment! What should one consider when setting these parameters?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1226,7 +1068,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_51_0.png" src="../_images/Exchange_51_0.png" />
+<img alt="../_images/368254775b678855c29af6c981e2ab523aa99b599a6af4afd84d39876cbb7246.png" src="../_images/368254775b678855c29af6c981e2ab523aa99b599a6af4afd84d39876cbb7246.png" />
 </div>
 </div>
 <div class="toggle docutils container">
@@ -1235,7 +1077,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </section>
 <section id="exercise-4-2">
-<h3>Exercise 4.2<a class="headerlink" href="#exercise-4-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 4.2<a class="headerlink" href="#exercise-4-2" title="Link to this heading">#</a></h3>
 <p>How does the CEST experiment depend on the rate of exchange? Adjust <code class="docutils literal notranslate"><span class="pre">k</span></code> below to determine where CEST works or fails. Don’t forget to fix <code class="docutils literal notranslate"><span class="pre">dly</span></code> and <code class="docutils literal notranslate"><span class="pre">v1</span></code> based on your investigation above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1247,7 +1089,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Exchange_54_0.png" src="../_images/Exchange_54_0.png" />
+<img alt="../_images/e2995d6bf30d1fdc9fc013fa3e392e769b976889e0cc93bf434e8dbc837dcbc4.png" src="../_images/e2995d6bf30d1fdc9fc013fa3e392e769b976889e0cc93bf434e8dbc837dcbc4.png" />
 </div>
 </div>
 <div class="toggle docutils container">
@@ -1256,7 +1098,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </section>
 </section>
 <section id="matching-game">
-<h2>Matching Game<a class="headerlink" href="#matching-game" title="Permalink to this headline">#</a></h2>
+<h2>Matching Game<a class="headerlink" href="#matching-game" title="Link to this heading">#</a></h2>
 <p>Below, we have prepared four Liouvillian matrices (objects), corresponding to different populations and correlation times. Which experiment would you apply for each Liouvillian? Try out each experiment (use CPMG or <span class="math notranslate nohighlight">\(R_{1p}\)</span>, but not both, since their performance is very similar). Once  you reveal the answer, you will also see the rate constants (<code class="docutils literal notranslate"><span class="pre">k</span></code>) and populations (<code class="docutils literal notranslate"><span class="pre">p1</span></code>).</p>
 <p>Hint: There is some overlap for which experiment could work with each Liouvillian, but there is a “best” one-to-one assigment. You can adjust the input parameters for the experiments, but this should not be required.</p>
 <div class="cell docutils container">
@@ -1272,6 +1114,11 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 <p>Reveal the cell below for our suggested best answer</p>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -1292,8 +1139,9 @@ L3: k=5.0, p1=0.35
 L4: k=5e+02, p1=0.60
 </pre></div>
 </div>
-<img alt="../_images/Exchange_59_1.png" src="../_images/Exchange_59_1.png" />
+<img alt="../_images/0649fe05e60ec83cfd38a5f5d8f59e2c25975138f9fef6c76480b3ec925bd2f1.png" src="../_images/0649fe05e60ec83cfd38a5f5d8f59e2c25975138f9fef6c76480b3ec925bd2f1.png" />
 </div>
+</details>
 </div>
 </section>
 </section>
@@ -1310,7 +1158,7 @@ L4: k=5e+02, p1=0.60
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./GNMR2025"
         },
         predefinedOutput: true
@@ -1318,43 +1166,124 @@ L4: k=5e+02, p1=0.60
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="GNMR2025.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">G-NMR 2025</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="GNMR2025.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">G-NMR 2025</p>
+      </div>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-functions">Simulation functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-exchange-in-1d">Chemical Exchange in 1D</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-1">Exercise 1.1:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-hints-on-2x2-exchange-matrices">Some hints on 2x2 exchange matrices</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-2">Exercise 1.2:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4">Part 4</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-3">Exercise 1.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-4">Exercise 1.4</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-exchange-in-2d">Chemical Exchange in 2D</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-1">Exercise 2.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-2">Exercise 2.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cest">CEST</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-1">Exercise 4.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-2">Exercise 4.2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matching-game">Matching Game</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Albert Smith<br/>
-  
-      &copy; Copyright 2025.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Albert Smith
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
