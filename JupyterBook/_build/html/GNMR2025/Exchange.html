@@ -1239,7 +1239,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 <p>How does the CEST experiment depend on the rate of exchange? Adjust <code class="docutils literal notranslate"><span class="pre">k</span></code> below to determine where CEST works or fails. Don’t forget to fix <code class="docutils literal notranslate"><span class="pre">dly</span></code> and <code class="docutils literal notranslate"><span class="pre">v1</span></code> based on your investigation above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">50</span>
 <span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">),</span><span class="n">p1</span><span class="o">=</span><span class="mf">0.98</span><span class="p">)</span>
 
 <span class="n">_</span><span class="o">=</span><span class="n">CEST</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">dly</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
@@ -1257,7 +1257,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </section>
 <section id="matching-game">
 <h2>Matching Game<a class="headerlink" href="#matching-game" title="Permalink to this headline">#</a></h2>
-<p>Below, we have prepared four Liouvillian matrices (objects), corresponding to different populations and correlation times. Which experiment would you apply for each Liouvillian? Try out each experiment (use CPMG or <span class="math notranslate nohighlight">\(R_{1p}\)</span>, but not both, since their performance is very similar)</p>
+<p>Below, we have prepared four Liouvillian matrices (objects), corresponding to different populations and correlation times. Which experiment would you apply for each Liouvillian? Try out each experiment (use CPMG or <span class="math notranslate nohighlight">\(R_{1p}\)</span>, but not both, since their performance is very similar). Once  you reveal the answer, you will also see the rate constants (<code class="docutils literal notranslate"><span class="pre">k</span></code>) and populations (<code class="docutils literal notranslate"><span class="pre">p1</span></code>).</p>
 <p>Hint: There is some overlap for which experiment could work with each Liouvillian, but there is a “best” one-to-one assigment. You can adjust the input parameters for the experiments, but this should not be required.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
