@@ -1,0 +1,12 @@
+name: Python-env
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - numpy
+  - scipy
+  - pip
+  - nglview
+  - pip:
+    - sleepy-nmr
+    - matplotlib
