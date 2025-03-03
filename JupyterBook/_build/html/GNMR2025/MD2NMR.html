@@ -1,0 +1,1255 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Calculating NMR Parameters from MD Simulations 1: S\(^2\) and C(t) &#8212; Conference Tutorials</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'GNMR2025/MD2NMR';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Calculating NMR Parameters from MD Simulations 1: Calculating Relaxation" href="MD2NMR_fitting.html" />
+    <link rel="prev" title="Chemical Exchange" href="Exchange.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Conference Tutorials</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Conference Tutorials
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Software.html">Software</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="GNMR2025.html"><font color="#28b463"> G-NMR 2025 &lt;\font&gt;</font></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Exchange.html"><font color="#2e86c1"> Chemical Exchange </font></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 1: S<span class="math notranslate nohighlight">\(^2\)</span> and C(t) </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="MD2NMR_fitting.html"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 1: Calculating Relaxation </font></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/alsinmr/ConferenceExamples/blob/master/JupyterBook/GNMR2025/MD2NMR.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/alsinmr/ConferenceExamples" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/alsinmr/ConferenceExamples/issues/new?title=Issue%20on%20page%20%2FGNMR2025/MD2NMR.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/GNMR2025/MD2NMR.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 1: S^2 and C(t) </font></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-the-correlation-function">Part 1: The correlation function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-1">Exercise 1.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-2">Exercise 1.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-3">Exercise 1.3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-extract-vectors">Part 2: Extract vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-1-align-molecules">Part 2.1 Align molecules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-1">Exercise 2.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-2">Exercise 2.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-2-extract-vectors">Part 2.2 Extract vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-3-normalize-vectors">Part 2.3 Normalize vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-4">Exercise 2.4</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-order-parameters">Part 3: Order Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-1">Exercise 3.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-2">Exercise 3.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-3">Exercise 3.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-4">Exercise 3.4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-2-repeat-with-un-aligned-trajectory">Exercise 2.2 Repeat with un-aligned trajectory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-correlation-functions">Part 4: Correlation functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-1">Exercise 4.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-2">Exercise 4.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-3">Exercise 4.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-4">Exercise 4.4</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="calculating-nmr-parameters-from-md-simulations-1-s-2-and-c-t">
+<h1><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 1: S<span class="math notranslate nohighlight">\(^2\)</span> and C(t) </font><a class="headerlink" href="#calculating-nmr-parameters-from-md-simulations-1-s-2-and-c-t" title="Link to this heading">#</a></h1>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure pyDR is installed and on the path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span> <span class="c1">#Colab</span>
+    <span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/alsinmr/pyDR
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;../../..&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">pyDR</span>
+<span class="n">vft</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">MDtools</span><span class="o">.</span><span class="n">vft</span>  <span class="c1">#Set of tools for dealing with vectors</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">MDAnalysis</span> <span class="k">as</span> <span class="nn">mda</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Downloads</span>
+<span class="n">xtc</span><span class="o">=</span><span class="s1">&#39;https://drive.google.com/file/d/1wq5T-YDmPo2zAIWu9we2zyL2i-v52fnD/view?usp=sharing&#39;</span>
+<span class="n">pdb</span><span class="o">=</span><span class="s1">&#39;https://drive.google.com/file/d/1aBMUO2C1AZfx05dANl4QITHuqmHbDDsN/view?usp=sharing&#39;</span>
+
+<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">)):</span>
+    <span class="n">pyDR</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">pdb</span><span class="p">,</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;ubi.xtc&#39;</span><span class="p">)):</span>
+    <span class="n">pyDR</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">xtc</span><span class="p">,</span><span class="s1">&#39;ubi.xtc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this tutorial, we want to calculate relaxation rate constants induced by reorientational motion of some NMR interaction tensor. We will consider <span class="math notranslate nohighlight">\(^{15}\)</span>N relaxation in the protein ubiquitin, where relaxation is induced by reorientation of the H–N dipole coupling and the <span class="math notranslate nohighlight">\(^{15}\)</span>N chemical shift anisotropy. The dipole coupling is parallel to the H–N bond, and the CSA can be approximated as parallel to this bond (in reality, it is about 23 <span class="math notranslate nohighlight">\(^\circ\)</span> away, but the reorientational motion it experiences is about the same as the bond itself).</p>
+<p>Then, we need to first extract the bond vectors, calculate order parameters and correlation functions, parameterize them, and calculate either rate constants directly, or compare parameters derived from NMR to parameters derived from MD.</p>
+</section>
+<section id="part-1-the-correlation-function">
+<h2>Part 1: The correlation function<a class="headerlink" href="#part-1-the-correlation-function" title="Link to this heading">#</a></h2>
+<p>As a brief review, we want to calculate order parameters and correlation functions from MD. For a normalized vector that gives the direction of an NMR tensor as a function of time (<span class="math notranslate nohighlight">\(\vec{v}(t)=[x(t),y(t),z(t)]\)</span>), we have for the correlation function:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+C(t)&amp;=&amp;\left\langle P_2(\cos\beta_{\tau,t+\tau})\right\rangle_\tau \\
+P_2&amp;=&amp;\frac{3x^2-1}{2} \\
+\cos\beta_{\tau,t+\tau}&amp;=&amp;\vec{v}(\tau)\cdot\vec{v}(t+\tau) \\
+&amp;=&amp;\sum\limits_{\alpha=x,y,z}{\alpha(\tau)\alpha(t+\tau)}
+\end{eqnarray}
+\end{split}\]</div>
+<p>The brackets <span class="math notranslate nohighlight">\(\langle ...\rangle_\tau\)</span> indicate an average over <span class="math notranslate nohighlight">\(\tau\)</span>, where <span class="math notranslate nohighlight">\(C(t)\)</span> is an average over all time points separated by <span class="math notranslate nohighlight">\(t\)</span>. <span class="math notranslate nohighlight">\(\cos\beta_{\tau,t+\tau}\)</span> can be obtained from the dot-product of the normalized vectors at times <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(t+\tau\)</span>.</p>
+<p>The formula for <span class="math notranslate nohighlight">\(C(t)\)</span> can be expanded and expressed as a sum of linear correlation functions, which will later be useful for faster calculations. Perform the steps below (check your results as you go)</p>
+<section id="exercise-1-1">
+<h3>Exercise 1.1<a class="headerlink" href="#exercise-1-1" title="Link to this heading">#</a></h3>
+<p>Insert the summation for <span class="math notranslate nohighlight">\(x\)</span> into <span class="math notranslate nohighlight">\(P2(...)\)</span>, and insert <span class="math notranslate nohighlight">\(P2(...)\)</span> into the brackets. Note that for an average, if we have constants <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, and variable <span class="math notranslate nohighlight">\(x\)</span>, then <span class="math notranslate nohighlight">\(\left\langle a+bx\right\rangle=a+b\langle x\rangle\)</span>. Apply this simplification for your result.</p>
+<div class="toggle docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+C(t)&amp;=&amp;\left\langle-\frac12+\frac32\left(\sum\limits_{\alpha=[x,y,z]}{\alpha(\tau)\alpha(t+\tau)}\right)^2\right\rangle_\tau \\
+&amp;=&amp;-\frac12+\frac32\left\langle\left(\sum\limits_{\alpha=[x,y,z]}{\alpha(\tau)\alpha(t+\tau)}\right)^2\right\rangle_\tau
+\end{eqnarray}
+\end{split}\]</div>
+</div>
+</section>
+<section id="exercise-1-2">
+<h3>Exercise 1.2<a class="headerlink" href="#exercise-1-2" title="Link to this heading">#</a></h3>
+<p>A squared summation may be expanded by introducing a new index and summing over both indices, taking products of all terms, e.g. for <span class="math notranslate nohighlight">\((\sum\limits_i{x_i})^2=\sum\limits_i{\sum\limits_j{x_ix_j}}\)</span>. Do this for the squared term above (you should have a double summation over <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>).</p>
+<div class="toggle docutils container">
+<div class="math notranslate nohighlight">
+\[
+\begin{eqnarray}
+C(t)&amp;=&amp;-\frac12+\frac32\left\langle\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\alpha(\tau)\alpha(t+\tau)\beta(\tau)\beta(t+\tau)}}\right\rangle_\tau
+\end{eqnarray}
+\]</div>
+</div>
+</section>
+<section id="exercise-1-3">
+<h3>Exercise 1.3<a class="headerlink" href="#exercise-1-3" title="Link to this heading">#</a></h3>
+<p>Finally, when we have the expectation value of a summation, this can be written as a sum of expectation values: <span class="math notranslate nohighlight">\(\left\langle\sum\limits_i{x_i}\right\rangle=\sum\limits_i{\langle x_i\rangle}\)</span>. Rewrite the total correlation function as a linear combination of linear correlation functions using this relationship.</p>
+<div class="toggle docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+C(t)&amp;=&amp;-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\left\langle\alpha(\tau)\beta(\tau)\alpha(t+\tau)\beta(t+\tau)\right\rangle_\tau}} \\
+\end{eqnarray}
+\end{split}\]</div>
+<p>Note that the term <span class="math notranslate nohighlight">\(\left\langle\alpha(\tau)\beta(\tau)\alpha(t+\tau)\beta(t+\tau)\right\rangle_\tau\)</span> is an time <em>auto</em>correlation function of <span class="math notranslate nohighlight">\(\alpha(\tau)\beta(\tau)\)</span> with itself.</p>
+</div>
+</section>
+</section>
+<section id="part-2-extract-vectors">
+<h2>Part 2: Extract vectors<a class="headerlink" href="#part-2-extract-vectors" title="Link to this heading">#</a></h2>
+<p>In this section, we need to get bond vectors for the H-N bonds that can be used for calculating the correlation function.</p>
+<p>Note that when calculating a bond’s orientation, one needs to make sure that it is not split over the MD simulation’s box (i.e. periodic boundary conditions). In this simulation, we use a molecule that has been made “whole”, so that this is already fixed.</p>
+<p>In some simulations, it may also be important to remove overall motion of the molecule, i.e. translation and rotation, by aligning it to a reference structure. If we remove this motion, then we should also remove it from the experimental data. For example, in solution NMR, usually it is best to solve for the total rotation of the molecule and factor out this motion for analysis, and also align the molecule in MD. Alternatively, we can leave the tumbling in both simulations, but then we need to be sure the overall motion in MD is accurate, otherwise it will be a major source of error. On the other hand, for molecules like lipids in membranes, usually we want to keep the overall motion and so will not perform an alignment step. For intrinsically disordered proteins (IDPs), the overall motion presents a particular challenge because it can be hard to reproduce, but it is also not really possible to separate internal from overall motion in IDPs.</p>
+<p>Below, we’ll calculate correlation functions and order parameters with and without removing the overall motion.</p>
+<p><a class="reference external" href="https://www.mdanalysis.org/">MDAnalysis</a> is a frame reader. One provides it with the location of a topology (that is, a file that tells how atoms in a system are bonded together, possibly containing multiple molecules), and a trajectory, which is a list of positions of those atoms as a function of time. The frame reader reads out the positions of those atoms (or a subset of those atoms as instructed) for a given frame. In MDanalysis, one has a universe <em>object</em> which gives access to all information about the simulation. Within the universe, one finds the “trajectory” object, which may be indexed to go to different frames in the trajectory. One may create atom groups from the universe, which then return positions of only selected atoms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uni0</span><span class="o">=</span><span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">,</span><span class="s1">&#39;ubi.xtc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="part-2-1-align-molecules">
+<h3>Part 2.1 Align molecules<a class="headerlink" href="#part-2-1-align-molecules" title="Link to this heading">#</a></h3>
+<p>When we analyze an MD simulation, sometimes some preparation of the simulation is required. For example, if we are interested in studying internal motion of a protein, then we need to be aware if the protein is tumbling in solution. For a membrane protein, it will usually not be tumbling isotropically, although it may move within the membrane. Then, the question arises if we want to include this overall motion in our analysis, or exclude it via alignment of the molecule.</p>
+</section>
+<section id="exercise-2-1">
+<h3>Exercise 2.1<a class="headerlink" href="#exercise-2-1" title="Link to this heading">#</a></h3>
+<p>What type of biomolecules would you want to include overall motion, i.e. not apply alignment of the molecule?</p>
+<div class="toggle docutils container">
+<p>Molecules where it is difficult to define alignment, i.e. where the structure is highly variable. Two possibilities are intrinsically disordered proteins and lipid membranes.</p>
+</div>
+<p>A second concern is the periodic boundary condition (PBC) used in MD simulations. For an MD simulation, we have to restrict the simulation to a box. When an atom reaches the end of the box, it does not interact with a wall or a vacuum, but rather it interacts with atoms on the opposite side of the box. This is a convenient trick for keeping realistic interactions without requiring an extremely large system. However, a molecule may well be split across the box. This does not impact the simulation in any negative way, but makes the direction of a bond ill-defined. One may either prepare the simulation before analysis such that the molecule of interest stays “whole” or “centered”, both usually avoid this problem. Alternatively, one may correct for bonds split across the box during analysis (pyDR, which we use later, treats the PBC automatically. It does not automatically handle alignment).</p>
+</section>
+<section id="exercise-2-2">
+<h3>Exercise 2.2<a class="headerlink" href="#exercise-2-2" title="Link to this heading">#</a></h3>
+<p>The following code aligns a molecule in a trajectory (assuming it is already made “whole”, with no atoms crossing the periodic boundary condition). When we align a molecule, we need to move atoms in the simulation to the center (translation), and turn them so that reference atoms are aligned (rotation). Which lines below achieve translation and rotation?</p>
+<div class="toggle docutils container">
+<p>translation: <code class="docutils literal notranslate"><span class="pre">pos=atoms.positions</span></code>
+rotaton: <code class="docutils literal notranslate"><span class="pre">pos-=ref.mean(0)</span></code></p>
+</div>
+<p>Note that the rotational alignment below is achieved with the <a class="reference external" href="https://en.wikipedia.org/wiki/Kabsch_algorithm">Kabsch Algorithm</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">align</span><span class="p">(</span><span class="n">uni</span><span class="p">,</span><span class="n">fileout</span><span class="o">=</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">,</span><span class="n">ref_sel</span><span class="o">=</span><span class="s1">&#39;name CA&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function takes a trajectory and aligns it based on</span>
+<span class="sd">    a reference selection of atoms. The new trajectory is</span>
+<span class="sd">    returned in fileout (default is ubi_aligned.xtc)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">svd</span>
+    
+    <span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#Go to the first frame of the trajectory</span>
+    <span class="n">atoms</span><span class="o">=</span><span class="n">uni</span><span class="o">.</span><span class="n">atoms</span>   <span class="c1">#All atoms in the trajectory</span>
+    <span class="n">ref_sel</span><span class="o">=</span><span class="n">uni</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="n">ref_sel</span><span class="p">)</span>  <span class="c1">#Atom group for the reference</span>
+    
+    <span class="n">ref0</span><span class="o">=</span><span class="n">ref_sel</span><span class="o">.</span><span class="n">positions</span> <span class="c1">#initial positions of reference atoms</span>
+    <span class="n">ref0</span><span class="o">-=</span><span class="n">ref0</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#Centers the initial position</span>
+    
+    <span class="k">with</span> <span class="n">mda</span><span class="o">.</span><span class="n">Writer</span><span class="p">(</span><span class="n">fileout</span><span class="p">,</span><span class="n">atoms</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">)</span> <span class="k">as</span> <span class="n">W</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">ts</span> <span class="ow">in</span> <span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="p">:</span>
+            <span class="n">ref</span><span class="o">=</span><span class="n">ref_sel</span><span class="o">.</span><span class="n">positions</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">atoms</span><span class="o">.</span><span class="n">positions</span>
+
+            <span class="n">pos</span><span class="o">-=</span><span class="n">ref</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1">#This centers the atoms</span>
+            <span class="n">ref</span><span class="o">-=</span><span class="n">ref</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1">#This centers the reference</span>
+            
+            <span class="n">H</span><span class="o">=</span><span class="n">ref0</span><span class="o">.</span><span class="n">T</span><span class="nd">@ref</span>       <span class="c1">#3x3 matrix</span>
+            <span class="n">U</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">Vt</span><span class="o">=</span><span class="n">svd</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>      <span class="c1">#Singular value decomposition</span>
+            <span class="n">V</span><span class="o">=</span><span class="n">Vt</span><span class="o">.</span><span class="n">T</span>             <span class="c1">#Transposes</span>
+            <span class="n">Ut</span><span class="o">=</span><span class="n">U</span><span class="o">.</span><span class="n">T</span>
+
+            <span class="n">R</span><span class="o">=</span><span class="n">V</span><span class="nd">@Ut</span>             <span class="c1">#Rotation matrix for alignment</span>
+            
+            <span class="n">pos_corr</span><span class="o">=</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">T</span><span class="nd">@pos</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">atoms</span><span class="o">.</span><span class="n">positions</span><span class="o">=</span><span class="n">pos_corr</span>
+            
+            <span class="n">W</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">align</span><span class="p">(</span><span class="n">uni0</span><span class="p">,</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">)</span>   <span class="c1">#Runs the code to align Ubiquitin in the universe</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uni</span><span class="o">=</span><span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">,</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">)</span>  <span class="c1">#Loads the aligned trajectory</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-2-2-extract-vectors">
+<h3>Part 2.2 Extract vectors<a class="headerlink" href="#part-2-2-extract-vectors" title="Link to this heading">#</a></h3>
+<p>We’re interested in reorientational motion of the H–N dipole coupling (and <span class="math notranslate nohighlight">\(^{15}\)</span>N CSA, but we’ll assume this motion is also defined by the dipole). Then, we can define the dipole tensor’s direction from the H–N bond vector. We first select atoms below (names N and H), noting that we have to be careful not to use the first residue, which does not have an “H” type atom, and also avoid prolines.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will let N and H define our bonds</span>
+<span class="k">def</span> <span class="nf">load_v</span><span class="p">(</span><span class="n">uni</span><span class="p">):</span>
+    <span class="n">N</span><span class="o">=</span><span class="n">uni</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s1">&#39;name N and not resname PRO and resid 2-76&#39;</span><span class="p">)</span> <span class="c1">#Only nitrogen with bound 1H</span>
+    <span class="n">H</span><span class="o">=</span><span class="n">uni</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s1">&#39;name H and resid 2-76&#39;</span><span class="p">)</span>
+    <span class="n">resi</span><span class="o">=</span><span class="n">N</span><span class="o">.</span><span class="n">resids</span>
+
+    <span class="n">v</span><span class="o">=</span><span class="p">[]</span>   <span class="c1">#Storage for bond vectors</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="p">)):</span>
+        <span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">positions</span><span class="o">-</span><span class="n">N</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span> <span class="c1">#N x 3 vector</span>
+    <span class="k">return</span> <span class="n">resi</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>  <span class="c1">#This creates a numpy array, which is nicer for calculation</span>
+    
+<span class="n">resi</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="n">load_v</span><span class="p">(</span><span class="n">uni</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The shape of v is </span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">x</span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">x</span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">, corresponding to time, bonds, and (x,y,z)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The shape of v is 19401x72x3, corresponding to time, bonds, and (x,y,z)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-3">
+<h3>Exercise 2.3<a class="headerlink" href="#exercise-2-3" title="Link to this heading">#</a></h3>
+<p>Which line in the above code goes to the correct frame in the trajectory?</p>
+<div class="toggle docutils container">
+<p>`uni.trajectory[k]</p>
+</div>
+<p>What happens to H.positions or N.positions if you put different values in where <code class="docutils literal notranslate"><span class="pre">k</span></code> is?</p>
+<div class="toggle docutils container">
+<p>The positions are adjusted to match the given frame</p>
+</div>
+</section>
+<section id="part-2-3-normalize-vectors">
+<h3>Part 2.3 Normalize vectors<a class="headerlink" href="#part-2-3-normalize-vectors" title="Link to this heading">#</a></h3>
+<p>Note that depending how a trajectory is stored, it may also be necessary to perform periodic boundary condition corrections. For this trajectory, this is not necessary.</p>
+</section>
+<section id="exercise-2-4">
+<h3>Exercise 2.4<a class="headerlink" href="#exercise-2-4" title="Link to this heading">#</a></h3>
+<p>However, we do need to have normalized bond vectors in order to calculate the desired correlation functions. Below, a function is started for you to perform this normalization. To complete the function, you need to calculate the length of all vectors. The <em>x</em>-, <em>y</em>-, and <em>z</em>- components of the vector may be accessed via <code class="docutils literal notranslate"><span class="pre">v[:,:,0]</span></code>, <code class="docutils literal notranslate"><span class="pre">v[:,:,1]</span></code>, and <code class="docutils literal notranslate"><span class="pre">v[:,:,2]</span></code> respectively (dimensions are time, bond, and axis, so we need to access the last axis). Note that in Python, <code class="docutils literal notranslate"><span class="pre">**</span></code> raises a value to a power, and <code class="docutils literal notranslate"><span class="pre">np.sqrt()</span></code> can be used to calculate the square root.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">lv</span><span class="o">=</span> <span class="c1">#Length of the vectors</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="o">/</span><span class="n">lv</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>   <span class="c1">#Normalize v (transposes required to correctly use &quot;broadcasting&quot;)</span>
+
+<span class="n">v</span><span class="o">=</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">lv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">#Length of the vectors</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="o">/</span><span class="n">lv</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>   <span class="c1">#Normalize v (transposes required to correctly use &quot;broadcasting&quot;)</span>
+
+<span class="n">v</span><span class="o">=</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+<section id="part-3-order-parameters">
+<h2>Part 3: Order Parameters<a class="headerlink" href="#part-3-order-parameters" title="Link to this heading">#</a></h2>
+<p>Based on the vectors calculated in the previous section, we are now ready to calculate order parameters.</p>
+<p>Order parameters can be somewhat tricky in NMR, because in fact we have two different definitions for the order parameter in NMR. The first is that <span class="math notranslate nohighlight">\(S^2\)</span> is the limit of the correlation function above, as <span class="math notranslate nohighlight">\(t\)</span> approaches infinity</p>
+<div class="math notranslate nohighlight">
+\[
+S^2=\lim_{t\rightarrow\infty}{C(t)}
+\]</div>
+<p>The second definition defines <span class="math notranslate nohighlight">\(S\)</span>, we’ll denote it as <span class="math notranslate nohighlight">\(S_{resid.}\)</span> for clarity, and is given by:
+$<span class="math notranslate nohighlight">\(
+S_{resid.}=\frac{\delta}{\delta_{rigid}}
+\)</span>$</p>
+<p><span class="math notranslate nohighlight">\(\delta\)</span> is the motionally averaged anisotropy of an NMR interaction, whereas <span class="math notranslate nohighlight">\(\delta_{rigid}\)</span> is the rigid limit of that interaction.</p>
+<p>Typically, these two values are very similar (<span class="math notranslate nohighlight">\(S_{resid.}^2\approx S^2\)</span>, but they do not need to be exactly the same.</p>
+<p>To derive a formula for <span class="math notranslate nohighlight">\(S^2\)</span>, we start from the definition of the correlation function above.</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{eqnarray}
+S^2=\lim_{t\rightarrow\infty}{C(t)}&amp;=&amp;\lim_{t\rightarrow\infty}{\left(-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\left\langle\alpha(\tau)\alpha(t+\tau)\beta(\tau)\beta(t+\tau)\right\rangle_\tau}}\right)}
+\end{eqnarray}
+\]</div>
+<p>The term <span class="math notranslate nohighlight">\(\langle \alpha(\tau)\beta(\tau)\alpha(t+\tau)\beta(t+\tau)\rangle\)</span> is related to the correlation between <span class="math notranslate nohighlight">\(\alpha(\tau)\beta(\tau)\)</span> at two times with infinite separation between them. Due to the infinite time separation, the correlation must go to zero. Then, for uncorrelated variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, we have the following relationship: <span class="math notranslate nohighlight">\(\langle xy\rangle=\langle x\rangle\langle y\rangle\)</span>.</p>
+<section id="exercise-3-1">
+<h3>Exercise 3.1<a class="headerlink" href="#exercise-3-1" title="Link to this heading">#</a></h3>
+<p>Use this relationship to rewrite the formula above.</p>
+<div class="toggle docutils container">
+<div class="math notranslate nohighlight">
+\[
+\begin{eqnarray}
+S^2&amp;=&amp;\lim_{t\rightarrow\infty}{\left(-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\left\langle\alpha(\tau)\beta(\tau)\right\rangle_\tau\left\langle\alpha(t+\tau)\beta(t+\tau)\right\rangle_\tau}}\right)}
+\end{eqnarray}
+\]</div>
+</div>
+<p>In your answer above, the term <span class="math notranslate nohighlight">\(\langle \alpha(t+\tau)\beta(t+\tau)\rangle_\tau\)</span> should occur. The <span class="math notranslate nohighlight">\(\langle ...\rangle_\tau\)</span> indicates an average over all times. Then <span class="math notranslate nohighlight">\(t\)</span> just shifts the times, but we still average over all times, so the term <span class="math notranslate nohighlight">\(t\)</span> may be dropped.</p>
+</section>
+<section id="exercise-3-2">
+<h3>Exercise 3.2<a class="headerlink" href="#exercise-3-2" title="Link to this heading">#</a></h3>
+<p>Simplify the formula based on this information. Note that if <span class="math notranslate nohighlight">\(t\)</span> does not appear in the formula anymore, then one may also drop the limit for <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span></p>
+<div class="toggle docutils container">
+<div class="math notranslate nohighlight">
+\[
+\begin{eqnarray}
+S^2&amp;=&amp;-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\left\langle\alpha(\tau)\beta(\tau)\right\rangle_\tau^2}}
+\end{eqnarray}
+\]</div>
+</div>
+<p>For the latter formula (<span class="math notranslate nohighlight">\(S_{resid.}\)</span>), we must calculate the dipole tensor for all frames, take its average, and extract the anisotropy of the resulting averaged tensor.</p>
+<p>We introduce functions below for performing both calculations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">S2</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">T</span> <span class="c1">#Make sure first dimension is x,y,z</span>
+    <span class="n">S2</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>      <span class="c1">#Loop over x,y,z</span>
+        <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>  <span class="c1">#Loop over x,y,z</span>
+            <span class="n">S2</span><span class="o">+=</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">alpha</span><span class="o">*</span><span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">S2</span>
+
+<span class="k">def</span> <span class="nf">Sresid</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">euler</span><span class="o">=</span><span class="n">vft</span><span class="o">.</span><span class="n">getFrame</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">A</span><span class="o">=</span><span class="n">vft</span><span class="o">.</span><span class="n">pars2Spher</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">*</span><span class="n">euler</span><span class="p">)</span>   <span class="c1">#We can set the reference value here to 1</span>
+    <span class="n">Aavg</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">delta</span><span class="p">,</span><span class="n">eta</span><span class="p">,</span><span class="o">*</span><span class="n">euler</span><span class="o">=</span><span class="n">vft</span><span class="o">.</span><span class="n">Spher2pars</span><span class="p">(</span><span class="n">Aavg</span><span class="p">)</span> <span class="c1">#Then, delta is delta/delta_rigid</span>
+    <span class="k">return</span> <span class="n">delta</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-3">
+<h3>Exercise 3.3<a class="headerlink" href="#exercise-3-3" title="Link to this heading">#</a></h3>
+<p>Variables <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> should store the results for calculating <span class="math notranslate nohighlight">\(S^2\)</span> (the limit of the correlation function for <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>), and <span class="math notranslate nohighlight">\(S^2_{resid.}\)</span> (calculated from the residual dipole coupling). Compare the two definitions of the order parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span>    <span class="c1">#Calculation for S2 here</span>
+<span class="n">b</span><span class="o">=</span>   <span class="c1">#Calculation for (Sresid)^2 here</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2_{resid.}$&#39;</span><span class="p">))</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">S2</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>    <span class="c1">#Calculation for S2 here</span>
+<span class="n">b</span><span class="o">=</span><span class="n">Sresid</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>   <span class="c1">#Calculation for (Sresid)^2 here</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2_{resid.}$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2-S^2_{resid.}$&#39;</span><span class="p">))</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>If our motion has a symmetry axis (3-fold or higher), then <span class="math notranslate nohighlight">\(S^2=(S_{resid.})^2\)</span>, whereas otherwise, this relationship is only approximate. Note that if our motion has a symmetry axis, and we know where the direction of the symmetry axis, then we may define <span class="math notranslate nohighlight">\(\beta\)</span> as the angle between the tensor and the symmetry axis, in which case</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+S^2=(S_{resid.})^2&amp;=&amp;\left\langle\frac{3\cos^2\beta_{sym.}-1}{2}\right\rangle_\tau^2 \\
+&amp;=&amp;\left\langle\frac{3z_{sym.}^2-1}{2}\right\rangle_\tau^2
+\end{eqnarray}
+\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(z_{sym.}\)</span> is the projection of the normalized tensor direction onto the symmetry axis, which gives the cosine of the angle between the symmetry axis and the tensor. This is particularly useful in lipid membranes, where we know that the lipid rotates around the membrane normal and so the motion is necessarily symmetric around the normal.</p>
+</section>
+<section id="exercise-3-4">
+<h3>Exercise 3.4<a class="headerlink" href="#exercise-3-4" title="Link to this heading">#</a></h3>
+<p>What, approximately, is the asymmetry parameter (<span class="math notranslate nohighlight">\(\eta\)</span>) for residual dipole couplings used to calculate <span class="math notranslate nohighlight">\(S_{resid}\)</span> above?</p>
+<p>Bonus points: Plot the asymmetry</p>
+<div class="toggle docutils container">
+<p>Given the near perfect agreement between the two definitions, we know the motions are roughly symmetric, and therefore the asymmetry parameter should be approximately zero.</p>
+<p>If you’re paying attention, you’ll notice that in the function for <code class="docutils literal notranslate"><span class="pre">Sresid</span></code>, the asymmetry parameter, <code class="docutils literal notranslate"><span class="pre">eta</span></code>, is already calculated. You just need to return it!</p>
+<p>When you do, you’ll notice a fairly large value for <span class="math notranslate nohighlight">\(\eta\)</span> at residue 73. The order parameters still appear to agree fairly well only because they are fairly small. In reality, there’s a 21% disagreement between the two parameters</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Asymmetry</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">euler</span><span class="o">=</span><span class="n">vft</span><span class="o">.</span><span class="n">getFrame</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">A</span><span class="o">=</span><span class="n">vft</span><span class="o">.</span><span class="n">pars2Spher</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">*</span><span class="n">euler</span><span class="p">)</span>   <span class="c1">#We can set the reference value here to 1</span>
+    <span class="n">Aavg</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">delta</span><span class="p">,</span><span class="n">eta</span><span class="p">,</span><span class="o">*</span><span class="n">euler</span><span class="o">=</span><span class="n">vft</span><span class="o">.</span><span class="n">Spher2pars</span><span class="p">(</span><span class="n">Aavg</span><span class="p">)</span> <span class="c1">#Then, delta is delta/delta_rigid</span>
+    <span class="k">return</span> <span class="n">eta</span>
+
+<span class="n">eta</span><span class="o">=</span><span class="n">Asymmetry</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>    <span class="c1">#Calculation for S2 here</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">eta</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\eta$&#39;</span><span class="p">)</span>
+
+<span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For residue </span><span class="si">{</span><span class="n">resi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, (S2-S2_resid)/S2_resid = </span><span class="si">{</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> %&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="exercise-2-2-repeat-with-un-aligned-trajectory">
+<h3>Exercise 2.2 Repeat with un-aligned trajectory<a class="headerlink" href="#exercise-2-2-repeat-with-un-aligned-trajectory" title="Link to this heading">#</a></h3>
+<p>Repeat the above calculation, but use uni0, which contains the unaligned trajectory. Explain the result.</p>
+<div class="toggle docutils container">
+<p>The tumbling of the ubiquitin in solution is included in the order parameter calculations, yielding a nearly isotropic motion, represented by order parameters that are nearly zero.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span><span class="n">v0</span><span class="o">=</span><span class="n">load_v</span><span class="p">(</span><span class="n">uni0</span><span class="p">)</span>
+<span class="n">v0</span><span class="o">=</span><span class="n">norm</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
+
+<span class="n">a</span><span class="o">=</span><span class="n">S2</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>    <span class="c1">#Calculation for S2 here</span>
+<span class="n">b</span><span class="o">=</span><span class="n">Sresid</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>   <span class="c1">#Calculation for (Sresid)^2 here</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2_{resid.}$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2-S^2_{resid.}$&#39;</span><span class="p">))</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S^2$ or $(S_{resid.})^2$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+<section id="part-4-correlation-functions">
+<h2>Part 4: Correlation functions<a class="headerlink" href="#part-4-correlation-functions" title="Link to this heading">#</a></h2>
+<p>Below, we provide two functions for calculating a linear correlation function (the correlation function we require is not linear, but rather is a sum of linear correlation functions). The first calculates the correlation function simply according to its definition, the second uses the fast-Fourier transform.</p>
+<section id="exercise-4-1">
+<h3>Exercise 4.1<a class="headerlink" href="#exercise-4-1" title="Link to this heading">#</a></h3>
+<p>Test the two functions and see which one is faster. We need, for example, the correlation function <span class="math notranslate nohighlight">\(\langle x(\tau)y(\tau)x(t+\tau)y(t+\tau)\rangle\)</span>, which is the autocorrelation function for <span class="math notranslate nohighlight">\(x(t)y(t)\)</span>, which can be obtained by inserting <code class="docutils literal notranslate"><span class="pre">v[:,0]*v[:,1]</span></code> into the functions. By how much is it faster? You can sandwich your code as follows to get the time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="o">=</span><span class="n">time</span><span class="p">()</span>
+<span class="o">...</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bonus: Why is this code faster? And why can we use the Fourier transform to get a correlation function?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Classic approach for calculating a linear correlation function</span>
+<span class="k">def</span> <span class="nf">ct_lin</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">T</span>                     <span class="c1">#We want the time axis to come first</span>
+    <span class="n">ct</span><span class="o">=</span><span class="p">[]</span>                     <span class="c1">#list to store the correlation function</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>   <span class="c1">#Loop over all time points</span>
+        <span class="k">if</span> <span class="n">k</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>              <span class="c1">#Indexing below will fail for k==0, so make special case</span>
+            <span class="n">ct</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>   <span class="c1">#k==0 pairs all elements with themselves, takes mean</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ct</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">:])</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1">#Pairs each element with term k elements later</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>     <span class="c1">#Turn into a numpy array for easier calculation, tranpose</span>
+
+<span class="c1"># Fourier transform-based approach for calculating a linear correlation function</span>
+<span class="k">def</span> <span class="nf">ct_ft</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">sz</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">sz</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">ct</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">*</span><span class="n">X</span><span class="p">)[:,:</span><span class="n">sz</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="n">ct</span><span class="o">.</span><span class="n">T</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">sz</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run your calculations here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="o">=</span><span class="n">time</span><span class="p">()</span>
+<span class="n">ct0</span><span class="o">=</span><span class="n">ct_lin</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Standard ct: </span><span class="si">{</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
+
+<span class="n">t0</span><span class="o">=</span><span class="n">time</span><span class="p">()</span>
+<span class="n">ct1</span><span class="o">=</span><span class="n">ct_ft</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;FT-ct: </span><span class="si">{</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="toggle docutils container">
+<p>The Fourier transform is on the order of 30-40 times faster, a significant speed up.</p>
+<p>FFT is faster because the Fourier transform algorithm is highly optimized, and also because it’s not actually running in Python. Numpy calculations are usually running in compiled libraries in C and FORTRAN, so are much faster than non-compiled python code (the “for” loop in ct_lin adds most of the computational time).</p>
+<p>We can use FFT based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a>. Note that because we have a finite time axis, we end up with a circular convolution, which must be treated by zero-filling the function (<code class="docutils literal notranslate"><span class="pre">n=sz*2</span></code>) and renormalizing the result (<code class="docutils literal notranslate"><span class="pre">/np.arange(sz,0,-1)</span></code>)</p>
+</div>
+</section>
+<section id="exercise-4-2">
+<h3>Exercise 4.2<a class="headerlink" href="#exercise-4-2" title="Link to this heading">#</a></h3>
+<p>Finish the function below to get the total correlation function (you will need the answer to exercise 1.3). The <code class="docutils literal notranslate"><span class="pre">+=</span></code> sign adds whatever is right of the equals sign to the function itself (<code class="docutils literal notranslate"><span class="pre">ct+=x</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">ct=ct+x</span></code>). Which linear correlation function should you use? Note that we take the transpose of the matrix at the beginning, so the first dimension of the vectors, <code class="docutils literal notranslate"><span class="pre">v</span></code>, corresponds to x (<code class="docutils literal notranslate"><span class="pre">v[0]</span></code>), y (<code class="docutils literal notranslate"><span class="pre">v[1]</span></code>), and z (<code class="docutils literal notranslate"><span class="pre">v[2]</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Ct</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">ct</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    
+    <span class="c1"># Add up 9 linear correlation functions</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>  
+            <span class="n">ct</span><span class="o">+=</span>
+    <span class="k">return</span> <span class="n">ct</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-tag docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Ct</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">ct</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">ct</span><span class="o">+=</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">ct_ft</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>  
+    <span class="k">return</span> <span class="n">ct</span>
+
+<span class="c1"># 33% faster</span>
+<span class="k">def</span> <span class="nf">Ct</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">ct</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>   <span class="c1">#This loop goes over a total of 6 instead of 9 elements</span>
+            <span class="k">if</span> <span class="n">k</span><span class="o">==</span><span class="n">j</span><span class="p">:</span>
+                <span class="n">ct</span><span class="o">+=</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">ct_ft</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>  <span class="c1">#Double this account for skipped elements</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ct</span><span class="o">+=</span><span class="mi">3</span><span class="o">*</span><span class="n">ct_ft</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>  <span class="c1">#Double this account for skipped elements</span>
+    <span class="k">return</span> <span class="n">ct</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span><span class="o">=</span><span class="n">S2</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">t0</span><span class="o">=</span><span class="n">time</span><span class="p">()</span>
+<span class="n">ct</span><span class="o">=</span><span class="n">Ct</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="p">))</span><span class="o">*</span><span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">dt</span><span class="o">/</span><span class="mf">1e3</span>  <span class="c1">#Time axis in nanoseconds</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Selected correlation functions are plotted below, along with the order parameters as dashed lines. The code <code class="docutils literal notranslate"><span class="pre">resi[0:-1:8]</span></code> goes from the first residue to the last residue, in steps of 8. You can look at other residues by changing this (<code class="docutils literal notranslate"><span class="pre">resi[0:9:1]</span></code> shows you the first 8 residues, <code class="docutils literal notranslate"><span class="pre">resi[-9:]</span></code> shows you the last 9 residues, and so on). You may also need to adjust the y-limits if you select different residues (last line).</p>
+<p>Note that if your correlation functions do not start at 1, and do not end at approximately the order parameter, then you need to re-check your correlation function definition.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">resi</span><span class="p">[::</span><span class="mi">8</span><span class="p">],</span><span class="n">ax</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">ct</span><span class="p">[</span><span class="n">resi</span><span class="o">==</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span><span class="n">s2</span><span class="p">[</span><span class="n">resi</span><span class="o">==</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">.7</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;Resi.: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">is_last_row</span><span class="p">():</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$ / ns&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">is_first_col</span><span class="p">():</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$C(t)$&#39;</span><span class="p">)</span>
+    
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-3">
+<h3>Exercise 4.3<a class="headerlink" href="#exercise-4-3" title="Link to this heading">#</a></h3>
+<p>Why do the correlation functions become noisy towards the end?</p>
+<div class="toggle docutils container">
+<p>There are two reasons:</p>
+<p>First, the last point is calculated by pairing the first element of the trajectory with the last, so there is no averaging, and 100 points from the end, there are only 100 points averaged, vs. in this example, 19401 points for the first element.</p>
+<p>However, this hardly accounts for the noise halfway through the trajectory, where the noise level should only be <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> higher. This is because slow events, which have a long correlation time, do not occur frequently enough. If an event takes 10 ns on average, then over 194 ns, it occurs about 19 times, but it can very easily be a few more times or a few less, which introduces additional noise especially for bonds with slower motion present.</p>
+</div>
+<p>Below, we compare to the correlation function with tumbling</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct0</span><span class="o">=</span><span class="n">Ct</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">resi</span><span class="p">[::</span><span class="mi">8</span><span class="p">],</span><span class="n">ax</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">ct</span><span class="p">[</span><span class="n">resi</span><span class="o">==</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">ct0</span><span class="p">[</span><span class="n">resi</span><span class="o">==</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span><span class="n">s2</span><span class="p">[</span><span class="n">resi</span><span class="o">==</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">.7</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;Resi.: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">is_last_row</span><span class="p">():</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$ / ns&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">is_first_col</span><span class="p">():</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$C(t)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span><span class="mi">200</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-4-4">
+<h3>Exercise 4.4<a class="headerlink" href="#exercise-4-4" title="Link to this heading">#</a></h3>
+<p>What is different about the correlation functions with tumbling? Estimate the correlation time of tumbling from the correlation functions. This is roughly when the correlation function crosses <span class="math notranslate nohighlight">\(1/e=0.37\)</span>. You may want to adjust the x-limit of the plot to see this better. Technically, you should look for <span class="math notranslate nohighlight">\(S^2/e\)</span>, but for our purposes, 1/e is sufficient.</p>
+<div class="toggle docutils container">
+<p>All correlation functions decay near to zero in the first few nanoseconds. This is mostly the tumbling in solution. The correlation time is around 2.5 ns. This is actually too short compared to experiment, where we observe a correlation time of about 4.8 ns. MD often struggles to produce the correct correlation time of tumbling, which is one reason to remove it via alignment of the molecule.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./GNMR2025"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Exchange.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><font color=#2e86c1> Chemical Exchange </font></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="MD2NMR_fitting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 1: Calculating Relaxation </font></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-the-correlation-function">Part 1: The correlation function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-1">Exercise 1.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-2">Exercise 1.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-3">Exercise 1.3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-extract-vectors">Part 2: Extract vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-1-align-molecules">Part 2.1 Align molecules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-1">Exercise 2.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-2">Exercise 2.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-2-extract-vectors">Part 2.2 Extract vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-3-normalize-vectors">Part 2.3 Normalize vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-4">Exercise 2.4</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-order-parameters">Part 3: Order Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-1">Exercise 3.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-2">Exercise 3.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-3">Exercise 3.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-4">Exercise 3.4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-2-repeat-with-un-aligned-trajectory">Exercise 2.2 Repeat with un-aligned trajectory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-correlation-functions">Part 4: Correlation functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-1">Exercise 4.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-2">Exercise 4.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-3">Exercise 4.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-4">Exercise 4.4</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Albert Smith
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

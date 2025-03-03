@@ -1,0 +1,1679 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Calculating NMR Parameters from MD Simulations 1: Calculating Relaxation &#8212; Conference Tutorials</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'GNMR2025/MD2NMR_fitting';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Calculating NMR Parameters from MD Simulations 1: S\(^2\) and C(t)" href="MD2NMR.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Conference Tutorials</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Conference Tutorials
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Software.html">Software</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="GNMR2025.html">G-NMR 2025</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Exchange.html">Chemical Exchange</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MD2NMR.html"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 1: S<span class="math notranslate nohighlight">\(^2\)</span> and C(t) </font></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 1: Calculating Relaxation </font></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/alsinmr/ConferenceExamples/blob/master/JupyterBook/GNMR2025/MD2NMR_fitting.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/alsinmr/ConferenceExamples" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/alsinmr/ConferenceExamples/issues/new?title=Issue%20on%20page%20%2FGNMR2025/MD2NMR_fitting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/GNMR2025/MD2NMR_fitting.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 1: Calculating Relaxation </font></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pydifrate-initial-data-load">pyDIFRATE initial data load</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-directly-calculate-the-spectral-density">Part 1: Directly calculate the spectral density</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-1">Exercise 1.1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-multi-exponential-fitting-model-free-like-analysis">Part 2: Multi-exponential fitting (model-free-like analysis)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#investigate-the-quality-of-multi-exponential-fitting-of-the-correlation-function">Investigate the quality of multi-exponential fitting of the correlation function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-1">Exercise 2.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-2">Exercise 2.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-calculating-relaxation-rate-constants">Part 3: Calculating relaxation rate constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-1">Exercise 3.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-2">Exercise 3.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-3">Exercise 3.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-your-results">Plot your results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-4">Exercise 3.4</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-comparing-to-experiment">Part 4: Comparing to experiment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-1">Exercise 4.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-2">Exercise 4.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-3">Exercise 4.3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-detector-analysis-of-md-and-nmr">Part 5. Detector analysis of MD and NMR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-1">Exercise 5.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-2">Exercise 5.2</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="calculating-nmr-parameters-from-md-simulations-1-calculating-relaxation">
+<h1><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 1: Calculating Relaxation </font><a class="headerlink" href="#calculating-nmr-parameters-from-md-simulations-1-calculating-relaxation" title="Link to this heading">#</a></h1>
+<p>In the previous section, we learned how to derive order parameters and correlation functions from an MD trajectory. Now, the question is, how do we acquire NMR rate constants from the correlation functions. To begin, we give the formula for a few rate constants, where relaxation results from a single strong dipole coupling and chemical shift anisotropy (for backbone H–N motion that we will analyze here, these are sufficient terms to reproduce the relaxation).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+R_1^I&amp;=&amp; \left(\frac{\delta^{IS}}{4}\right)^2(J(\omega_I-\omega_S)+3J(\omega_I)+6J(\omega_I+\omega_S))+\frac13(\omega_I\Delta\sigma_I)^2J(\omega_I)\\
+R_2^I&amp;=&amp; \frac12R_1^I+\left(\frac{\delta^{IS}}{4}\right)^2(J(\omega_S)+2J(0)+\frac29(\omega_I\Delta\sigma_I)^2J(0)\\
+\Gamma_{IS}&amp;=&amp; \left(\frac{\delta^{IS}}{4}\right)^2(-J(\omega_I-\omega_S)+6J(\omega_I+\omega_S))
+\end{eqnarray}
+\end{split}\]</div>
+<p>These yield the orientationally averaged rate constants, which is relevant in solids where the relaxation is multiexponential (meaning we should be careful to extract the average rate when fitting to experiment and comparing). The critical terms are the sizes of the interactions (<span class="math notranslate nohighlight">\(\delta^{IS}\)</span>, <span class="math notranslate nohighlight">\(\omega_I\Delta\sigma_I\)</span>), and the frequencies at which the spectral densities are sampled (0, <span class="math notranslate nohighlight">\(\omega_S\)</span>, <span class="math notranslate nohighlight">\(\omega_I\)</span>, <span class="math notranslate nohighlight">\(\omega_I\pm\omega_S\)</span>).</p>
+<p>The spectral density itself is given by the real part of the Fourier transform of the correlation function, that is:</p>
+<div class="math notranslate nohighlight">
+\[
+J(\omega)=2\int\limits_0^\infty{C(t)\cos(\omega t)dt}
+\]</div>
+<p>We usually assume that <span class="math notranslate nohighlight">\(C(t)\)</span> is symmetric in time, so that we integrate from 0 instead of <span class="math notranslate nohighlight">\(-\infty\)</span>, and multiply by 2. A factor of 1/5 needs to appear in the correlation function to account for the isotropic average over starting orientations. This factor is sometime incorporated into the correlation function for overall tumbling, i.e. for isotropic tumbling the correlation function is <span class="math notranslate nohighlight">\(C(t)=\frac15\exp(-t/\tau_M)C_{int.}(t)\)</span>. However, if no overall tumbling is present because we are working in solids, then the factor of <span class="math notranslate nohighlight">\(1/5\)</span> needs to nonetheless be included. Note that what we have calculated in the previous section is <span class="math notranslate nohighlight">\(C_{int.}(t)\)</span></p>
+<p>We could, in principle, Fourier transform the correlation functions from the previous section directly (after subtracting the order parameter away). Instead, what we usually do is assume the correlation function is a sum of exponentially decaying functions, and fit the corresponding parameters.</p>
+<div class="math notranslate nohighlight">
+\[
+C_{int}(t)=S^2+\sum\limits_i{A_i\exp(-t/\tau_i)}
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(S^2=1-\sum_i{A_i}\)</span>.</p>
+<p>In the case that we have only internal motion (no tumbling), the spectral density may be written as follows, noting that the Fourier transform of an exponential is a Lorentzian function</p>
+<div class="math notranslate nohighlight">
+\[
+J(\omega)=2\sum\limits_i{A_i\frac{\tau_i}{1+(\omega\tau_i)^2}}
+\]</div>
+<p>However, if tumbling is included, we first need to calculate an effective correlation time. We’ll revisit this later.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<p>We need to repeat the initial setup performed in the first notebook</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure pyDR is installed and on the path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span> <span class="c1">#Colab</span>
+    <span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/alsinmr/pyDR
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;../../..&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imports</span>
+<span class="kn">import</span> <span class="nn">pyDR</span>
+<span class="n">pyDR</span><span class="o">.</span><span class="n">Defaults</span><span class="p">[</span><span class="s1">&#39;zrange&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">14</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">200</span><span class="p">]</span>
+<span class="kn">from</span> <span class="nn">pyDR.Fitting.fit</span> <span class="kn">import</span> <span class="n">model_free</span>
+<span class="kn">from</span> <span class="nn">pyDR.MDtools</span> <span class="kn">import</span> <span class="n">vft</span>
+<span class="kn">from</span> <span class="nn">pyDR.misc.tools</span> <span class="kn">import</span> <span class="n">linear_ex</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">MDAnalysis</span> <span class="k">as</span> <span class="nn">mda</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the trajectory files</span>
+<span class="n">xtc</span><span class="o">=</span><span class="s1">&#39;https://drive.google.com/file/d/1wq5T-YDmPo2zAIWu9we2zyL2i-v52fnD/view?usp=sharing&#39;</span>
+<span class="n">pdb</span><span class="o">=</span><span class="s1">&#39;https://drive.google.com/file/d/1aBMUO2C1AZfx05dANl4QITHuqmHbDDsN/view?usp=sharing&#39;</span>
+
+<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">)):</span>
+    <span class="n">pyDR</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">pdb</span><span class="p">,</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;ubi.xtc&#39;</span><span class="p">)):</span>
+    <span class="n">pyDR</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">xtc</span><span class="p">,</span><span class="s1">&#39;ubi.xtc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">align</span><span class="p">(</span><span class="n">uni</span><span class="p">,</span><span class="n">fileout</span><span class="o">=</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">,</span><span class="n">ref_sel</span><span class="o">=</span><span class="s1">&#39;name CA&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function takes a trajectory and aligns it based on</span>
+<span class="sd">    a reference selection of atoms. The new trajectory is</span>
+<span class="sd">    returned in fileout (default is ubi_aligned.xtc)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">svd</span>
+    
+    <span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#Go to the first frame of the trajectory</span>
+    <span class="n">atoms</span><span class="o">=</span><span class="n">uni</span><span class="o">.</span><span class="n">atoms</span>   <span class="c1">#All atoms in the trajectory</span>
+    <span class="n">ref_sel</span><span class="o">=</span><span class="n">uni</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="n">ref_sel</span><span class="p">)</span>  <span class="c1">#Atom group for the reference</span>
+    
+    <span class="n">ref0</span><span class="o">=</span><span class="n">ref_sel</span><span class="o">.</span><span class="n">positions</span> <span class="c1">#initial positions of reference atoms</span>
+    <span class="n">ref0</span><span class="o">-=</span><span class="n">ref0</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#Centers the initial position</span>
+    
+    <span class="k">with</span> <span class="n">mda</span><span class="o">.</span><span class="n">Writer</span><span class="p">(</span><span class="n">fileout</span><span class="p">,</span><span class="n">atoms</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">)</span> <span class="k">as</span> <span class="n">W</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">ts</span> <span class="ow">in</span> <span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="p">:</span>
+            <span class="n">ref</span><span class="o">=</span><span class="n">ref_sel</span><span class="o">.</span><span class="n">positions</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">atoms</span><span class="o">.</span><span class="n">positions</span>
+
+            <span class="n">pos</span><span class="o">-=</span><span class="n">ref</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1">#This centers the reference</span>
+            <span class="n">ref</span><span class="o">-=</span><span class="n">ref</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   
+            
+            <span class="n">H</span><span class="o">=</span><span class="n">ref0</span><span class="o">.</span><span class="n">T</span><span class="nd">@ref</span>       <span class="c1">#3x3 matrix</span>
+            <span class="n">U</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">Vt</span><span class="o">=</span><span class="n">svd</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>      <span class="c1">#Singular value decomposition</span>
+            <span class="n">V</span><span class="o">=</span><span class="n">Vt</span><span class="o">.</span><span class="n">T</span>             <span class="c1">#Transposes</span>
+            <span class="n">Ut</span><span class="o">=</span><span class="n">U</span><span class="o">.</span><span class="n">T</span>
+
+            <span class="n">R</span><span class="o">=</span><span class="n">V</span><span class="nd">@Ut</span>             <span class="c1">#Rotation matrix for alignment</span>
+            
+            <span class="n">pos_corr</span><span class="o">=</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">T</span><span class="nd">@pos</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">atoms</span><span class="o">.</span><span class="n">positions</span><span class="o">=</span><span class="n">pos_corr</span>
+            
+            <span class="n">W</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uni0</span><span class="o">=</span><span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">,</span><span class="s1">&#39;ubi.xtc&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">)):</span>
+    <span class="n">align</span><span class="p">(</span><span class="n">uni0</span><span class="p">,</span><span class="n">fileout</span><span class="o">=</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">)</span>   <span class="c1">#Runs the code to align Ubiquitin in the universe</span>
+<span class="n">uni</span><span class="o">=</span><span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">,</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">)</span>  <span class="c1">#Loads the aligned trajectory</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pydifrate-initial-data-load">
+<h2>pyDIFRATE initial data load<a class="headerlink" href="#pydifrate-initial-data-load" title="Link to this heading">#</a></h2>
+<p>We’ll work with pyDIFRATE in this notebook. We’ll start with a project (<code class="docutils literal notranslate"><span class="pre">proj=pyDR.Project</span></code>) and load NMR data into it which is downloaded online, and also load correlation functions into it from an MD trajectory.</p>
+<p>pyDIFRATE does a lot of things for you automatically. The advantage here is that we’ll get through the problems more quickly, but the downside is that you’ll have to accept that some of the parameters are indeed calculated correctly ;-).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_proj</span><span class="p">():</span>
+    <span class="n">proj</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">Project</span><span class="p">()</span>
+    <span class="n">proj</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/alsinmr/pyDR_tutorial/main/data/ubi_soln.txt&#39;</span><span class="p">)</span>
+    <span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;tM&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">4.5e-9</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">__copy__</span><span class="p">()</span>    
+    <span class="n">R00</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">sens</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">Sens</span><span class="o">.</span><span class="n">NMR</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+    <span class="n">proj</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">R00</span>
+    <span class="n">proj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;ubi.text&#39;</span>
+
+
+    <span class="n">sel</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">MolSelect</span><span class="p">(</span><span class="n">topo</span><span class="o">=</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">,</span><span class="n">traj_files</span><span class="o">=</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">,</span><span class="n">project</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+    <span class="n">sel</span><span class="o">.</span><span class="n">select_bond</span><span class="p">(</span><span class="s1">&#39;15N&#39;</span><span class="p">)</span>
+    <span class="n">pyDR</span><span class="o">.</span><span class="n">md2data</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
+
+    <span class="n">sel</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">MolSelect</span><span class="p">(</span><span class="n">topo</span><span class="o">=</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">,</span><span class="n">traj_files</span><span class="o">=</span><span class="s1">&#39;ubi.xtc&#39;</span><span class="p">,</span><span class="n">project</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+    <span class="n">sel</span><span class="o">.</span><span class="n">select_bond</span><span class="p">(</span><span class="s1">&#39;15N&#39;</span><span class="p">)</span>
+    <span class="n">pyDR</span><span class="o">.</span><span class="n">md2data</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">proj</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">proj</span><span class="o">=</span><span class="n">load_proj</span><span class="p">()</span>
+
+<span class="c1"># Time axis for correlation functions</span>
+<span class="n">data</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;raw&#39;</span><span class="p">][</span><span class="s1">&#39;MD&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>  <span class="c1">#ns</span>
+
+<span class="c1"># Residues in the simulation</span>
+<span class="n">resids</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">label</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">proj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Assigned sensitivity object did not equal detector sensitivities. Re-defining detector object
+Loading Ref. Frames: |██████████████████████████████████████████████████| 100.0% Complete
+Completed
+Loading Ref. Frames: |██████████████████████████████████████████████████| 100.0% Complete
+Completed
+pyDIFRATE project with 4 data sets
+
+titles:
+r:NMR:ubi_soln
+r:NMR:ubi
+r:MD:ubi_aligned
+r:MD:ubi
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-1-directly-calculate-the-spectral-density">
+<h2>Part 1: Directly calculate the spectral density<a class="headerlink" href="#part-1-directly-calculate-the-spectral-density" title="Link to this heading">#</a></h2>
+<p>We can obtain the spectral density via Fourier transform of the correlation function.</p>
+<p>We first note that the correlation functions and order parameters are stored in the project. We plot one for example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resi</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">resids</span><span class="o">==</span><span class="n">resi</span><span class="p">)</span> <span class="c1"># Finds where this is true  </span>
+<span class="n">data</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;MD&#39;</span><span class="p">][</span><span class="s1">&#39;raw&#39;</span><span class="p">][</span><span class="s1">&#39;.+aligned&#39;</span><span class="p">]</span>  <span class="c1">#Finds the unprocessed MD data</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">data</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">S2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$ / ns&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$C(t)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Residue: </span><span class="si">{</span><span class="n">resi</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="sa">r</span><span class="s1">&#39;$C(t)$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">))</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1a1355fd5f8a242fdaf320265bd72af046fb2acad114dfd73c029efe8202ecb4.png" src="../_images/1a1355fd5f8a242fdaf320265bd72af046fb2acad114dfd73c029efe8202ecb4.png" />
+</div>
+</div>
+<p>Plot the spectral density for a few residues (code below)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resi</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">resids</span><span class="o">==</span><span class="n">resi</span><span class="p">)</span> <span class="c1"># Finds where this is true  </span>
+<span class="n">Ct</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">S2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">Ct</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/=</span><span class="mi">2</span>  <span class="c1">#Single-sided FT, need to cut first point in half</span>
+<span class="n">dt</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="mf">1e-9</span>
+<span class="n">J</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">Ct</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">Ct</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">Ct</span><span class="p">)))</span><span class="o">.</span><span class="n">real</span><span class="o">*</span><span class="n">dt</span>
+
+<span class="n">f</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="o">/</span><span class="mf">1e6</span>
+<span class="n">f</span><span class="o">-=</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">J</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\omega/(2\pi)$ / MHz&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$J(\omega)$ / s&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a447e7e621ef8be75c199e3643855600a2eb18d52f2304ab69170dcec6c9ed82.png" src="../_images/a447e7e621ef8be75c199e3643855600a2eb18d52f2304ab69170dcec6c9ed82.png" />
+</div>
+</div>
+<section id="exercise-1-1">
+<h3>Exercise 1.1<a class="headerlink" href="#exercise-1-1" title="Link to this heading">#</a></h3>
+<p>Why do we recommend fitting the correlation function rather than taking the correlation function directly?</p>
+<div class="toggle docutils container">
+<p>The Fourier transform is too noisy to be used to extract rate constants. With smoothing or fitting, it can, however, provide reliable results.</p>
+<p>We instead fit the correlation function as a multi-exponential decay and use the parameters in the expression above for the spectral density, <span class="math notranslate nohighlight">\(J(\omega)\)</span>.</p>
+</div>
+</section>
+</section>
+<section id="part-2-multi-exponential-fitting-model-free-like-analysis">
+<h2>Part 2: Multi-exponential fitting (model-free-like analysis)<a class="headerlink" href="#part-2-multi-exponential-fitting-model-free-like-analysis" title="Link to this heading">#</a></h2>
+<p>In the hidden cell, we define a class below to extract model free parameters from MD-derived correlation functions, that also includes a variety of plotting functions.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MF</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">aligned</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">Type</span><span class="o">=</span><span class="s1">&#39;MD&#39;</span><span class="p">,</span><span class="n">proj</span><span class="o">=</span><span class="n">proj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_Type</span><span class="o">=</span><span class="n">Type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">=</span><span class="n">proj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aligned</span><span class="o">=</span><span class="n">aligned</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_z</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_A</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chi2</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">=</span><span class="n">n</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">Type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Type</span>
+    
+    <span class="nd">@Type</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">Type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Type (MD/NMR) cannot be changed after initialization&#39;</span>
+        
+    <span class="k">def</span> <span class="nf">_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pre</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">pre</span><span class="o">==</span><span class="s1">&#39;n&#39;</span><span class="p">:</span>
+            <span class="n">pre</span><span class="o">=</span><span class="s1">&#39;n12&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">==</span><span class="s1">&#39;MD&#39;</span> <span class="k">else</span> <span class="s1">&#39;n6&#39;</span>
+            
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">==</span><span class="s1">&#39;MD&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pre</span><span class="si">}</span><span class="s1">:MD:ubi&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;_aligned&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span> <span class="k">else</span> <span class="s1">&#39;$&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pre</span><span class="si">}</span><span class="s1">:NMR:ubi&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;_soln&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span> <span class="k">else</span> <span class="s1">&#39;$&#39;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_mdtitle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pre</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pre</span><span class="si">}</span><span class="s1">:MD:ubi&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;_aligned&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span> <span class="k">else</span> <span class="s1">&#39;$&#39;</span><span class="p">)</span>
+                
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span>
+    
+    <span class="nd">@n</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s1">&#39;_n&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">n</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="o">=</span><span class="n">n</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;p</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)])</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_auto</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;p</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">fixz</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">14</span><span class="p">,</span><span class="o">*</span><span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="o">-</span><span class="mi">1</span><span class="p">)]]</span> <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="k">2</span> else None
+            
+        <span class="n">z</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">chi2</span><span class="p">,</span><span class="n">fit</span><span class="o">=</span><span class="n">model_free</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">,</span><span class="n">fixz</span><span class="o">=</span><span class="n">fixz</span><span class="p">,</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="o">=</span><span class="n">z</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">=</span><span class="n">A</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chi2</span><span class="o">=</span><span class="n">chi2</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nz</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">aligned</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span>
+    
+    <span class="nd">@aligned</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">aligned</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">aligned</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s1">&#39;_aligned&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span><span class="o">==</span><span class="n">aligned</span><span class="p">:</span>
+            <span class="k">return</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span><span class="o">=</span><span class="n">aligned</span>
+        
+        <span class="n">nd</span><span class="o">=</span><span class="mi">12</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">==</span><span class="s1">&#39;MD&#39;</span> <span class="k">else</span> <span class="mi">6</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)])</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_no_opt</span><span class="p">(</span><span class="n">nd</span><span class="p">)</span>
+<span class="c1">#             if self.Type!=&#39;MD&#39;:proj[self._title(&#39;r&#39;)][0].detect.R2ex()</span>
+            <span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c1">#             proj[self._title(&#39;n&#39;)].del_exp(index=-1)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span>    <span class="c1">#Force a re-calculation</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="o">=</span><span class="mi">0</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">=</span><span class="n">n</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">10</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">S2_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">S2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">S2</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">resids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">label</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">t</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;MD&#39;</span><span class="p">][</span><span class="s1">&#39;raw&#39;</span><span class="p">][</span><span class="s1">&#39;ubi_aligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">plot_pars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ax</span><span class="p">:</span><span class="nb">list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">ax0</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
+            <span class="n">i</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">1e-3</span>
+            <span class="n">ax0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+            <span class="n">ax0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+            <span class="n">ax0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.01</span><span class="p">,</span><span class="n">ax0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="n">ax0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+            <span class="n">ax0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(\tau_c$ / s$)$&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ax0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_last_row</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax0</span><span class="p">:</span><span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
+        
+        <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ax</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">Ct_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ct</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resids</span><span class="p">)])</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">S2_fit</span>
+        <span class="k">for</span> <span class="n">tc0</span><span class="p">,</span><span class="n">A0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tc</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">):</span>
+            <span class="n">ct</span><span class="o">+=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">*</span><span class="mf">1e-9</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">tc0</span><span class="p">)))</span><span class="o">*</span><span class="n">A0</span>
+        <span class="k">return</span> <span class="n">ct</span><span class="o">.</span><span class="n">T</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">Ct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_mdtitle</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">R</span>
+    
+    <span class="k">def</span> <span class="nf">plot_ct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">resi</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">semilog</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">show_fit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">i</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">resids</span><span class="o">==</span><span class="n">resi</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39;No data for selected residue&#39;</span>
+        <span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">show_fit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span><span class="n">show_fit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">==</span><span class="s1">&#39;MD&#39;</span>
+        
+        <span class="n">plot</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span> <span class="k">if</span> <span class="n">semilog</span> <span class="k">else</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span>
+        <span class="k">if</span> <span class="n">show_fit</span><span class="p">:</span>
+            <span class="n">i0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;MD&#39;</span><span class="p">][</span><span class="s1">&#39;raw&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">==</span><span class="n">resi</span><span class="p">)</span>
+            <span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Ct</span><span class="p">[</span><span class="n">i0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+            <span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Ct_fit</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;MD&#39;</span><span class="p">,</span><span class="s1">&#39;fit&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Ct_fit</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$ / ns&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$C(t)$&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Residue: </span><span class="si">{</span><span class="n">resi</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ax</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;p</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nmr_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;r:NMR:ubi&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;_soln&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">aligned</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nmr_sens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">sens</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">relax_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">R</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resids</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">rhoz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">R0</span>
+        <span class="k">for</span> <span class="n">z0</span><span class="p">,</span><span class="n">A0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">):</span>
+            <span class="n">R</span><span class="o">+=</span><span class="p">(</span><span class="n">A0</span><span class="o">*</span><span class="n">linear_ex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">z</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">rhoz</span><span class="p">,</span><span class="n">z0</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">return</span> <span class="n">R</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">det_relax_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">==</span><span class="s1">&#39;MD&#39;</span><span class="p">,</span><span class="s1">&#39;Relaxation rates from detectors only from MD&#39;</span>
+        <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)]</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_target</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">rhoz</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">remove_data</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">R</span>
+    
+    <span class="k">def</span> <span class="nf">plot_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">det</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">figure</span>
+        <span class="n">rates</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">det_relax_rates</span> <span class="k">if</span> <span class="n">det</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">relax_rates</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">label</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">R</span><span class="p">[:,</span><span class="n">k</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;tab10&#39;</span><span class="p">)(</span><span class="n">k</span><span class="p">),</span><span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resids</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">relax_rates</span><span class="p">[:,</span><span class="n">k</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">Type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;Type&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">Type</span><span class="p">)</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span><span class="n">Type</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">Type</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">Type</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">$&#39;</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">Type</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39; @ </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;v0&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> MHz&#39;</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ax</span>
+    
+    <span class="k">def</span> <span class="nf">plot_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">close_fig</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">plot_obj</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="investigate-the-quality-of-multi-exponential-fitting-of-the-correlation-function">
+<h3>Investigate the quality of multi-exponential fitting of the correlation function<a class="headerlink" href="#investigate-the-quality-of-multi-exponential-fitting-of-the-correlation-function" title="Link to this heading">#</a></h3>
+<p>The value of <code class="docutils literal notranslate"><span class="pre">n</span></code> below determines how many parameters are used to fit the correlation times. If an even value is used, then we have <span class="math notranslate nohighlight">\(n/2\)</span> pairs of amplitudes and correlation times to fit the correlation function. If an odd value is used, then we have <span class="math notranslate nohighlight">\((n-1)/2\)</span> pairs of amplitudes and correlation times, plus a single “fast” motion, which will have an arbitrarily short. correlation time (it will account for the decay between the first two time points of the correlation function)</p>
+</section>
+<section id="exercise-2-1">
+<h3>Exercise 2.1<a class="headerlink" href="#exercise-2-1" title="Link to this heading">#</a></h3>
+<p>Adjust <code class="docutils literal notranslate"><span class="pre">n</span></code> below until you’re satisfied with the fit of the correlation functions. A sample of correlation functions is plotted to see the fit quality (if you get the plotted correlation functions to fit, the other correlation functions should be ok, but you may also adjust which correlation functions to see, for example, by changing <code class="docutils literal notranslate"><span class="pre">mf.resids[10::4]</span></code> to <code class="docutils literal notranslate"><span class="pre">mf.resids[1::4]</span></code>, which adjusts the first correlation function to show).</p>
+<p>What value of <code class="docutils literal notranslate"><span class="pre">n</span></code> do you get?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mf</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitted 1 data objects
+Fitted 1 data objects
+Iterations |███████-----------------------| 25%  of 4 steps
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/albertsmith/Documents/GitHub.nosync/pyDR/Fitting/fit.py:400: RuntimeWarning: invalid value encountered in reciprocal
+  pinv=((m**2).sum(1)**(-1))*m.T
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |██████████████████████████████| 100%  of 4 steps
+Completed
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mf</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitted 1 data objects
+Iterations |██████████████████████████████| 100%  of 64 steps
+Completed
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">resi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">resids</span><span class="p">[</span><span class="mi">9</span><span class="p">::</span><span class="mi">4</span><span class="p">]):</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">plot_ct</span><span class="p">(</span><span class="n">resi</span><span class="o">=</span><span class="n">resi</span><span class="p">,</span><span class="n">semilog</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">is_first_col</span><span class="p">()):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">is_last_row</span><span class="p">()):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2750c91971942d49638b0c3c19a43070dfa8bfcca974958bb48670a5fea65075.png" src="../_images/2750c91971942d49638b0c3c19a43070dfa8bfcca974958bb48670a5fea65075.png" />
+</div>
+</div>
+<div class="toggle docutils container">
+<p>Some disagreement between correlation function and fit is still present for <code class="docutils literal notranslate"><span class="pre">n=6</span></code>, but for <code class="docutils literal notranslate"><span class="pre">n=7</span></code>, most features are well reproduced</p>
+</div>
+</section>
+<section id="exercise-2-2">
+<h3>Exercise 2.2<a class="headerlink" href="#exercise-2-2" title="Link to this heading">#</a></h3>
+<p>Repeat exercise 2.1 but without alignment. What value of <span class="math notranslate nohighlight">\(n\)</span> do you get? Why is it different?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfNA</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">aligned</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitted 1 data objects
+Fitted 1 data objects
+Iterations |------------------------------| 0%  of 16 steps
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/albertsmith/Documents/GitHub.nosync/pyDR/Fitting/fit.py:400: RuntimeWarning: invalid value encountered in reciprocal
+  pinv=((m**2).sum(1)**(-1))*m.T
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |██████████████████████████████| 100%  of 16 steps
+Completed
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">resi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">mfNA</span><span class="o">.</span><span class="n">resids</span><span class="p">[</span><span class="mi">11</span><span class="p">::</span><span class="mi">4</span><span class="p">]):</span>
+    <span class="n">mfNA</span><span class="o">.</span><span class="n">plot_ct</span><span class="p">(</span><span class="n">resi</span><span class="o">=</span><span class="n">resi</span><span class="p">,</span><span class="n">semilog</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">is_first_col</span><span class="p">()):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">is_last_row</span><span class="p">()):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/dbe48b2146bc51c1f9dd2a01ed5e5c3258e9e8b8a1a8e3bdffffcbb7e78e741e.png" src="../_images/dbe48b2146bc51c1f9dd2a01ed5e5c3258e9e8b8a1a8e3bdffffcbb7e78e741e.png" />
+</div>
+</div>
+<div class="toggle docutils container">
+<p>Most residues fit quite well for <code class="docutils literal notranslate"><span class="pre">n=5</span></code>, with a few exceptions near the C-terminus. This is because the overall tumbling masks some of the slower motions, and prevents them from manifesting in the correlation function. Then, we no longer need the extra parameters to fit them.</p>
+<p>Bonus: Overall tumbling is present in the experimental data, so does it matter if these motions get covered up, if our main goal is to compare to experiment? (answer in next toggle box)</p>
+</div>
+<div class="toggle docutils container">
+<p>Yes- the problem is, that tumbling in the MD is occuring more quickly than in the real solution, so these motions are not masked experimentally. Then, we still need to extract them from the MD, which we cannot properly do if they are concealed by the tumbling</p>
+</div>
+</section>
+<section id="exercise-2-3">
+<h3>Exercise 2.3<a class="headerlink" href="#exercise-2-3" title="Link to this heading">#</a></h3>
+<p>Plot the model free parameters below. Are the fit parameters reliable? What does the slowest correlation time and corresponding amplitude tell us. The fastest correlation time was fixed to 10 femtoseconds. What does this correlation time and amplitude tell us?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">mf</span><span class="o">.</span><span class="n">plot_pars</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3b41e5a917f56636f45e9bd730069f9cc9b8308bedda0dfd681b94432734b018.png" src="../_images/3b41e5a917f56636f45e9bd730069f9cc9b8308bedda0dfd681b94432734b018.png" />
+</div>
+</div>
+<div class="toggle docutils container">
+<p>There is a great deal of scatter in the correlation times, so that they perhaps should not be regarded as too reliable. We will later see that they are still helpful for calculating relaxation rate constants.</p>
+<p>The slowest correlation time is mostly acting as the order parameter, <span class="math notranslate nohighlight">\(S^2\)</span>. The trajectory is about <span class="math notranslate nohighlight">\(2\cdot10^-7\)</span> s long, so any correlation time an order of magnitude slower than that will not lead to any visible decay during the trajectory. So, we really cannot use these correlation times, and the amplitudes simply represent the fraction of the correlation function that did not decay during the trajectory. It may decay eventually, or may not, so there may be more, slower motion, or not.</p>
+<p>The fastest correlation should not be interpreted directly. It is motion that is simply significantly faster than the recorded timestep (10 ps). The amplitude is the size of the fast decay.</p>
+</div>
+</section>
+</section>
+<section id="part-3-calculating-relaxation-rate-constants">
+<h2>Part 3: Calculating relaxation rate constants<a class="headerlink" href="#part-3-calculating-relaxation-rate-constants" title="Link to this heading">#</a></h2>
+<p>We can use the formulas at the beginning of this document to calculate relaxation constants for various experiments. Note that to reproduce an experiment, we need to account for the total motion, which includes tumbling (that we have factored out). It will be useful to note that tumbling occurs for ubiquitin with a correlation time of 4.84 ns. The total correlation function is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+C(t)&amp;=&amp;C_{tumbl.}(t)\cdot C_{int.} \\
+&amp;=&amp;\frac15\exp(-t/\tau_M)\left(S^2+\sum\limits_i{A_i\exp(-t/\tau_i)}\right) \\
+&amp;=&amp;\frac15\left(S^2\exp(-t/\tau_M)+\sum\limits_i{A_i}\exp(-t/\tau^i_{eff})\right)
+\end{eqnarray}
+\end{split}\]</div>
+<p>With definitions</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+S^2&amp;=&amp;1-\sum_i{A_i} \\
+\tau_{eff}^i&amp;=&amp;\frac{\tau_i\tau_M}{\tau_i+\tau_M}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Then, to obtain the relaxation rate constants, we have a few steps:</p>
+<ol class="arabic simple">
+<li><p>Calculate the order parameter</p></li>
+<li><p>Calculate the effective correlation times</p></li>
+<li><p>For each effective correlation time and the overall tumbling</p>
+<ul class="simple">
+<li><p>Calculate the spectral density at the required frequencies</p></li>
+<li><p>Add all terms</p></li>
+<li><p>Scale by the interaction strengths</p></li>
+</ul>
+</li>
+<li><p>Add all terms together</p></li>
+</ol>
+<section id="exercise-3-1">
+<h3>Exercise 3.1<a class="headerlink" href="#exercise-3-1" title="Link to this heading">#</a></h3>
+<p>Write a function for the effective correlation time (<span class="math notranslate nohighlight">\(\tau_{eff}^i)\)</span> given the internal correlation time (<span class="math notranslate nohighlight">\(\tau_i\)</span>) and the correlation time of tumbling (<span class="math notranslate nohighlight">\(\tau_M\)</span>). This has been started for you: just fill in the line <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">...</span></code>, replacing <code class="docutils literal notranslate"><span class="pre">...</span></code> with the correct formula. Try the formula, and see how it behaves if the internal motion is a lot faster, a lot slower, or similar to the correlation time of the tumbling.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tcEff</span><span class="p">(</span><span class="n">ti</span><span class="p">,</span><span class="n">tM</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tcEff</span><span class="p">(</span><span class="n">ti</span><span class="p">,</span><span class="n">tM</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">ti</span><span class="o">*</span><span class="n">tM</span><span class="o">/</span><span class="p">(</span><span class="n">ti</span><span class="o">+</span><span class="n">tM</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tcEff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1e-7</span><span class="p">,</span><span class="mf">1e-9</span><span class="p">,</span><span class="mf">1e-11</span><span class="p">]),</span><span class="mf">1e-9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([9.9009901e-10, 5.0000000e-10, 9.9009901e-12])
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="toggle docutils container">
+<p>If the internal motion is much slower than the tumbling, then the returned value is close to the correlation time of the tumbling. If it is much faster, then the returned value is close to the input value. If they are similar, then we end up with a value slightly shorter than the input (in this example, by half when <span class="math notranslate nohighlight">\(\tau_i=\tau_M\)</span>)</p>
+</div>
+</section>
+<section id="exercise-3-2">
+<h3>Exercise 3.2<a class="headerlink" href="#exercise-3-2" title="Link to this heading">#</a></h3>
+<p>Write a function for the spectral density from a single correlation time with inputs of amplitude (<code class="docutils literal notranslate"><span class="pre">A</span></code>), correlation time (<code class="docutils literal notranslate"><span class="pre">tc</span></code>), and frequency (<code class="docutils literal notranslate"><span class="pre">v</span></code>, give in MHz). Plot the spectral density as a function of correlation time (on a log scale) for a fixed field, and as a function of frequency (for a fixed correlation time). You can set <code class="docutils literal notranslate"><span class="pre">A=1</span></code> for these calculations. Which of these functions has a well-defined maximum, and where is it?</p>
+<p>Note, in Python, to obtain a power, use the <code class="docutils literal notranslate"><span class="pre">**</span></code> symbol (e.g. <code class="docutils literal notranslate"><span class="pre">2**3=8</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">J</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">omega</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">1e6</span>   <span class="c1">#Convert MHz to rad/s</span>
+    <span class="k">return</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">J</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>  <span class="c1">#v in MHz</span>
+    <span class="n">omega</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">1e6</span><span class="o">*</span><span class="n">v</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">tc</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="n">tc</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">tc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">J</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\tau_c$ / s&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$J(\omega,\tau_c)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$J(\omega,\tau_c)$ vs. $\tau_c$&#39;</span><span class="p">)</span>
+<span class="n">v0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span><span class="n">J</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1e-8</span><span class="p">,</span><span class="n">v0</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\omega_{2\pi}$ / MHz&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$J(\omega,\tau_c)$ vs. $\omega$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$J(\omega,\tau_c)$ / s&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="../_images/c66628e46689340d3b6bd71073c370ddac866345c8e3affcf99357a5f14f8875.png" src="../_images/c66628e46689340d3b6bd71073c370ddac866345c8e3affcf99357a5f14f8875.png" />
+</div>
+</details>
+</div>
+<div class="toggle docutils container">
+<p>As a function of correlation time, the spectral density has a maximum when <span class="math notranslate nohighlight">\(1/\tau_c=\omega\)</span> (in rad/s, not in Hz). The spectral density as a function of frequency becomes larger with decreasing frequency, and plateaus at <span class="math notranslate nohighlight">\(2\tau_c\)</span></p>
+</div>
+</section>
+<section id="exercise-3-3">
+<h3>Exercise 3.3<a class="headerlink" href="#exercise-3-3" title="Link to this heading">#</a></h3>
+<p>Below is a function for calculating <span class="math notranslate nohighlight">\(R_1\)</span> from a list of correlation times (<code class="docutils literal notranslate"><span class="pre">tc</span></code>) and amplitudes (<code class="docutils literal notranslate"><span class="pre">A</span></code>), in addition to the tumbling correlation time (<code class="docutils literal notranslate"><span class="pre">tM</span></code>), and the magnetic field in MHz (<span class="math notranslate nohighlight">\(^1\)</span>H frequency). Following this approach, write a function for the heteronuclear NOE and R2. Note the <span class="math notranslate nohighlight">\(^{15}N\)</span> Larmor frequency is -1/9.862 times the <span class="math notranslate nohighlight">\(^1\)</span>H Larmor frequency.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ratio of Larmor frequencies: </span><span class="si">{</span><span class="n">pyDR</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">NucInfo</span><span class="p">(</span><span class="s2">&quot;1H&quot;</span><span class="p">)</span><span class="o">/</span><span class="n">pyDR</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">NucInfo</span><span class="p">(</span><span class="s2">&quot;15N&quot;</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ratio of Larmor frequencies: -9.862
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The required interaction anisotropy parameters are stored in pyDR</span>
+<span class="n">delta</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;dXY&#39;</span><span class="p">]</span>
+<span class="n">DelSigma</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;CSA&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">R1</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>  <span class="c1">#v0H in MHz</span>
+    <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
+    <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
+    <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
+    
+    <span class="c1"># 1) Relaxation due to tumbling + dipole coupling</span>
+    <span class="n">R1</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">delta</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">J</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span><span class="n">tM</span><span class="p">,</span><span class="n">v0H</span><span class="o">-</span><span class="n">v0N</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span><span class="n">tM</span><span class="p">,</span><span class="n">v0N</span><span class="p">)</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span><span class="n">tM</span><span class="p">,</span><span class="n">v0H</span><span class="o">+</span><span class="n">v0N</span><span class="p">))</span>
+    <span class="c1"># 2) Relaxation due to tumbling + CSA</span>
+    <span class="n">R1</span><span class="o">+=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">v0N</span><span class="o">*</span><span class="n">DelSigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span><span class="n">tM</span><span class="p">,</span><span class="n">v0N</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">tc0</span><span class="p">,</span><span class="n">A0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tceff</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>  <span class="c1">#Now loop over internal motions with effective tc</span>
+        <span class="c1"># 3) Internal motion + dipole</span>
+        <span class="n">R1</span><span class="o">+=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">delta</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">J</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">tc0</span><span class="p">,</span><span class="n">v0H</span><span class="o">-</span><span class="n">v0N</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">tc0</span><span class="p">,</span><span class="n">v0N</span><span class="p">)</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">tc0</span><span class="p">,</span><span class="n">v0H</span><span class="o">+</span><span class="n">v0N</span><span class="p">))</span>
+        <span class="c1"># 4) Internal motion + CSA</span>
+        <span class="n">R1</span><span class="o">+=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">v0N</span><span class="o">*</span><span class="n">DelSigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">tc0</span><span class="p">,</span><span class="n">v0N</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">R1</span><span class="o">/</span><span class="mi">5</span> <span class="c1">#Don&#39;t forget the 1/5!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">R2</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
+    <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
+    <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
+    <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
+
+    <span class="c1"># 0) R1 contributions</span>
+    <span class="n">R2</span><span class="o">=</span><span class="n">R1</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">)</span>
+    <span class="c1"># 1) Relaxation due to tumbling + dipole coupling</span>
+    <span class="n">R2</span><span class="o">+=...</span>
+    <span class="c1"># 2) Relaxation due to tumbling + CSA</span>
+    <span class="n">R2</span><span class="o">+=...</span>
+    
+    <span class="k">for</span> <span class="n">tc0</span><span class="p">,</span><span class="n">A0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tceff</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>  <span class="c1">#Now loop over internal motions with effective tc</span>
+        <span class="c1"># 3) Internal motion + dipole</span>
+        <span class="n">R2</span><span class="o">+=...</span>
+        <span class="c1"># 4) Internal motion + CSA</span>
+        <span class="n">R2</span><span class="o">+=...</span>
+        
+    <span class="k">return</span> <span class="n">R2</span><span class="o">/</span><span class="mi">5</span> <span class="c1">#Don&#39;t forget the 1/5!</span>
+
+<span class="k">def</span> <span class="nf">NOE</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
+    <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
+    <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
+    <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
+
+    <span class="c1"># 1) Relaxation due to tumbling + dipole coupling</span>
+    <span class="n">NOE</span><span class="o">+=...</span>
+    
+    <span class="k">for</span> <span class="n">tc0</span><span class="p">,</span><span class="n">A0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tceff</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>  <span class="c1">#Now loop over internal motions with effective tc</span>
+        <span class="c1"># 2) Internal motion + dipole</span>
+        <span class="n">NOE</span><span class="o">+=...</span>
+        
+    <span class="k">return</span> <span class="o">...</span> <span class="c1">#Don&#39;t forget the 1/5!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">R2</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
+    <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
+    <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
+    <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
+
+    <span class="c1"># 0) R1 contributions</span>
+    <span class="n">R2</span><span class="o">=</span><span class="n">R1</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">)</span>
+    <span class="c1"># 1) Relaxation due to tumbling + dipole coupling</span>
+    <span class="n">R2</span><span class="o">+=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">delta</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span><span class="n">tM</span><span class="p">,</span><span class="n">v0H</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span><span class="n">tM</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+    <span class="c1"># 2) Relaxation due to tumbling + CSA</span>
+    <span class="n">R2</span><span class="o">+=</span><span class="mi">2</span><span class="o">/</span><span class="mi">9</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">v0N</span><span class="o">*</span><span class="n">DelSigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span><span class="n">tM</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">tc0</span><span class="p">,</span><span class="n">A0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tceff</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>  <span class="c1">#Now loop over internal motions with effective tc</span>
+        <span class="c1"># 3) Internal motion + dipole</span>
+        <span class="n">R2</span><span class="o">+=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">delta</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">tc0</span><span class="p">,</span><span class="n">v0H</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">tc0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        <span class="c1"># 4) Internal motion + CSA</span>
+        <span class="n">R2</span><span class="o">+=</span><span class="mi">2</span><span class="o">/</span><span class="mi">9</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">v0N</span><span class="o">*</span><span class="n">DelSigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">tc0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">R2</span><span class="o">/</span><span class="mi">5</span> <span class="c1">#Don&#39;t forget the 1/5!</span>
+
+<span class="k">def</span> <span class="nf">NOE</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
+    <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
+    <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
+    <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
+
+    <span class="c1"># 1) Relaxation due to tumbling + dipole coupling</span>
+    <span class="n">NOE</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">delta</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">J</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span><span class="n">tM</span><span class="p">,</span><span class="n">v0H</span><span class="o">-</span><span class="n">v0N</span><span class="p">)</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span><span class="n">tM</span><span class="p">,</span><span class="n">v0H</span><span class="o">+</span><span class="n">v0N</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">tc0</span><span class="p">,</span><span class="n">A0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tceff</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>  <span class="c1">#Now loop over internal motions with effective tc</span>
+        <span class="c1"># 2) Internal motion + dipole</span>
+        <span class="n">NOE</span><span class="o">+=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">delta</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">J</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">tc0</span><span class="p">,</span><span class="n">v0H</span><span class="o">-</span><span class="n">v0N</span><span class="p">)</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">tc0</span><span class="p">,</span><span class="n">v0H</span><span class="o">+</span><span class="n">v0N</span><span class="p">))</span>
+        
+    <span class="k">return</span> <span class="n">NOE</span><span class="o">/</span><span class="mi">5</span> <span class="c1">#Don&#39;t forget the 1/5!</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="plot-your-results">
+<h3>Plot your results<a class="headerlink" href="#plot-your-results" title="Link to this heading">#</a></h3>
+<p>Plot results below for a few fields</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tM</span><span class="o">=</span><span class="mf">4.84e-9</span>   <span class="c1">#Correlation time for ubiquitin in solution</span>
+<span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;tab10&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span><span class="p">,(</span><span class="n">ax0</span><span class="p">,</span><span class="n">v0H</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,[</span><span class="mi">600</span><span class="p">,</span><span class="mi">800</span><span class="p">,</span><span class="mi">950</span><span class="p">])):</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">resids</span><span class="p">,</span><span class="n">R2</span><span class="p">(</span><span class="mf">4.84e-9</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">tc</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">resids</span><span class="p">,</span><span class="n">R1</span><span class="p">(</span><span class="mf">4.84e-9</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">tc</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">resids</span><span class="p">,</span><span class="n">NOE</span><span class="p">(</span><span class="mf">4.84e-9</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">tc</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">exp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax0</span><span class="p">,[</span><span class="sa">r</span><span class="s1">&#39;$R_2$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$R_1$&#39;</span><span class="p">,</span><span class="s1">&#39;NOE&#39;</span><span class="p">]):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">exp</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39; / s$^{-1}$&#39;</span><span class="p">)</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">v0H</span><span class="si">}</span><span class="s1"> MHz&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span><span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
+       
+<span class="k">for</span> <span class="n">ax0</span><span class="p">,</span><span class="n">yl</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">T</span><span class="p">,[</span><span class="mi">10</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">.2</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax0</span><span class="p">:</span><span class="n">a</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">yl</span><span class="p">])</span>
+    
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c386942a41f2277cee25cdbdef79aa2cce95f33f28469410121fd4b8fe3fd903.png" src="../_images/c386942a41f2277cee25cdbdef79aa2cce95f33f28469410121fd4b8fe3fd903.png" />
+</div>
+</div>
+</section>
+<section id="exercise-3-4">
+<h3>Exercise 3.4<a class="headerlink" href="#exercise-3-4" title="Link to this heading">#</a></h3>
+<p>How does each experiment change as a function of field, and what drives this behavior?</p>
+<div class="toggle docutils container">
+<p><span class="math notranslate nohighlight">\(R_1\)</span> and NOE both exhibit slower rates as a function of field. This can be understood since the spectral density decreases with increasing field. <span class="math notranslate nohighlight">\(R_2\)</span>, on the other hand, increases with field. This is due to the growth of the term <span class="math notranslate nohighlight">\((\omega_I\Delta\sigma_i)^2\)</span> with increasing field (the term <span class="math notranslate nohighlight">\(J(0)\)</span> dominates for <span class="math notranslate nohighlight">\(R_2\)</span>, so changes in the spectral density are less important).</p>
+<p>Note that the negative field dependence of <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(NOE\)</span> indicates the presence of slower motions. If only fast motions are present, then the spectral density is constant, and so these rate constants will then also grow with field due to increased contributions from CSA relaxation.</p>
+</div>
+</section>
+</section>
+<section id="part-4-comparing-to-experiment">
+<h2>Part 4: Comparing to experiment<a class="headerlink" href="#part-4-comparing-to-experiment" title="Link to this heading">#</a></h2>
+<p>Above, we downloaded experimental relaxation rate constants from Charlier et al. Note that the correlation time of tumbling we used previously (4.84 ns) is extracted from this data set. Now we will compare these to our calculated results. Plotting is set up for you below.</p>
+<p>C. Charlier, S.N. Khan, T. Marquardsen, P. Pelupessy, V. Reiss, D. Sakellariou, G. Bodenhausen, F. Engelke, F. Ferrage. <a class="reference external" href="https://doi.org/10.1021/ja409820g"><em>J. Am. Chem. Soc.</em></a>, <strong>2013</strong>, 135, 18665</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tM</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;NMR&#39;</span><span class="p">][</span><span class="s1">&#39;raw&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;tM&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>   <span class="c1">#Correlation time for ubiquitin in solution</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span><span class="p">,(</span><span class="n">ax0</span><span class="p">,</span><span class="n">v0H</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,[</span><span class="mi">600</span><span class="p">,</span><span class="mi">800</span><span class="p">,</span><span class="mi">950</span><span class="p">])):</span>
+    <span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;v0&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">v0H</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;R2&#39;</span><span class="p">))</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">label</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">R</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">resids</span><span class="p">,</span><span class="n">R2</span><span class="p">(</span><span class="mf">4.84e-9</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">tc</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">),</span><span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;v0&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">v0H</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;R1&#39;</span><span class="p">))</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">label</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">R</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">resids</span><span class="p">,</span><span class="n">R1</span><span class="p">(</span><span class="mf">4.84e-9</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">tc</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">),</span><span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;v0&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">v0H</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;NOE&#39;</span><span class="p">))</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">label</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">R</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">resids</span><span class="p">,</span><span class="n">NOE</span><span class="p">(</span><span class="mf">4.84e-9</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">tc</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">),</span><span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">exp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax0</span><span class="p">,[</span><span class="sa">r</span><span class="s1">&#39;$R_2$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$R_1$&#39;</span><span class="p">,</span><span class="s1">&#39;NOE&#39;</span><span class="p">]):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">exp</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39; / s$^{-1}$&#39;</span><span class="p">)</span>
+    <span class="n">ax0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">v0H</span><span class="si">}</span><span class="s1"> MHz&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span><span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
+       
+<span class="k">for</span> <span class="n">ax0</span><span class="p">,</span><span class="n">yl</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">T</span><span class="p">,[</span><span class="mi">10</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">.2</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax0</span><span class="p">:</span><span class="n">a</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">yl</span><span class="p">])</span>
+    
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7f13fff6721c082ccae98382157cae4f378492b00ab3a97131c0450734ae0cfe.png" src="../_images/7f13fff6721c082ccae98382157cae4f378492b00ab3a97131c0450734ae0cfe.png" />
+</div>
+</div>
+<section id="exercise-4-1">
+<h3>Exercise 4.1<a class="headerlink" href="#exercise-4-1" title="Link to this heading">#</a></h3>
+<p>How do the results compare to experiment? What does this tell you about the quality of the MD simulation?</p>
+<div class="toggle docutils container">
+<p>Results are in fairly good agreement with experiment. However, keep in mind that we have used the experimentally determined correlation time of tumbling (4.84 ns) to calculate these rate constant, where a big contribution to the relaxation is coming from the tumbling. Agreement between features, however, is a stronger indicator of good MD performance, where we see particularly good reproduction, for example, for NOE at 800 and 950 MHz, although worse behavior for <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> (although not terrible).</p>
+</div>
+</section>
+<section id="exercise-4-2">
+<h3>Exercise 4.2<a class="headerlink" href="#exercise-4-2" title="Link to this heading">#</a></h3>
+<p>The object below allows model-free fitting of the <em>NMR</em> data. How many parameters (<code class="docutils literal notranslate"><span class="pre">n</span></code>) are sufficient to fit the data? Evaluate by eye via the <code class="docutils literal notranslate"><span class="pre">plot_rates</span></code> function and use the calculated value for <span class="math notranslate nohighlight">\(\chi^2\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mf_nmr</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">Type</span><span class="o">=</span><span class="s1">&#39;NMR&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">chi2</span><span class="o">=</span><span class="p">((</span><span class="n">mf_nmr</span><span class="o">.</span><span class="n">relax_rates</span><span class="o">-</span><span class="n">mf_nmr</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">mf_nmr</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">Rstd</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">chi2</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">_</span><span class="o">=</span><span class="n">mf_nmr</span><span class="o">.</span><span class="n">plot_rates</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |██████████████████████████████| 100%  of 16 steps
+Completed
+Data already in project (index=18)
+38933.1
+</pre></div>
+</div>
+<img alt="../_images/c20db62a88f6695588c58c25493a6a61de54b960177148add7e63cedf57a3dc7.png" src="../_images/c20db62a88f6695588c58c25493a6a61de54b960177148add7e63cedf57a3dc7.png" />
+</div>
+</div>
+</section>
+<section id="exercise-4-3">
+<h3>Exercise 4.3<a class="headerlink" href="#exercise-4-3" title="Link to this heading">#</a></h3>
+<p>The following cell plots the model-free parameters used to fit the experimental data. Comment on the degree of scatter from one residue to the next (how noisy does the data look to you) compared to the relaxation rate constants themselves.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mf_nmr</span><span class="o">.</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">_</span><span class="o">=</span><span class="n">mf_nmr</span><span class="o">.</span><span class="n">plot_pars</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |██████████████████████████████| 100%  of 4 steps
+Completed
+Data already in project (index=14)
+</pre></div>
+</div>
+<img alt="../_images/81536783d5c681738ab2a6750e2db8fcf3daf12a2d0ca54af9771e148c76bf77.png" src="../_images/81536783d5c681738ab2a6750e2db8fcf3daf12a2d0ca54af9771e148c76bf77.png" />
+</div>
+</div>
+<div class="toggle docutils container">
+<p>There are more distinct features in the experimental data as compared to the model free parameters derived from that data.</p>
+<p>This doesn’t make any sense. Motion with apparently random variation in the dynamics parameters describing it should not lead to relaxation rate constants with strong trends. The problem is that the model-free analysis yields unstable parameters so that small variations in the experimental data may lead to large variations in the model. Keep in mind, there are model-free fitting routines that restrict the data more than what we use here, but in general, I think this is not a particularly good way to describe the motion. Despite this, model-free has been applied for over 40 years for describing dynamics, so don’t be surprised to still see analyses done this way.</p>
+<p>Model-free fitting of the MD does yield a good reproduction of rate constants. Model-free can store the information from the correlation functions quite well, and so can yield accurate rate constants.</p>
+</div>
+</section>
+</section>
+<section id="part-5-detector-analysis-of-md-and-nmr">
+<h2>Part 5. Detector analysis of MD and NMR<a class="headerlink" href="#part-5-detector-analysis-of-md-and-nmr" title="Link to this heading">#</a></h2>
+<p>The noisiness of the model-free analysis above led us to develop a method called the <em>detector analysis</em> to treat relaxation data. We believe the key problem with model-free analysis is that protein motion is not well-described by a few correlation times, but is much more consistent with a continuous distribution of correlation times. We’ve explored this topic throughout a number of publications and how to go about treating the data in such cases (<a class="reference external" href="https://doi.org/10.1002/ange.201707316">why model-free fails</a>, <a class="reference external" href="https://doi.org/10.3389/fmolb.2021.727553">further discussion</a>, <a class="reference external" href="https://doi.org/10.1063/1.5111081">solution-state approach</a>).</p>
+<p>The basic idea is that rather than writing a sum of correlation times, we write a distribution:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+C_{int.}(t)&amp;=&amp;S^2+(1-S^2)\sum\limits_i{A_i\exp(-t/\tau_i)} \\
+&amp;=&amp;S^2+(1-S^2)\int\limits_{-\infty}^\infty{\theta(z)\exp(-t/(10^z\cdot s)dt}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Technically, the two formulas are interchangeable, but the latter emphasizes the potential for a near-continuum of correlation times, which would require a summation of very many terms to represent with the former formula.</p>
+<p>In any case, we cannot fully parameterize such a model, so instead we capture motion within well-defined correlation time “windows”, defined by the functions <span class="math notranslate nohighlight">\(\rho(z)=\rho(\tau_c)\)</span>, where <span class="math notranslate nohighlight">\(z=\log_{10}(\tau_c)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\rho_n^{(\theta,S)}&amp;=&amp;(1-S^2)\sum\limits_i{A_i\rho_n(\tau_i)} \\
+&amp;=&amp;(1-S^2)\int\limits_{-\infty}^\infty{\theta(z)\rho_n(z)dz}
+\end{eqnarray}
+\end{split}\]</div>
+<p>Then, we parameterize our data with a number of these parameters, <span class="math notranslate nohighlight">\(\rho_n^{(\theta,S)}\)</span>, which give the amplitude of motion for a well-defined range of correlation times. Analysis is performed below with the pyDIFRATE software (a detailed tutorial on pyDIFRATE can be found <a class="reference external" href="https://alsinmr.github.io/pyDR">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Process the NMR</span>
+<span class="n">nmr</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;raw&#39;</span><span class="p">][</span><span class="s1">&#39;NMR&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#Find the nmr data</span>
+<span class="n">nmr</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_auto</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1">#Setup processing (n is number of parameters)</span>
+<span class="n">nmr_fit</span><span class="o">=</span><span class="n">nmr</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>       <span class="c1">#NMR fit data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 2: Process the MD to compare to NMR</span>
+<span class="n">target</span><span class="o">=</span><span class="n">nmr_fit</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">rhoz</span>
+<span class="n">md</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;no_opt&#39;</span><span class="p">][</span><span class="s1">&#39;MD&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1">#Find the MD data</span>
+<span class="n">md</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_target</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>  <span class="c1">#Setup MD to match NMR sensitivies</span>
+<span class="n">md_fit</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">md_opt</span><span class="o">=</span><span class="n">md_fit</span><span class="o">.</span><span class="n">opt2dist</span><span class="p">(</span><span class="n">rhoz</span><span class="o">=</span><span class="n">target</span><span class="p">)</span> <span class="c1">#Optimize MD fit (numerically &quot;clean-up&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3: Plot the results</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">close_fig</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>      <span class="c1">#in pyDR, projects manage the figures</span>
+<span class="n">nmr_fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="n">md_opt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">plot_obj</span><span class="o">.</span><span class="n">show_tc</span><span class="p">()</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">plot_obj</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/55e29e56c985411b592fba97af6eb2db6d6f91df3eb5ab1da4288a5db1a1288c.png" src="../_images/55e29e56c985411b592fba97af6eb2db6d6f91df3eb5ab1da4288a5db1a1288c.png" />
+</div>
+</div>
+<section id="exercise-5-1">
+<h3>Exercise 5.1<a class="headerlink" href="#exercise-5-1" title="Link to this heading">#</a></h3>
+<p>The bar plots above represent the amplitude of motion for experimental data and the black line plots represent MD data. Around what correlation times do we have good agreement, poor agreement, and ok agreement. What does this tell you about the NMR and MD data quality?</p>
+<div class="toggle docutils container">
+<p>We find high-quality agreement around 200 ps, but very poor agreement for slower motion around 3 ns. Fast motion (&lt;74 ps), we have fairly good agreement except around residue 10.</p>
+<p>It tells us that the data do no agree well. However, it is actually not clear which data source is correct and which is wrong. We always expect some imperfection in the MD data, but in this case, there may also be some problems with the acquisition of <span class="math notranslate nohighlight">\(R_2\)</span> rate constants, leading to apparently higher amplitude of motion in the low ns regime.</p>
+</div>
+</section>
+<section id="exercise-5-2">
+<h3>Exercise 5.2<a class="headerlink" href="#exercise-5-2" title="Link to this heading">#</a></h3>
+<p>Which do you consider more stable, the detector parameters (<span class="math notranslate nohighlight">\(\rho_n^{(\theta,S)}\)</span>) or the model-free parameters?</p>
+<div class="toggle docutils container">
+<p>The detector parameters are more stable, due to a more realistic model and simpler approach to fitting.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./GNMR2025"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="MD2NMR.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 1: S<span class="math notranslate nohighlight">\(^2\)</span> and C(t) </font></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pydifrate-initial-data-load">pyDIFRATE initial data load</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-directly-calculate-the-spectral-density">Part 1: Directly calculate the spectral density</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-1">Exercise 1.1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-multi-exponential-fitting-model-free-like-analysis">Part 2: Multi-exponential fitting (model-free-like analysis)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#investigate-the-quality-of-multi-exponential-fitting-of-the-correlation-function">Investigate the quality of multi-exponential fitting of the correlation function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-1">Exercise 2.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-2">Exercise 2.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-calculating-relaxation-rate-constants">Part 3: Calculating relaxation rate constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-1">Exercise 3.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-2">Exercise 3.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-3">Exercise 3.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-your-results">Plot your results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-4">Exercise 3.4</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-comparing-to-experiment">Part 4: Comparing to experiment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-1">Exercise 4.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-2">Exercise 4.2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-3">Exercise 4.3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-detector-analysis-of-md-and-nmr">Part 5. Detector analysis of MD and NMR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-1">Exercise 5.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-2">Exercise 5.2</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Albert Smith
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
