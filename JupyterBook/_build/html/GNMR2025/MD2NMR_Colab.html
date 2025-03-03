@@ -62,11 +62,9 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'GNMR2025/MD2NMR';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'GNMR2025/MD2NMR_Colab';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Calculating NMR Parameters from MD Simulations 2: Calculating Relaxation" href="MD2NMR_fitting.html" />
-    <link rel="prev" title="Chemical Exchange" href="Exchange.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -118,6 +116,8 @@
       
       
       
+        
+      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -168,10 +168,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../Software.html">Software</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="GNMR2025.html"><font color="#5d6d7e"> G-NMR 2025 </font></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="GNMR2025.html"><font color="#5d6d7e"> G-NMR 2025 </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Exchange.html"><font color="#2e86c1"> Chemical Exchange </font></a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 1: S<span class="math notranslate nohighlight">\(^2\)</span> and C(t) </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="MD2NMR.html"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 1: S<span class="math notranslate nohighlight">\(^2\)</span> and C(t) </font></a></li>
 <li class="toctree-l2"><a class="reference internal" href="MD2NMR_fitting.html"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 2: Calculating Relaxation </font></a></li>
 </ul>
 </details></li>
@@ -234,7 +234,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/alsinmr/ConferenceExamples/blob/master/JupyterBook/GNMR2025/MD2NMR.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/alsinmr/ConferenceExamples/blob/master/JupyterBook/GNMR2025/MD2NMR_Colab.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -282,7 +282,7 @@
       
       
       
-      <li><a href="https://github.com/alsinmr/ConferenceExamples/issues/new?title=Issue%20on%20page%20%2FGNMR2025/MD2NMR.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/alsinmr/ConferenceExamples/issues/new?title=Issue%20on%20page%20%2FGNMR2025/MD2NMR_Colab.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -312,7 +312,7 @@
       
       
       
-      <li><a href="../_sources/GNMR2025/MD2NMR.ipynb" target="_blank"
+      <li><a href="../_sources/GNMR2025/MD2NMR_Colab.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -444,7 +444,6 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="calculating-nmr-parameters-from-md-simulations-1-s-2-and-c-t">
 <h1><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 1: S<span class="math notranslate nohighlight">\(^2\)</span> and C(t) </font><a class="headerlink" href="#calculating-nmr-parameters-from-md-simulations-1-s-2-and-c-t" title="Link to this heading">#</a></h1>
-<p><a href="https://githubtocolab.com/alsinmr/ConferenceExamples/blob/master/JupyterBook/GNMR2025/MD2NMR_Colab.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg"></a></p>
 <section id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -507,40 +506,14 @@ P_2&amp;=&amp;\frac{3x^2-1}{2} \\
 <section id="exercise-1-1">
 <h3>Exercise 1.1<a class="headerlink" href="#exercise-1-1" title="Link to this heading">#</a></h3>
 <p>Insert the summation for <span class="math notranslate nohighlight">\(x\)</span> into <span class="math notranslate nohighlight">\(P2(...)\)</span>, and insert <span class="math notranslate nohighlight">\(P2(...)\)</span> into the average brackets. Note that for an average, if we have constants <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, and variable <span class="math notranslate nohighlight">\(x\)</span>, then <span class="math notranslate nohighlight">\(\left\langle a+bx\right\rangle=a+b\langle x\rangle\)</span>. Apply this simplification for your result.</p>
-<div class="toggle docutils container">
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{eqnarray}
-C(t)&amp;=&amp;\left\langle-\frac12+\frac32\left(\sum\limits_{\alpha=[x,y,z]}{\alpha(\tau)\alpha(t+\tau)}\right)^2\right\rangle_\tau \\
-&amp;=&amp;-\frac12+\frac32\left\langle\left(\sum\limits_{\alpha=[x,y,z]}{\alpha(\tau)\alpha(t+\tau)}\right)^2\right\rangle_\tau
-\end{eqnarray}
-\end{split}\]</div>
-</div>
 </section>
 <section id="exercise-1-2">
 <h3>Exercise 1.2<a class="headerlink" href="#exercise-1-2" title="Link to this heading">#</a></h3>
 <p>A squared summation may be expanded by introducing a new index and summing over both indices, taking products of all terms, e.g. for <span class="math notranslate nohighlight">\((\sum\limits_i{x_i})^2=\sum\limits_i{\sum\limits_j{x_ix_j}}\)</span>. Do this for the squared term above (you should have a double summation over <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>).</p>
-<div class="toggle docutils container">
-<div class="math notranslate nohighlight">
-\[
-\begin{eqnarray}
-C(t)&amp;=&amp;-\frac12+\frac32\left\langle\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\alpha(\tau)\alpha(t+\tau)\beta(\tau)\beta(t+\tau)}}\right\rangle_\tau
-\end{eqnarray}
-\]</div>
-</div>
 </section>
 <section id="exercise-1-3">
 <h3>Exercise 1.3<a class="headerlink" href="#exercise-1-3" title="Link to this heading">#</a></h3>
 <p>Finally, when we have the expectation value of a summation, this can be written as a sum of expectation values: <span class="math notranslate nohighlight">\(\left\langle\sum\limits_i{x_i}\right\rangle=\sum\limits_i{\langle x_i\rangle}\)</span>. Rewrite the total correlation function as a linear combination of linear correlation functions using this relationship.</p>
-<div class="toggle docutils container">
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{eqnarray}
-C(t)&amp;=&amp;-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\left\langle\alpha(\tau)\beta(\tau)\alpha(t+\tau)\beta(t+\tau)\right\rangle_\tau}} \\
-\end{eqnarray}
-\end{split}\]</div>
-<p>Note that the term <span class="math notranslate nohighlight">\(\left\langle\alpha(\tau)\beta(\tau)\alpha(t+\tau)\beta(t+\tau)\right\rangle_\tau\)</span> is an time <em>auto</em>correlation function of <span class="math notranslate nohighlight">\(\alpha(\tau)\beta(\tau)\)</span> with itself.</p>
-</div>
 </section>
 </section>
 <section id="part-2-extract-vectors">
@@ -564,18 +537,11 @@ C(t)&amp;=&amp;-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y
 <section id="exercise-2-1">
 <h3>Exercise 2.1<a class="headerlink" href="#exercise-2-1" title="Link to this heading">#</a></h3>
 <p>What type of biomolecules would you want to include overall motion, i.e. not apply alignment of the molecule?</p>
-<div class="toggle docutils container">
-<p>Molecules where it is difficult to define alignment, i.e. where the structure is highly variable. Two possibilities are intrinsically disordered proteins and lipid membranes.</p>
-</div>
 <p>A second concern is the periodic boundary condition (PBC) used in MD simulations. For an MD simulation, we have to restrict the simulation to a box. When an atom reaches the end of the box, it does not interact with a wall or a vacuum, but rather it interacts with atoms on the opposite side of the box. This is a convenient trick for keeping realistic interactions without requiring an extremely large system. However, a molecule may well be split across the box. This does not impact the simulation in any negative way, but makes the direction of a bond ill-defined. One may either prepare the simulation before analysis such that the molecule of interest stays “whole” or “centered”, both usually avoid this problem. Alternatively, one may correct for bonds split across the box during analysis (pyDR, which we use later, treats the PBC automatically. It does not automatically handle alignment).</p>
 </section>
 <section id="exercise-2-2">
 <h3>Exercise 2.2<a class="headerlink" href="#exercise-2-2" title="Link to this heading">#</a></h3>
 <p>The following code aligns a molecule in a trajectory (assuming it is already made “whole”, with no atoms crossing the periodic boundary condition), and writes it into a new file. When we align a molecule, we need to move atoms in the simulation to the center (translation), and turn them so that reference atoms are aligned (rotation). Which lines below achieve translation and rotation?</p>
-<div class="toggle docutils container">
-<p>translation: <code class="docutils literal notranslate"><span class="pre">pos-=ref.mean(0)</span></code></p>
-<p>rotation: <code class="docutils literal notranslate"><span class="pre">pos_corr=(R.T&#64;pos.T).T</span></code></p>
-</div>
 <p>Note that the rotational alignment below is achieved with the <a class="reference external" href="https://en.wikipedia.org/wiki/Kabsch_algorithm">Kabsch Algorithm</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -699,23 +665,6 @@ C(t)&amp;=&amp;-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y
 </div>
 </div>
 </div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-    <span class="n">lv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">#Length of the vectors</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="o">/</span><span class="n">lv</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>   <span class="c1">#Normalize v (transposes required to correctly use &quot;broadcasting&quot;)</span>
-
-<span class="n">v</span><span class="o">=</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
 </section>
 </section>
 <section id="part-3-order-parameters">
@@ -743,27 +692,11 @@ S^2=\lim_{t\rightarrow\infty}{C(t)}&amp;=&amp;\lim_{t\rightarrow\infty}{\left(-\
 <section id="exercise-3-1">
 <h3>Exercise 3.1<a class="headerlink" href="#exercise-3-1" title="Link to this heading">#</a></h3>
 <p>Use this relationship to rewrite the formula above.</p>
-<div class="toggle docutils container">
-<div class="math notranslate nohighlight">
-\[
-\begin{eqnarray}
-S^2&amp;=&amp;\lim_{t\rightarrow\infty}{\left(-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\left\langle\alpha(\tau)\beta(\tau)\right\rangle_\tau\left\langle\alpha(t+\tau)\beta(t+\tau)\right\rangle_\tau}}\right)}
-\end{eqnarray}
-\]</div>
-</div>
 <p>In your answer above, the term <span class="math notranslate nohighlight">\(\langle \alpha(t+\tau)\beta(t+\tau)\rangle_\tau\)</span> should occur. The <span class="math notranslate nohighlight">\(\langle ...\rangle_\tau\)</span> indicates an average over all times. Then <span class="math notranslate nohighlight">\(t\)</span> just shifts the times, but we still average over all times, so the term <span class="math notranslate nohighlight">\(t\)</span> may be dropped.</p>
 </section>
 <section id="exercise-3-2">
 <h3>Exercise 3.2<a class="headerlink" href="#exercise-3-2" title="Link to this heading">#</a></h3>
 <p>Simplify the formula based on this information. Note that if <span class="math notranslate nohighlight">\(t\)</span> does not appear in the formula anymore, then one may also drop the limit for <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span></p>
-<div class="toggle docutils container">
-<div class="math notranslate nohighlight">
-\[
-\begin{eqnarray}
-S^2&amp;=&amp;-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\left\langle\alpha(\tau)\beta(\tau)\right\rangle_\tau^2}}
-\end{eqnarray}
-\]</div>
-</div>
 <p>For the latter formula (<span class="math notranslate nohighlight">\(S_{resid.}\)</span>), we must calculate the dipole tensor for all frames, take its average, and extract the anisotropy of the resulting averaged tensor.</p>
 <p>We introduce functions below for performing both calculations.</p>
 <div class="cell docutils container">
@@ -807,32 +740,6 @@ S^2&amp;=&amp;-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,
 </div>
 </div>
 </div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">S2</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>    <span class="c1">#Calculation for S2 here</span>
-<span class="n">b</span><span class="o">=</span><span class="n">Sresid</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>   <span class="c1">#Calculation for (Sresid)^2 here</span>
-
-<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2_{resid.}$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2-S^2_{resid.}$&#39;</span><span class="p">))</span>
-<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/5b39ae6ee6230abcc0cd3ea6a62467c07510a5ee6d2866b5c5248057b4258508.png" src="../_images/5b39ae6ee6230abcc0cd3ea6a62467c07510a5ee6d2866b5c5248057b4258508.png" />
-</div>
-</details>
-</div>
 <p>If our motion has a symmetry axis (3-fold or higher), then <span class="math notranslate nohighlight">\(S^2=(S_{resid.})^2\)</span>, whereas otherwise, this relationship is only approximate. Note that if our motion has a symmetry axis, and we know the direction of that axis, then we may define <span class="math notranslate nohighlight">\(\beta\)</span> as the angle between the tensor and the symmetry axis, in which case</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -847,86 +754,19 @@ S^2=(S_{resid.})^2&amp;=&amp;\left\langle\frac{3\cos^2\beta_{sym.}-1}{2}\right\r
 <h3>Exercise 3.4<a class="headerlink" href="#exercise-3-4" title="Link to this heading">#</a></h3>
 <p>What, approximately, is the asymmetry parameter (<span class="math notranslate nohighlight">\(\eta\)</span>) for residual dipole couplings used to calculate <span class="math notranslate nohighlight">\(S_{resid}\)</span> above?</p>
 <p>Bonus points: Plot the asymmetry</p>
-<div class="toggle docutils container">
-<p>Given the near perfect agreement between the two definitions, we know the motions are roughly symmetric, and therefore the asymmetry parameter should be approximately zero.</p>
-<p>If you’re paying attention, you’ll notice that in the function for <code class="docutils literal notranslate"><span class="pre">Sresid</span></code>, the asymmetry parameter, <code class="docutils literal notranslate"><span class="pre">eta</span></code>, is already calculated. You just need to return it!</p>
-<p>When you do, you’ll notice a fairly large value for <span class="math notranslate nohighlight">\(\eta\)</span> at residue 73. The order parameters still appear to agree fairly well only because they are fairly small. In reality, there’s a 21% disagreement between the two parameters</p>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Asymmetry</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-    <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">T</span>
-    <span class="n">euler</span><span class="o">=</span><span class="n">vft</span><span class="o">.</span><span class="n">getFrame</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="n">A</span><span class="o">=</span><span class="n">vft</span><span class="o">.</span><span class="n">pars2Spher</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">*</span><span class="n">euler</span><span class="p">)</span>   <span class="c1">#We can set the reference value here to 1</span>
-    <span class="n">Aavg</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">delta</span><span class="p">,</span><span class="n">eta</span><span class="p">,</span><span class="o">*</span><span class="n">euler</span><span class="o">=</span><span class="n">vft</span><span class="o">.</span><span class="n">Spher2pars</span><span class="p">(</span><span class="n">Aavg</span><span class="p">)</span> <span class="c1">#Then, delta is delta/delta_rigid</span>
-    <span class="k">return</span> <span class="n">eta</span>
-
-<span class="n">eta</span><span class="o">=</span><span class="n">Asymmetry</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>    <span class="c1">#Calculation for S2 here</span>
-
-<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">eta</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
-<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\eta$&#39;</span><span class="p">)</span>
-
-<span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For residue </span><span class="si">{</span><span class="n">resi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, (S2-S2_resid)/S2_resid = </span><span class="si">{</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> %&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For residue 73, (S2-S2_resid)/S2_resid = 21 %
-</pre></div>
-</div>
-<img alt="../_images/43640ffbbdb6476db25c222e6e1d6111c43f7b5e59ecebb05b6dd5a73c85fb3c.png" src="../_images/43640ffbbdb6476db25c222e6e1d6111c43f7b5e59ecebb05b6dd5a73c85fb3c.png" />
-</div>
-</details>
-</div>
 </section>
 <section id="exercise-2-2-repeat-with-un-aligned-trajectory">
 <h3>Exercise 2.2 Repeat with un-aligned trajectory<a class="headerlink" href="#exercise-2-2-repeat-with-un-aligned-trajectory" title="Link to this heading">#</a></h3>
 <p>Repeat the above calculation of the order parameters, but use uni0, which contains the unaligned trajectory. Explain the result.</p>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span><span class="n">v0</span><span class="o">=</span><span class="n">load_v</span><span class="p">(</span><span class="n">uni0</span><span class="p">)</span>
 <span class="n">v0</span><span class="o">=</span><span class="n">norm</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
 
-<span class="n">a</span><span class="o">=</span><span class="n">S2</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>    <span class="c1">#Calculation for S2 here</span>
-<span class="n">b</span><span class="o">=</span><span class="n">Sresid</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>   <span class="c1">#Calculation for (Sresid)^2 here</span>
-
-<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">resi</span><span class="p">,</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2_{resid.}$&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$S^2-S^2_{resid.}$&#39;</span><span class="p">))</span>
-<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S^2$&#39;</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residue&#39;</span><span class="p">)</span>
-<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S^2$ or $(S_{resid.})^2$&#39;</span><span class="p">)</span>
+<span class="o">...</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/b222b5f16e3aef92456936bdb10efbcee549faf32bb9ea5b835d38bd914f9910.png" src="../_images/b222b5f16e3aef92456936bdb10efbcee549faf32bb9ea5b835d38bd914f9910.png" />
-</div>
-</details>
-</div>
-<div class="toggle docutils container">
-<p>The tumbling of the ubiquitin in solution is included in the order parameter calculations, yielding a nearly isotropic motion, represented by order parameters that are nearly zero.</p>
 </div>
 </section>
 </section>
@@ -973,36 +813,6 @@ S^2=(S_{resid.})^2&amp;=&amp;\left\langle\frac{3\cos^2\beta_{sym.}-1}{2}\right\r
 </div>
 </div>
 </div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="o">=</span><span class="n">time</span><span class="p">()</span>
-<span class="n">ct0</span><span class="o">=</span><span class="n">ct_lin</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Standard ct: </span><span class="si">{</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
-
-<span class="n">t0</span><span class="o">=</span><span class="n">time</span><span class="p">()</span>
-<span class="n">ct1</span><span class="o">=</span><span class="n">ct_ft</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;FT-ct: </span><span class="si">{</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard ct: 9.02 s
-FT-ct: 0.37 s
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="toggle docutils container">
-<p>The Fourier transform is on the order of 30-40 times faster, a significant speed up.</p>
-<p>FFT is faster because the Fourier transform algorithm is highly optimized, and also because it’s not actually running in Python. Numpy calculations are usually running in compiled linear algebra libraries written in C and FORTRAN, so are much faster than non-compiled python code (the “for” loop in ct_lin adds most of the computational time).</p>
-<p>We can use FFT based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a>. Note that because we have a finite time axis, we end up with a circular convolution, which must be treated by zero-filling the function (<code class="docutils literal notranslate"><span class="pre">n=sz*2</span></code>) and renormalizing the result (<code class="docutils literal notranslate"><span class="pre">/np.arange(sz,0,-1)</span></code>)</p>
-</div>
 </section>
 <section id="exercise-4-2">
 <h3>Exercise 4.2<a class="headerlink" href="#exercise-4-2" title="Link to this heading">#</a></h3>
@@ -1021,40 +831,6 @@ FT-ct: 0.37 s
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Ct</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-    <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">T</span>
-    <span class="n">ct</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-    
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-            <span class="n">ct</span><span class="o">+=</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">ct_ft</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>  
-    <span class="k">return</span> <span class="n">ct</span>
-
-<span class="c1"># 33% faster</span>
-<span class="k">def</span> <span class="nf">Ct</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-    <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">T</span>
-    <span class="n">ct</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-    
-    
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>   <span class="c1">#This loop goes over a total of 6 instead of 9 elements</span>
-            <span class="k">if</span> <span class="n">k</span><span class="o">==</span><span class="n">j</span><span class="p">:</span>
-                <span class="n">ct</span><span class="o">+=</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">ct_ft</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>  <span class="c1">#Double this account for skipped elements</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">ct</span><span class="o">+=</span><span class="mi">3</span><span class="o">*</span><span class="n">ct_ft</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>  <span class="c1">#Double this account for skipped elements</span>
-    <span class="k">return</span> <span class="n">ct</span>
-</pre></div>
-</div>
-</div>
-</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1075,7 +851,7 @@ FT-ct: 0.37 s
 <p>Selected correlation functions are plotted below, along with the order parameters as dashed lines. The code <code class="docutils literal notranslate"><span class="pre">resi[0:-1:8]</span></code> goes from the first residue to the last residue, in steps of 8. You can look at other residues by changing this (<code class="docutils literal notranslate"><span class="pre">resi[0:9:1]</span></code> shows you the first 8 residues, <code class="docutils literal notranslate"><span class="pre">resi[-9:]</span></code> shows you the last 9 residues, and so on). You may also need to adjust the y-limits if you select different residues (last line).</p>
 <p>Note that if your correlation functions do not start at 1, and do not end at approximately the order parameter, then you need to re-check your correlation function definition.</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">resi</span><span class="p">[::</span><span class="mi">8</span><span class="p">],</span><span class="n">ax</span><span class="p">):</span>
@@ -1091,25 +867,11 @@ FT-ct: 0.37 s
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<img alt="../_images/8a07e8a3a175f4b906b6a16fc8d89eaf91741f8c8d54fd52bb3ab17576c816c7.png" src="../_images/8a07e8a3a175f4b906b6a16fc8d89eaf91741f8c8d54fd52bb3ab17576c816c7.png" />
-</div>
-</details>
 </div>
 </section>
 <section id="exercise-4-3">
 <h3>Exercise 4.3<a class="headerlink" href="#exercise-4-3" title="Link to this heading">#</a></h3>
 <p>Why do the correlation functions become noisy towards the end?</p>
-<div class="toggle docutils container">
-<p>There are two reasons:</p>
-<p>First, the last point is calculated by pairing the first element of the trajectory with the last, so there is no averaging, and 100 points from the end, there are only 100 points averaged, vs. in this example, 19401 points for the first element. So the closer we are to the end, the fewer pairs of points that are averaged.</p>
-<p>However, this hardly accounts for the noise halfway through the trajectory, where the noise level should only be <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> higher than at the beginning. This is because slow events, which have a long correlation time, do not occur frequently enough. If an event takes 10 ns on average, then over 194 ns, it occurs about 19 times, but it can very easily be a few more times or a few less, which introduces additional noise especially for bonds with slower motion present.</p>
-</div>
 </section>
 <section id="include-tumbling">
 <h3>Include tumbling<a class="headerlink" href="#include-tumbling" title="Link to this heading">#</a></h3>
@@ -1147,9 +909,6 @@ FT-ct: 0.37 s
 <section id="exercise-4-4">
 <h3>Exercise 4.4<a class="headerlink" href="#exercise-4-4" title="Link to this heading">#</a></h3>
 <p>What is different about the correlation functions with tumbling? Estimate the correlation time of tumbling from the correlation functions. This is roughly when the correlation function crosses <span class="math notranslate nohighlight">\(1/e=0.37\)</span>. You may want to adjust the x-limit of the plot to see this better. Technically, you should look for <span class="math notranslate nohighlight">\(S^2/e\)</span>, but for our purposes, 1/e is sufficient.</p>
-<div class="toggle docutils container">
-<p>All correlation functions decay near to zero in the first few nanoseconds. This is mostly the tumbling in solution. The correlation time is around 2.5 ns. This is actually too short compared to experiment, where we observe a correlation time of about 4.8 ns. MD often struggles to produce the correct correlation time of tumbling, which is one reason to remove it via alignment of the molecule.</p>
-</div>
 </section>
 </section>
 </section>
@@ -1184,24 +943,6 @@ FT-ct: 0.37 s
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="Exchange.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><font color=#2e86c1> Chemical Exchange </font></p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="MD2NMR_fitting.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 2: Calculating Relaxation </font></p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
