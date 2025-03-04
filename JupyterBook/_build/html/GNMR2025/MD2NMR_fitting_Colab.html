@@ -1074,11 +1074,6 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([9.9009901e-10, 5.0000000e-10, 9.9009901e-12])
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="exercise-3-2">
@@ -1088,7 +1083,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">J</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
-    <span class="n">omega</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">1e6</span>   <span class="c1">#Convert MHz to rad/s</span>
+    <span class="n">omega</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">1e6</span><span class="o">*</span><span class="n">v</span>   <span class="c1">#Convert MHz to rad/s</span>
     <span class="k">return</span> <span class="o">...</span>
 </pre></div>
 </div>
