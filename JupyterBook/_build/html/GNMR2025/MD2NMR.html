@@ -413,6 +413,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-3-normalize-vectors">Part 2.3 Normalize vectors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-4">Exercise 2.4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-4-plot-the-vectors">Part 2.4 Plot the vectors</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-order-parameters">Part 3: Order Parameters</a><ul class="nav section-nav flex-column">
@@ -702,6 +703,24 @@ C(t)&amp;=&amp;-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y
 </div>
 </div>
 </details>
+</div>
+</section>
+<section id="part-2-4-plot-the-vectors">
+<h3>Part 2.4 Plot the vectors<a class="headerlink" href="#part-2-4-plot-the-vectors" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">dt</span><span class="o">/</span><span class="mf">1e3</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">[:,</span><span class="mi">10</span><span class="p">,</span><span class="n">q</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">))</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$ / ns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/39d888addbb5431fc02965289a8d678baa86a2ed1b47716b09eec54ed9f9b792.png" src="../_images/39d888addbb5431fc02965289a8d678baa86a2ed1b47716b09eec54ed9f9b792.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1054,7 +1073,7 @@ FT-ct: 0.37 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.038931369781494
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0796608924865723
 </pre></div>
 </div>
 </div>
@@ -1122,7 +1141,7 @@ FT-ct: 0.37 s
     <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">is_first_col</span><span class="p">():</span>
         <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$C(t)$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span><span class="mi">200</span><span class="p">])</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">200</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1221,6 +1240,7 @@ FT-ct: 0.37 s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-3">Exercise 2.3</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-3-normalize-vectors">Part 2.3 Normalize vectors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-4">Exercise 2.4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-4-plot-the-vectors">Part 2.4 Plot the vectors</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-order-parameters">Part 3: Order Parameters</a><ul class="nav section-nav flex-column">
