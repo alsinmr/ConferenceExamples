@@ -425,6 +425,11 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-detector-analysis-of-md-and-nmr">Part 5. Detector analysis of MD and NMR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detector-analysis">Detector analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-process-nmr">Step 1: Process NMR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-process-md">Step 2: Process MD</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-1">Exercise 5.1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-2">Exercise 5.2</a></li>
 </ul>
@@ -645,7 +650,7 @@ r:MD:ubi
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1a1355fd5f8a242fdaf320265bd72af046fb2acad114dfd73c029efe8202ecb4.png" src="../_images/1a1355fd5f8a242fdaf320265bd72af046fb2acad114dfd73c029efe8202ecb4.png" />
+<img alt="../_images/8dc1b43b30ae73a34cd568ca6a61f71af3359afa2c1fbed8397dadcadaced102.png" src="../_images/8dc1b43b30ae73a34cd568ca6a61f71af3359afa2c1fbed8397dadcadaced102.png" />
 </div>
 </div>
 <p>Plot the spectral density for a few residues (code below)</p>
@@ -675,7 +680,7 @@ r:MD:ubi
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a447e7e621ef8be75c199e3643855600a2eb18d52f2304ab69170dcec6c9ed82.png" src="../_images/a447e7e621ef8be75c199e3643855600a2eb18d52f2304ab69170dcec6c9ed82.png" />
+<img alt="../_images/a2d5b86482591104fc13959dcb53f403042802d6a60391f02f81a2cee32a8c92.png" src="../_images/a2d5b86482591104fc13959dcb53f403042802d6a60391f02f81a2cee32a8c92.png" />
 </div>
 </div>
 <section id="exercise-1-1">
@@ -911,34 +916,12 @@ r:MD:ubi
 <h3>Exercise 2.1<a class="headerlink" href="#exercise-2-1" title="Link to this heading">#</a></h3>
 <p>Adjust <code class="docutils literal notranslate"><span class="pre">n</span></code> below until you’re satisfied with the fit of the correlation functions. A sample of correlation functions is plotted to see the fit quality (if you get the plotted correlation functions to fit, the other correlation functions should be ok, but you may also adjust which correlation functions to see, for example, by changing <code class="docutils literal notranslate"><span class="pre">mf.resids[10::4]</span></code> to <code class="docutils literal notranslate"><span class="pre">mf.resids[1::4]</span></code>, which adjusts the first correlation function to show).</p>
 <p>What value of <code class="docutils literal notranslate"><span class="pre">n</span></code> do you get?</p>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mf</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |------------------------------| 0%  of 4 steps
-
-Iterations |███████-----------------------| 25%  of 4 steps
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/albertsmith/Documents/GitHub.nosync/pyDR/Fitting/fit.py:400: RuntimeWarning: invalid value encountered in reciprocal
-  pinv=((m**2).sum(1)**(-1))*m.T
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |██████████████████████████████| 100%  of 4 steps
-Completed
-Data already in project (index=6)
-</pre></div>
-</div>
-</div>
-</details>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -952,9 +935,9 @@ Data already in project (index=6)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |██████████████████████████████| 100%  of 64 steps
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitted 1 data objects
+Iterations |██████████████████████████████| 100%  of 64 steps
 Completed
-Data already in project (index=20)
 </pre></div>
 </div>
 </div>
@@ -975,6 +958,36 @@ Data already in project (index=20)
 </div>
 </div>
 </div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mf</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">resi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">mf</span><span class="o">.</span><span class="n">resids</span><span class="p">[</span><span class="mi">9</span><span class="p">::</span><span class="mi">4</span><span class="p">]):</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">plot_ct</span><span class="p">(</span><span class="n">resi</span><span class="o">=</span><span class="n">resi</span><span class="p">,</span><span class="n">semilog</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">is_first_col</span><span class="p">()):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">is_last_row</span><span class="p">()):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |██████████████████████████████| 100%  of 64 steps
+Completed
+Data already in project (index=8)
+</pre></div>
+</div>
+<img alt="../_images/279eb571961a2a24c34cd7611352b17bd8ff7ce14a576daf56a8c03c6eed38ca.png" src="../_images/279eb571961a2a24c34cd7611352b17bd8ff7ce14a576daf56a8c03c6eed38ca.png" />
+</div>
+</details>
+</div>
 <div class="toggle docutils container">
 <p>Some disagreement between correlation function and fit is still present for <code class="docutils literal notranslate"><span class="pre">n=6</span></code>, but for <code class="docutils literal notranslate"><span class="pre">n=7</span></code>, most features are well reproduced</p>
 </div>
@@ -982,34 +995,12 @@ Data already in project (index=20)
 <section id="exercise-2-2">
 <h3>Exercise 2.2<a class="headerlink" href="#exercise-2-2" title="Link to this heading">#</a></h3>
 <p>Repeat exercise 2.1 but without alignment. What value of <span class="math notranslate nohighlight">\(n\)</span> do you get? Why is it different?</p>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfNA</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">aligned</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |------------------------------| 0%  of 4 steps
-
-Iterations |███████-----------------------| 25%  of 4 steps
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/albertsmith/Documents/GitHub.nosync/pyDR/Fitting/fit.py:400: RuntimeWarning: invalid value encountered in reciprocal
-  pinv=((m**2).sum(1)**(-1))*m.T
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |██████████████████████████████| 100%  of 4 steps
-Completed
-Data already in project (index=11)
-</pre></div>
-</div>
-</div>
-</details>
 </div>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -1025,6 +1016,36 @@ Data already in project (index=11)
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfNA</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">aligned</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">resi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">mfNA</span><span class="o">.</span><span class="n">resids</span><span class="p">[</span><span class="mi">11</span><span class="p">::</span><span class="mi">4</span><span class="p">]):</span>
+    <span class="n">mfNA</span><span class="o">.</span><span class="n">plot_ct</span><span class="p">(</span><span class="n">resi</span><span class="o">=</span><span class="n">resi</span><span class="p">,</span><span class="n">semilog</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">is_first_col</span><span class="p">()):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">is_last_row</span><span class="p">()):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitted 1 data objects
+Iterations |██████████████████████████████| 100%  of 16 steps
+Completed
+</pre></div>
+</div>
+<img alt="../_images/01261bec2b1d2acb345a5ffe2ae0e7725472df26a045f746fd020b277bb680c0.png" src="../_images/01261bec2b1d2acb345a5ffe2ae0e7725472df26a045f746fd020b277bb680c0.png" />
+</div>
+</details>
 </div>
 <div class="toggle docutils container">
 <p>Most residues fit quite well for <code class="docutils literal notranslate"><span class="pre">n=5</span></code>, with a few exceptions near the C-terminus. This is because the overall tumbling masks some of the slower motions, and prevents them from manifesting in the correlation function. Then, we no longer need the extra parameters to fit them.</p>
@@ -1049,7 +1070,7 @@ Data already in project (index=11)
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<img alt="../_images/3d5b8d04cbc1ec920575f039c14bffdabc6f20403a3f6f9c8f477c03a81bd617.png" src="../_images/3d5b8d04cbc1ec920575f039c14bffdabc6f20403a3f6f9c8f477c03a81bd617.png" />
+<img alt="../_images/7e621033ee25c9667ee91c025c8854d1a6f86bbd010daffdb2e3eb641b3106e5.png" src="../_images/7e621033ee25c9667ee91c025c8854d1a6f86bbd010daffdb2e3eb641b3106e5.png" />
 </div>
 </details>
 </div>
@@ -1062,7 +1083,7 @@ Data already in project (index=11)
 </section>
 <section id="part-3-calculating-relaxation-rate-constants">
 <h2>Part 3: Calculating relaxation rate constants<a class="headerlink" href="#part-3-calculating-relaxation-rate-constants" title="Link to this heading">#</a></h2>
-<p>We can use the formulas at the beginning of this document to calculate relaxation constants for various experiments. Note that to reproduce an experiment, we need to account for the total motion, which includes tumbling (that we have factored out). It will be useful to note that tumbling occurs for ubiquitin with a correlation time of 4.84 ns. The total correlation function is given by</p>
+<p>We can use the formulas at the beginning of this document to calculate relaxation constants for various experiments. Note that to reproduce an experiment, we need to account for the total motion, which includes tumbling (that we have factored out). The total correlation function is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -1327,7 +1348,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 </section>
 <section id="plot-your-results">
 <h3>Plot your results<a class="headerlink" href="#plot-your-results" title="Link to this heading">#</a></h3>
-<p>Plot results below for a few fields</p>
+<p>Plot results below for a few fields. A correlation time of tumbling of 4.5 ns is used (this is stored within the NMR data set- we extract it in the first line below)</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correlation time for ubiquitin already stored with NMR data</span>
@@ -1367,7 +1388,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 </section>
 <section id="part-4-comparing-to-experiment">
 <h2>Part 4: Comparing to experiment<a class="headerlink" href="#part-4-comparing-to-experiment" title="Link to this heading">#</a></h2>
-<p>Above, we downloaded experimental relaxation rate constants from Charlier et al. Note that the correlation time of tumbling we used previously (4.84 ns) is extracted from this data set. Now we will compare these to our calculated results. Plotting is set up for you below.</p>
+<p>Above, we downloaded experimental relaxation rate constants from Charlier et al. Now we will compare these to our calculated results. Plotting is set up for you below.</p>
 <p>C. Charlier, S.N. Khan, T. Marquardsen, P. Pelupessy, V. Reiss, D. Sakellariou, G. Bodenhausen, F. Engelke, F. Ferrage. <a class="reference external" href="https://doi.org/10.1021/ja409820g"><em>J. Am. Chem. Soc.</em></a>, <strong>2013</strong>, 135, 18665</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -1412,7 +1433,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 <p>The object below (<code class="docutils literal notranslate"><span class="pre">mf_nmr</span></code>) allows model-free fitting of the <em>NMR</em> data. How many parameters (<code class="docutils literal notranslate"><span class="pre">n</span></code>) are sufficient to fit the data? Evaluate by eye via the <code class="docutils literal notranslate"><span class="pre">plot_rates</span></code> function and use the calculated value for <span class="math notranslate nohighlight">\(\chi^2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mf_nmr</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">Type</span><span class="o">=</span><span class="s1">&#39;NMR&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mf_nmr</span><span class="o">=</span><span class="n">MF</span><span class="p">(</span><span class="n">Type</span><span class="o">=</span><span class="s1">&#39;NMR&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="n">chi2</span><span class="o">=</span><span class="p">((</span><span class="n">mf_nmr</span><span class="o">.</span><span class="n">relax_rates</span><span class="o">-</span><span class="n">mf_nmr</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">R</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">mf_nmr</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">Rstd</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chi^2: </span><span class="si">{</span><span class="n">chi2</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -1422,21 +1443,17 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |------------------------------| 0%  of 1 steps
-
-Iterations |██████████████████████████████| 100%  of 1 steps
-
-Iterations |██████████████████████████████| 100%  of 1 steps
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations |██████████████████████████████| 100%  of 4 steps
 Completed
-Data already in project (index=22)
-207915.1
+Data already in project (index=15)
+chi^2: 37923.1
 </pre></div>
 </div>
-<img alt="../_images/ffc485a58da8fc91f2ad44269eda125d7ed1827a567b9c72f65243b25fa18b40.png" src="../_images/ffc485a58da8fc91f2ad44269eda125d7ed1827a567b9c72f65243b25fa18b40.png" />
+<img alt="../_images/79cf015fbb23e9b79177167c30e79c08db8898ce0191da48aa51cf60135e01eb.png" src="../_images/79cf015fbb23e9b79177167c30e79c08db8898ce0191da48aa51cf60135e01eb.png" />
 </div>
 </div>
 <div class="toggle docutils container">
-<p>We obtain a good fit for <code class="docutils literal notranslate"><span class="pre">n=5</span></code>, without much further improvement for higher values of <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<p>We obtain a good fit for <code class="docutils literal notranslate"><span class="pre">n=3</span></code>, without much further improvement for higher values of <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
 </div>
 </section>
 <section id="exercise-4-3">
@@ -1472,7 +1489,7 @@ Data already in project (index=14)
 </section>
 <section id="part-5-detector-analysis-of-md-and-nmr">
 <h2>Part 5. Detector analysis of MD and NMR<a class="headerlink" href="#part-5-detector-analysis-of-md-and-nmr" title="Link to this heading">#</a></h2>
-<p>The noisiness of the model-free analysis above led us to develop a method called the <em>detector analysis</em> to treat relaxation data. We believe the key problem with model-free analysis is that protein motion is not well-described by a few correlation times, but is much more consistent with a broad distribution of correlation times. We’ve explored this topic throughout a number of publications and how to go about treating the data in such cases (<a class="reference external" href="https://doi.org/10.1002/anie.201707316">why model-free fails</a>, <a class="reference external" href="https://doi.org/10.3389/fmolb.2021.727553">further discussion</a>, <a class="reference external" href="https://doi.org/10.1063/1.5111081">solution-state approach</a>).</p>
+<p>Various problems with the model-free analysis above led us to develop a method called the <em>detector analysis</em> to treat relaxation data. We believe the key problem with model-free analysis is that protein motion is not well-described by a few correlation times, but is much more consistent with a broad distribution of correlation times. We’ve explored this topic throughout a number of publications and how to go about treating the data in such cases (<a class="reference external" href="https://doi.org/10.1002/anie.201707316">why model-free fails</a>, <a class="reference external" href="https://doi.org/10.3389/fmolb.2021.727553">further discussion</a>, <a class="reference external" href="https://doi.org/10.1063/1.5111081">solution-state approach</a>).</p>
 <p>The basic idea is that rather than writing a sum of correlation times, we write a distribution:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1491,43 +1508,108 @@ C_{int.}(t)&amp;=&amp;S^2+(1-S^2)\sum\limits_i{A_i\exp(-t/\tau_i)} \\
 \end{eqnarray}
 \end{split}\]</div>
 <p>Then, we parameterize our data with a number of these parameters, <span class="math notranslate nohighlight">\(\rho_n^{(\theta,S)}\)</span>, which give the amplitude of motion for a well-defined range of correlation times. Analysis is performed below with the pyDIFRATE software (a detailed tutorial on pyDIFRATE can be found <a class="reference external" href="https://alsinmr.github.io/pyDR">here</a>.</p>
+<section id="detector-analysis">
+<h3>Detector analysis<a class="headerlink" href="#detector-analysis" title="Link to this heading">#</a></h3>
+<p>We start from scratch so you can see that this process is relatively straightforward (of course, the software itself is doing a lot, but for the user it is not too difficult). Data will be stored in a <em>project</em> (<code class="docutils literal notranslate"><span class="pre">proj</span></code>)</p>
+<section id="step-1-process-nmr">
+<h4>Step 1: Process NMR<a class="headerlink" href="#step-1-process-nmr" title="Link to this heading">#</a></h4>
+<p>The key steps are</p>
+<ul class="simple">
+<li><p>Make a project, download the data</p></li>
+<li><p>Adjust the correlation time of tumbling (not always necessary)</p></li>
+<li><p>Set up detectors (here, we use 5 detectors)</p></li>
+<li><p>fit the data</p></li>
+<li><p>plot the data</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Process the NMR</span>
-<span class="n">nmr</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;raw&#39;</span><span class="p">][</span><span class="s1">&#39;NMR&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#Find the nmr data</span>
-<span class="n">nmr</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_auto</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1">#Setup processing (n is number of parameters)</span>
-<span class="n">nmr_fit</span><span class="o">=</span><span class="n">nmr</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>       <span class="c1">#NMR fit data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a project for data storate</span>
+<span class="n">proj</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">Project</span><span class="p">()</span>
+<span class="c1"># Download the data</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/alsinmr/pyDR_tutorial/main/data/ubi_soln.txt&#39;</span><span class="p">)</span>
+<span class="c1"># Adjust the correlation time of tumbling</span>
+<span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;tM&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">4.5e-9</span>
+<span class="c1"># Use 5 detectors for analysis</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;NMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_auto</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># Fit the NMR data</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;NMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c1"># Plot the result</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;proc&#39;</span><span class="p">][</span><span class="s1">&#39;NMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;bars&#39;</span><span class="p">)</span>
+<span class="c1"># Show correlation times, Adjust the figure size</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">plot_obj</span><span class="o">.</span><span class="n">show_tc</span><span class="p">()</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitted 1 data objects
+</pre></div>
+</div>
+<img alt="../_images/a44b5fff7c2bdce12dde3d4a321659d7459f8bb2e8f5953cf3d394ddf3dcbae0.png" src="../_images/a44b5fff7c2bdce12dde3d4a321659d7459f8bb2e8f5953cf3d394ddf3dcbae0.png" />
+</div>
+</div>
+</section>
+<section id="step-2-process-md">
+<h4>Step 2: Process MD<a class="headerlink" href="#step-2-process-md" title="Link to this heading">#</a></h4>
+<p>The key steps are:</p>
+<ul class="simple">
+<li><p>Load the MD trajectory (aligned) as a MolSelect object</p></li>
+<li><p>Select the desired bonds to analyze</p></li>
+<li><p>Load correlation functions into a data object (stored in <code class="docutils literal notranslate"><span class="pre">proj</span></code>)</p></li>
+<li><p>Set up detectors (here use 7, but match the first five to the NMR sensitivities with <code class="docutils literal notranslate"><span class="pre">r_target</span></code>)</p></li>
+<li><p>Fit the data</p></li>
+<li><p>Optimize the fit (optional)</p></li>
+<li><p>Plot the results</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create MolSelect object</span>
+<span class="n">sel</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">MolSelect</span><span class="p">(</span><span class="n">topo</span><span class="o">=</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">,</span><span class="n">traj_files</span><span class="o">=</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">,</span><span class="n">project</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+<span class="c1"># Select the desired bonds</span>
+<span class="n">sel</span><span class="o">.</span><span class="n">select_bond</span><span class="p">(</span><span class="s1">&#39;15N&#39;</span><span class="p">)</span>
+<span class="c1"># Load correlation functions </span>
+<span class="c1">#(because proj was assigned to sel, result goes into proj automatically)</span>
+<span class="n">pyDR</span><span class="o">.</span><span class="n">md2data</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
+<span class="c1"># Get NMR sensitivity as target for MD sensitivity</span>
+<span class="n">target</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;NMR&#39;</span><span class="p">][</span><span class="s1">&#39;proc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">rhoz</span>
+<span class="c1"># Optimize detectors for MD</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;MD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_target</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="c1"># Fit and then optimize the fit</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;MD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">opt2dist</span><span class="p">(</span><span class="n">rhoz</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading Ref. Frames: |██████████████████████████████████████████████████| 100.0% Complete
+Completed
+Fitted 1 data objects
+Optimized 1 data objects
+pyDIFRATE project with 1 data sets
+&lt;pyDR.Project.Project.Project object at 0x7fd2f5aa1198&gt;
+
+Titles:
+o7:MD:ubi_aligned
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 2: Process the MD to compare to NMR</span>
-<span class="n">target</span><span class="o">=</span><span class="n">nmr_fit</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">rhoz</span>
-<span class="n">md</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;no_opt&#39;</span><span class="p">][</span><span class="s1">&#39;MD&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1">#Find the MD data</span>
-<span class="n">md</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_target</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>  <span class="c1">#Setup MD to match NMR sensitivies</span>
-<span class="n">md_fit</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">md_opt</span><span class="o">=</span><span class="n">md_fit</span><span class="o">.</span><span class="n">opt2dist</span><span class="p">(</span><span class="n">rhoz</span><span class="o">=</span><span class="n">target</span><span class="p">)</span> <span class="c1">#Optimize MD fit (numerically &quot;clean-up&quot;)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3: Plot the results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Plot the results (bars are experiment, lines are simulation)</span>
 <span class="n">proj</span><span class="o">.</span><span class="n">close_fig</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>      <span class="c1">#in pyDR, projects manage the figures</span>
-<span class="n">nmr_fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
-<span class="n">md_opt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;proc&#39;</span><span class="p">][</span><span class="s1">&#39;NMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;opt_fit&#39;</span><span class="p">][</span><span class="s1">&#39;MD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">proj</span><span class="o">.</span><span class="n">plot_obj</span><span class="o">.</span><span class="n">show_tc</span><span class="p">()</span>
 <span class="n">proj</span><span class="o">.</span><span class="n">plot_obj</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ad2d2a27ba18541cd4fdd3357d09bd070ce97f221ea15fa7d2f3f6ee8b155ca6.png" src="../_images/ad2d2a27ba18541cd4fdd3357d09bd070ce97f221ea15fa7d2f3f6ee8b155ca6.png" />
+<img alt="../_images/ee15dee7335170d2558f630abcc99f71a84381f494665654b79c9c7f9957a0d4.png" src="../_images/ee15dee7335170d2558f630abcc99f71a84381f494665654b79c9c7f9957a0d4.png" />
 </div>
 </div>
+</section>
+</section>
 <section id="exercise-5-1">
 <h3>Exercise 5.1<a class="headerlink" href="#exercise-5-1" title="Link to this heading">#</a></h3>
 <p>The bar plots above represent the amplitude of motion for experimental data and the black line plots represent MD data. Around what correlation times do we have good agreement, poor agreement, and ok agreement. What does this tell you about the NMR and MD data quality?</p>
@@ -1627,6 +1709,11 @@ C_{int.}(t)&amp;=&amp;S^2+(1-S^2)\sum\limits_i{A_i\exp(-t/\tau_i)} \\
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-detector-analysis-of-md-and-nmr">Part 5. Detector analysis of MD and NMR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detector-analysis">Detector analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-process-nmr">Step 1: Process NMR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-process-md">Step 2: Process MD</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-1">Exercise 5.1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-2">Exercise 5.2</a></li>
 </ul>

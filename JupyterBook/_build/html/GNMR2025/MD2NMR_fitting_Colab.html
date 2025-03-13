@@ -426,6 +426,11 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-detector-analysis-of-md-and-nmr">Part 5. Detector analysis of MD and NMR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detector-analysis">Detector analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-process-nmr">Step 1: Process NMR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-process-md">Step 2: Process MD</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-1">Exercise 5.1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-2">Exercise 5.2</a></li>
 </ul>
@@ -1327,34 +1332,78 @@ C_{int.}(t)&amp;=&amp;S^2+(1-S^2)\sum\limits_i{A_i\exp(-t/\tau_i)} \\
 \end{eqnarray}
 \end{split}\]</div>
 <p>Then, we parameterize our data with a number of these parameters, <span class="math notranslate nohighlight">\(\rho_n^{(\theta,S)}\)</span>, which give the amplitude of motion for a well-defined range of correlation times. Analysis is performed below with the pyDIFRATE software (a detailed tutorial on pyDIFRATE can be found <a class="reference external" href="https://alsinmr.github.io/pyDR">here</a>.</p>
+<section id="detector-analysis">
+<h3>Detector analysis<a class="headerlink" href="#detector-analysis" title="Link to this heading">#</a></h3>
+<p>We start from scratch so you can see that this process is relatively straightforward (of course, the software itself is doing a lot, but for the user it is not too difficult). Data will be stored in a <em>project</em> (<code class="docutils literal notranslate"><span class="pre">proj</span></code>)</p>
+<section id="step-1-process-nmr">
+<h4>Step 1: Process NMR<a class="headerlink" href="#step-1-process-nmr" title="Link to this heading">#</a></h4>
+<p>The key steps are</p>
+<ul class="simple">
+<li><p>Make a project, download the data</p></li>
+<li><p>Adjust the correlation time of tumbling (not always necessary)</p></li>
+<li><p>Set up detectors (here, we use 5 detectors)</p></li>
+<li><p>fit the data</p></li>
+<li><p>plot the data</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Process the NMR</span>
-<span class="n">nmr</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;raw&#39;</span><span class="p">][</span><span class="s1">&#39;NMR&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#Find the nmr data</span>
-<span class="n">nmr</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_auto</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1">#Setup processing (n is number of parameters)</span>
-<span class="n">nmr_fit</span><span class="o">=</span><span class="n">nmr</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>       <span class="c1">#NMR fit data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a project for data storate</span>
+<span class="n">proj</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">Project</span><span class="p">()</span>
+<span class="c1"># Download the data</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/alsinmr/pyDR_tutorial/main/data/ubi_soln.txt&#39;</span><span class="p">)</span>
+<span class="c1"># Adjust the correlation time of tumbling</span>
+<span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;tM&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">4.5e-9</span>
+<span class="c1"># Use 5 detectors for analysis</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;NMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_auto</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># Fit the NMR data</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;NMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c1"># Plot the result</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;proc&#39;</span><span class="p">][</span><span class="s1">&#39;NMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;bars&#39;</span><span class="p">)</span>
+<span class="c1"># Show correlation times, Adjust the figure size</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">plot_obj</span><span class="o">.</span><span class="n">show_tc</span><span class="p">()</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-process-md">
+<h4>Step 2: Process MD<a class="headerlink" href="#step-2-process-md" title="Link to this heading">#</a></h4>
+<p>The key steps are:</p>
+<ul class="simple">
+<li><p>Load the MD trajectory (aligned) as a MolSelect object</p></li>
+<li><p>Select the desired bonds to analyze</p></li>
+<li><p>Load correlation functions into a data object (stored in <code class="docutils literal notranslate"><span class="pre">proj</span></code>)</p></li>
+<li><p>Set up detectors (here use 7, but match the first five to the NMR sensitivities with <code class="docutils literal notranslate"><span class="pre">r_target</span></code>)</p></li>
+<li><p>Fit the data</p></li>
+<li><p>Optimize the fit (optional)</p></li>
+<li><p>Plot the results</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create MolSelect object</span>
+<span class="n">sel</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">MolSelect</span><span class="p">(</span><span class="n">topo</span><span class="o">=</span><span class="s1">&#39;ubi.pdb&#39;</span><span class="p">,</span><span class="n">traj_files</span><span class="o">=</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">,</span><span class="n">project</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+<span class="c1"># Select the desired bonds</span>
+<span class="n">sel</span><span class="o">.</span><span class="n">select_bond</span><span class="p">(</span><span class="s1">&#39;15N&#39;</span><span class="p">)</span>
+<span class="c1"># Load correlation functions </span>
+<span class="c1">#(because proj was assigned to sel, result goes into proj automatically)</span>
+<span class="n">pyDR</span><span class="o">.</span><span class="n">md2data</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
+<span class="c1"># Get NMR sensitivity as target for MD sensitivity</span>
+<span class="n">target</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;NMR&#39;</span><span class="p">][</span><span class="s1">&#39;proc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">rhoz</span>
+<span class="c1"># Optimize detectors for MD</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;MD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_target</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="c1"># Fit and then optimize the fit</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;MD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">opt2dist</span><span class="p">(</span><span class="n">rhoz</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 2: Process the MD to compare to NMR</span>
-<span class="n">target</span><span class="o">=</span><span class="n">nmr_fit</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">rhoz</span>
-<span class="n">md</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;no_opt&#39;</span><span class="p">][</span><span class="s1">&#39;MD&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1">#Find the MD data</span>
-<span class="n">md</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_target</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>  <span class="c1">#Setup MD to match NMR sensitivies</span>
-<span class="n">md_fit</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">md_opt</span><span class="o">=</span><span class="n">md_fit</span><span class="o">.</span><span class="n">opt2dist</span><span class="p">(</span><span class="n">rhoz</span><span class="o">=</span><span class="n">target</span><span class="p">)</span> <span class="c1">#Optimize MD fit (numerically &quot;clean-up&quot;)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3: Plot the results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Plot the results (bars are experiment, lines are simulation)</span>
 <span class="n">proj</span><span class="o">.</span><span class="n">close_fig</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>      <span class="c1">#in pyDR, projects manage the figures</span>
-<span class="n">nmr_fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
-<span class="n">md_opt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;proc&#39;</span><span class="p">][</span><span class="s1">&#39;NMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="n">proj</span><span class="p">[</span><span class="s1">&#39;opt_fit&#39;</span><span class="p">][</span><span class="s1">&#39;MD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">proj</span><span class="o">.</span><span class="n">plot_obj</span><span class="o">.</span><span class="n">show_tc</span><span class="p">()</span>
 <span class="n">proj</span><span class="o">.</span><span class="n">plot_obj</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
 </pre></div>
@@ -1364,6 +1413,8 @@ C_{int.}(t)&amp;=&amp;S^2+(1-S^2)\sum\limits_i{A_i\exp(-t/\tau_i)} \\
 <img alt="../_images/ad2d2a27ba18541cd4fdd3357d09bd070ce97f221ea15fa7d2f3f6ee8b155ca6.png" src="../_images/ad2d2a27ba18541cd4fdd3357d09bd070ce97f221ea15fa7d2f3f6ee8b155ca6.png" />
 </div>
 </div>
+</section>
+</section>
 <section id="exercise-5-1">
 <h3>Exercise 5.1<a class="headerlink" href="#exercise-5-1" title="Link to this heading">#</a></h3>
 <p>The bar plots above represent the amplitude of motion for experimental data and the black line plots represent MD data. Around what correlation times do we have good agreement, poor agreement, and ok agreement. What does this tell you about the NMR and MD data quality?</p>
@@ -1450,6 +1501,11 @@ C_{int.}(t)&amp;=&amp;S^2+(1-S^2)\sum\limits_i{A_i\exp(-t/\tau_i)} \\
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-detector-analysis-of-md-and-nmr">Part 5. Detector analysis of MD and NMR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detector-analysis">Detector analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-process-nmr">Step 1: Process NMR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-process-md">Step 2: Process MD</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-1">Exercise 5.1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-2">Exercise 5.2</a></li>
 </ul>

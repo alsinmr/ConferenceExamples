@@ -655,7 +655,7 @@ C(t)&amp;=&amp;-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y
 <h3>Exercise 2.3<a class="headerlink" href="#exercise-2-3" title="Link to this heading">#</a></h3>
 <p>Which line in the above code goes to the correct frame in the trajectory?</p>
 <div class="toggle docutils container">
-<p>`uni.trajectory[k]</p>
+<p><code class="docutils literal notranslate"><span class="pre">uni.trajectory[k]</span></code></p>
 </div>
 <p>What happens to H.positions or N.positions if you put different values in where <code class="docutils literal notranslate"><span class="pre">k</span></code> is?</p>
 <div class="toggle docutils container">
@@ -745,7 +745,7 @@ S_{resid.}=\frac{\delta}{\delta_{rigid}}
 S^2=\lim_{t\rightarrow\infty}{C(t)}&amp;=&amp;\lim_{t\rightarrow\infty}{\left(-\frac12+\frac32\sum\limits_{\alpha=x,y,z}{\sum\limits_{\beta=x,y,z}{\left\langle\alpha(\tau)\alpha(t+\tau)\beta(\tau)\beta(t+\tau)\right\rangle_\tau}}\right)}
 \end{eqnarray}
 \]</div>
-<p>The term <span class="math notranslate nohighlight">\(\langle \alpha(\tau)\beta(\tau)\alpha(t+\tau)\beta(t+\tau)\rangle\)</span> is related to the correlation of <span class="math notranslate nohighlight">\(\alpha(\tau)\beta(\tau)\)</span> with itself two times with infinite separation between them. Due to the infinite time separation, the correlation must go to zero. Then, for uncorrelated variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, we have the following relationship: <span class="math notranslate nohighlight">\(\langle xy\rangle=\langle x\rangle\langle y\rangle\)</span>.</p>
+<p>The term <span class="math notranslate nohighlight">\(\langle \alpha(\tau)\beta(\tau)\alpha(t+\tau)\beta(t+\tau)\rangle\)</span> is related to the correlation of <span class="math notranslate nohighlight">\(\alpha(\tau)\beta(\tau)\)</span> with itself at two different times, with infinite separation between them. Due to the infinite time separation, the correlation must go to zero. Then, for uncorrelated variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, we have the following relationship: <span class="math notranslate nohighlight">\(\langle xy\rangle=\langle x\rangle\langle y\rangle\)</span>.</p>
 <section id="exercise-3-1">
 <h3>Exercise 3.1<a class="headerlink" href="#exercise-3-1" title="Link to this heading">#</a></h3>
 <p>Use this relationship to rewrite the formula above.</p>

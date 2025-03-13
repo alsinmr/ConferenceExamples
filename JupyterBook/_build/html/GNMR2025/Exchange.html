@@ -577,12 +577,12 @@
     <span class="n">v1</span><span class="o">=</span><span class="mi">50000</span>
     <span class="n">pi2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="mi">4</span>
     <span class="n">dly0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">f0</span><span class="o">/</span><span class="mi">4</span>
-    <span class="n">n0</span><span class="o">=</span><span class="p">(</span><span class="n">dly</span><span class="o">/</span><span class="n">dly0</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">n0</span><span class="o">=</span><span class="p">(</span><span class="n">dly</span><span class="o">/</span><span class="n">dly0</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;S0x&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;S0p&#39;</span><span class="p">)</span>
     <span class="n">leg</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">f</span><span class="p">,</span><span class="n">dly</span><span class="p">,</span><span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span><span class="n">dly0</span><span class="p">,</span><span class="n">n0</span><span class="p">):</span>
-        <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">dly</span><span class="o">-</span><span class="n">pi2</span><span class="p">,</span><span class="n">dly</span><span class="o">+</span><span class="n">pi2</span><span class="p">,</span><span class="mi">3</span><span class="o">*</span><span class="n">dly</span><span class="o">-</span><span class="n">pi2</span><span class="p">,</span><span class="mi">3</span><span class="o">*</span><span class="n">dly</span><span class="o">+</span><span class="n">pi2</span><span class="p">,</span><span class="mi">5</span><span class="o">*</span><span class="n">dly</span><span class="o">-</span><span class="n">pi2</span><span class="p">,</span><span class="mi">5</span><span class="o">*</span><span class="n">dly</span><span class="o">+</span><span class="n">pi2</span><span class="p">,</span><span class="mi">7</span><span class="o">*</span><span class="n">dly</span><span class="o">-</span><span class="n">pi2</span><span class="p">,</span><span class="mi">7</span><span class="o">*</span><span class="n">dly</span><span class="o">+</span><span class="n">pi2</span><span class="p">,</span><span class="mi">8</span><span class="o">*</span><span class="n">dly</span><span class="p">]</span>
-        <span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">()</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">v1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">v1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">v1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">v1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span><span class="n">phase</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">dly</span><span class="o">-</span><span class="n">pi2</span><span class="p">,</span><span class="n">dly</span><span class="o">+</span><span class="n">pi2</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">dly</span><span class="p">]</span>
+        <span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">()</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">v1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
         <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -628,7 +628,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0f576ef2bc87a5009222efe5e451be1ab32aa28b04993cebde930acc9d9c990e.png" src="../_images/0f576ef2bc87a5009222efe5e451be1ab32aa28b04993cebde930acc9d9c990e.png" />
+<img alt="../_images/5fdb271ef173a736c0329274812c684203b5ca77a11a5e7ef0af9d26873e14a8.png" src="../_images/5fdb271ef173a736c0329274812c684203b5ca77a11a5e7ef0af9d26873e14a8.png" />
 </div>
 </div>
 <p>As we see, the system simply oscillates at the given input frequencies. Below, we can check what that frequency actually is, by taking the Fourier transform of the above signal, where we see that indeed it oscillates at +500 and -500 Hz.</p>
@@ -640,7 +640,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2b29a1870c2fd1f31e792224d4721fe91664f051cc5f4604219d23c587853898.png" src="../_images/2b29a1870c2fd1f31e792224d4721fe91664f051cc5f4604219d23c587853898.png" />
+<img alt="../_images/20f6b7435316ef7eed4619fc2fefda5043f4e969b1bcd3c7019a1901b15b7230.png" src="../_images/20f6b7435316ef7eed4619fc2fefda5043f4e969b1bcd3c7019a1901b15b7230.png" />
 </div>
 </div>
 <p>However, if we couple the two states together with an exchange matrix, the situation changes dramatically, yielding broadening in the spectrum, and if fast enough, coalescence of the peaks.</p>
@@ -654,7 +654,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ebe7d43fa42d613f7dfb282bdb21aeb2cf18cbc99af3c9398d2b7a0512ad9a69.png" src="../_images/ebe7d43fa42d613f7dfb282bdb21aeb2cf18cbc99af3c9398d2b7a0512ad9a69.png" />
+<img alt="../_images/dc5b623c57565d05f0fc78efcf92aefde98b435239173a25e1b845c276eb87df.png" src="../_images/dc5b623c57565d05f0fc78efcf92aefde98b435239173a25e1b845c276eb87df.png" />
 </div>
 </div>
 <section id="exercise-1-1">
@@ -804,7 +804,7 @@ x&amp;=&amp;\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3983ad87e3774d9d1311f22dec3fbe72fba8eebda8c427e0dc9d3fb5cd81573e.png" src="../_images/3983ad87e3774d9d1311f22dec3fbe72fba8eebda8c427e0dc9d3fb5cd81573e.png" />
+<img alt="../_images/a1df3c528d7de607c32df2860eb317b53f2d7b1acb4f609945402261b91dcb48.png" src="../_images/a1df3c528d7de607c32df2860eb317b53f2d7b1acb4f609945402261b91dcb48.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -830,7 +830,7 @@ x&amp;=&amp;\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c1240360cdbb906cb7e605dc7516d59116fda83fedbae7673c9212044ee91d11.png" src="../_images/c1240360cdbb906cb7e605dc7516d59116fda83fedbae7673c9212044ee91d11.png" />
+<img alt="../_images/9c552d2d0fda76565815ffb4245f2e8a88456d936e5531443ac2fc736443e862.png" src="../_images/9c552d2d0fda76565815ffb4245f2e8a88456d936e5531443ac2fc736443e862.png" />
 </div>
 </details>
 </div>
@@ -881,7 +881,7 @@ k=6e+01 s^-1, T2=15.92 ms, T2=15.92 ms,f=-499.9 Hz, f= 499.9 Hz
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7defa4168fc2950e501051f372687e317a87dbfdb7879b283c9e3da7c623e340.png" src="../_images/7defa4168fc2950e501051f372687e317a87dbfdb7879b283c9e3da7c623e340.png" />
+<img alt="../_images/dbfb146a3e0960d82436e1b25a23b9a5b59007c383f8d7d4ab2644277646dae2.png" src="../_images/dbfb146a3e0960d82436e1b25a23b9a5b59007c383f8d7d4ab2644277646dae2.png" />
 </div>
 </div>
 <p>We repeat the eigenvalue calculation.</p>
@@ -1072,7 +1072,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/53ebe6c47fa625e80f09b3bf73bc39b9b329a06c119ae1152d67521386ca7e27.png" src="../_images/53ebe6c47fa625e80f09b3bf73bc39b9b329a06c119ae1152d67521386ca7e27.png" />
+<img alt="../_images/713d084f41c8e360ca379a85c17c3c2cfd2b08d99e5b685c234e1c66242b192c.png" src="../_images/713d084f41c8e360ca379a85c17c3c2cfd2b08d99e5b685c234e1c66242b192c.png" />
 </div>
 </div>
 <p>Then, we would like to obtain more information. For this we can apply the <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> or CPMG experiments. These are shown below.</p>
@@ -1088,7 +1088,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1e86c4372950efb8c8884b87f404fa9328540254948a5d6a1d0597ad17343a86.png" src="../_images/1e86c4372950efb8c8884b87f404fa9328540254948a5d6a1d0597ad17343a86.png" />
+<img alt="../_images/ea853585bbd1531ec06aba4b9b9924e03dd7e076057bcfffca53fd3c98187628.png" src="../_images/ea853585bbd1531ec06aba4b9b9924e03dd7e076057bcfffca53fd3c98187628.png" />
 </div>
 </div>
 <p>Note that the two sets of experiments yield fairly similar results; for this case, the information content is about the same. However, <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> may be applied off-resonance, yielding some additional information about the relaxation (not investigated here).</p>
@@ -1115,7 +1115,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<img alt="../_images/eb2f1b0abadb5190600c918566dc0b352492589761d0f5a93833b743235d0626.png" src="../_images/eb2f1b0abadb5190600c918566dc0b352492589761d0f5a93833b743235d0626.png" />
+<img alt="../_images/82ca1389cc511e33928609fe62a96e12b0367185890ea5477fbad3a457b6ef04.png" src="../_images/82ca1389cc511e33928609fe62a96e12b0367185890ea5477fbad3a457b6ef04.png" />
 </div>
 </details>
 </div>
@@ -1150,7 +1150,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/518ceb73440e459dc8b1b41acdf099ecdd81a4cee66fc90137b2c797d2b367b7.png" src="../_images/518ceb73440e459dc8b1b41acdf099ecdd81a4cee66fc90137b2c797d2b367b7.png" />
+<img alt="../_images/ddd5bfb27a08e945949c88186b12a6ec05f4bff318d7cf08ec9261fdb861602f.png" src="../_images/ddd5bfb27a08e945949c88186b12a6ec05f4bff318d7cf08ec9261fdb861602f.png" />
 </div>
 </div>
 <div class="toggle docutils container">
@@ -1191,7 +1191,7 @@ I_{2,2}(\tau)&amp;=(&amp;p_2^2+(p_2-p_2^2)\exp(-k\tau))\cdot\exp(-\tau/T_1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/70bacf88b5fd19da57db4237e7027d07d82488e1b36cb1f25468479a8071219f.png" src="../_images/70bacf88b5fd19da57db4237e7027d07d82488e1b36cb1f25468479a8071219f.png" />
+<img alt="../_images/798f5a44e18255ec59f182a1698d8bcb0c674e322bde18ac007d53410e322cf6.png" src="../_images/798f5a44e18255ec59f182a1698d8bcb0c674e322bde18ac007d53410e322cf6.png" />
 </div>
 </details>
 </div>
