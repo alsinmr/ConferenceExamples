@@ -16,36 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -65,10 +62,10 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'GNMR2025/MD2NMR_fitting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Solid-State NMR 2025" href="../ssNMR2025/ssNMR2025.html" />
     <link rel="prev" title="Calculating NMR Parameters from MD Simulations 1: S\(^2\) and C(t)" href="MD2NMR.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +81,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -93,6 +101,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +109,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +126,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,11 +156,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -174,6 +186,10 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 2: Calculating Relaxation </font></a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ssNMR2025/ssNMR2025.html"><font color="#5d6d7e"> Solid-State NMR 2025 </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ssNMR2025/R1p.html"><font color="#2e86c1"> <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> simulation and analysis</font></a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -182,14 +198,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -364,16 +375,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -447,7 +466,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="calculating-nmr-parameters-from-md-simulations-2-calculating-relaxation">
 <h1><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 2: Calculating Relaxation </font><a class="headerlink" href="#calculating-nmr-parameters-from-md-simulations-2-calculating-relaxation" title="Link to this heading">#</a></h1>
-<p><a href="https://githubtocolab.com/alsinmr/ConferenceExamples/blob/master/JupyterBook/GNMR2025/MD2NMR_fitting_Colab.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg"></a></p>
+<p><a href="https://githubtocolab.com/alsinmr/ConferenceExamples/blob/master/JupyterBook/GNMR2025/MD2NMR_fitting_Colab.ipynb" target="_blank"><img alt="https://colab.research.google.com/assets/colab-badge.svg" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>In the previous section, we learned how to derive order parameters and correlation functions from an MD trajectory. Now, the question is, how do we acquire NMR rate constants from the correlation functions. To begin, we give the formulas for a few rate constants, where relaxation results from a single strong dipole coupling and chemical shift anisotropy (for backbone H–N motion that we will analyze here, these are sufficient terms to reproduce the relaxation).</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -482,16 +501,16 @@ J(\omega)=2\sum\limits_i{A_i\frac{\tau_i}{1+(\omega\tau_i)^2}}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imports</span>
-<span class="kn">import</span> <span class="nn">pyDR</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyDR</span>
 <span class="n">pyDR</span><span class="o">.</span><span class="n">Defaults</span><span class="p">[</span><span class="s1">&#39;zrange&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">14</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">200</span><span class="p">]</span>
-<span class="kn">from</span> <span class="nn">pyDR.Fitting.fit</span> <span class="kn">import</span> <span class="n">model_free</span>
-<span class="kn">from</span> <span class="nn">pyDR.MDtools</span> <span class="kn">import</span> <span class="n">vft</span>
-<span class="kn">from</span> <span class="nn">pyDR.misc.tools</span> <span class="kn">import</span> <span class="n">linear_ex</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">MDAnalysis</span> <span class="k">as</span> <span class="nn">mda</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyDR.Fitting.fit</span><span class="w"> </span><span class="kn">import</span> <span class="n">model_free</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyDR.MDtools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vft</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyDR.misc.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">linear_ex</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">MDAnalysis</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mda</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">copy</span>
 </pre></div>
 </div>
 </div>
@@ -512,14 +531,14 @@ J(\omega)=2\sum\limits_i{A_i\frac{\tau_i}{1+(\omega\tau_i)^2}}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">align</span><span class="p">(</span><span class="n">uni</span><span class="p">,</span><span class="n">fileout</span><span class="o">=</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">,</span><span class="n">ref_sel</span><span class="o">=</span><span class="s1">&#39;name CA&#39;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">align</span><span class="p">(</span><span class="n">uni</span><span class="p">,</span><span class="n">fileout</span><span class="o">=</span><span class="s1">&#39;ubi_aligned.xtc&#39;</span><span class="p">,</span><span class="n">ref_sel</span><span class="o">=</span><span class="s1">&#39;name CA&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function takes a trajectory and aligns it based on</span>
 <span class="sd">    a reference selection of atoms. The new trajectory is</span>
 <span class="sd">    returned in fileout (default is ubi_aligned.xtc)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">svd</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">svd</span>
     
     <span class="n">uni</span><span class="o">.</span><span class="n">trajectory</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#Go to the first frame of the trajectory</span>
     <span class="n">atoms</span><span class="o">=</span><span class="n">uni</span><span class="o">.</span><span class="n">atoms</span>   <span class="c1">#All atoms in the trajectory</span>
@@ -569,7 +588,7 @@ J(\omega)=2\sum\limits_i{A_i\frac{\tau_i}{1+(\omega\tau_i)^2}}
 <p>We won’t go into great detail on how everything is working in this notebook. Have a look at the <a class="reference external" href="https://alsinmr.github.io/pyDR">pyDIFRATE tutorial</a> to get a closer look on how to use pyDIFRATE more generally.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_proj</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_proj</span><span class="p">():</span>
     <span class="n">proj</span><span class="o">=</span><span class="n">pyDR</span><span class="o">.</span><span class="n">Project</span><span class="p">()</span>
     <span class="n">proj</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/alsinmr/pyDR_tutorial/main/data/ubi_soln.txt&#39;</span><span class="p">)</span>
     <span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;tM&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">4.5e-9</span>
@@ -702,8 +721,8 @@ r:MD:ubi
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MF</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">aligned</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">Type</span><span class="o">=</span><span class="s1">&#39;MD&#39;</span><span class="p">,</span><span class="n">proj</span><span class="o">=</span><span class="n">proj</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MF</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">aligned</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">Type</span><span class="o">=</span><span class="s1">&#39;MD&#39;</span><span class="p">,</span><span class="n">proj</span><span class="o">=</span><span class="n">proj</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_Type</span><span class="o">=</span><span class="n">Type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">=</span><span class="n">proj</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="o">=</span><span class="kc">None</span>
@@ -715,14 +734,14 @@ r:MD:ubi
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">=</span><span class="n">n</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">Type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Type</span>
     
     <span class="nd">@Type</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">Type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">assert</span> <span class="mi">0</span><span class="p">,</span><span class="s1">&#39;Type (MD/NMR) cannot be changed after initialization&#39;</span>
         
-    <span class="k">def</span> <span class="nf">_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pre</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pre</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">pre</span><span class="o">==</span><span class="s1">&#39;n&#39;</span><span class="p">:</span>
             <span class="n">pre</span><span class="o">=</span><span class="s1">&#39;n12&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">==</span><span class="s1">&#39;MD&#39;</span> <span class="k">else</span> <span class="s1">&#39;n6&#39;</span>
             
@@ -730,15 +749,15 @@ r:MD:ubi
             <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pre</span><span class="si">}</span><span class="s1">:MD:ubi&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;_aligned&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span> <span class="k">else</span> <span class="s1">&#39;$&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pre</span><span class="si">}</span><span class="s1">:NMR:ubi&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;_soln&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span> <span class="k">else</span> <span class="s1">&#39;$&#39;</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">_mdtitle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pre</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_mdtitle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pre</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pre</span><span class="si">}</span><span class="s1">:MD:ubi&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;_aligned&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span> <span class="k">else</span> <span class="s1">&#39;$&#39;</span><span class="p">)</span>
                 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span>
     
     <span class="nd">@n</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s1">&#39;_n&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">n</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="o">=</span><span class="n">n</span>
@@ -756,15 +775,15 @@ r:MD:ubi
         <span class="bp">self</span><span class="o">.</span><span class="n">chi2</span><span class="o">=</span><span class="n">chi2</span>
         
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">nz</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nz</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
         
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">aligned</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aligned</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span>
     
     <span class="nd">@aligned</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">aligned</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">aligned</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aligned</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">aligned</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s1">&#39;_aligned&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aligned</span><span class="o">==</span><span class="n">aligned</span><span class="p">:</span>
             <span class="k">return</span>
         
@@ -783,26 +802,26 @@ r:MD:ubi
             <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">=</span><span class="n">n</span>
         
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">tc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">10</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">S2_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">S2_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">S2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">S2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">S2</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">resids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">label</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">t</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;MD&#39;</span><span class="p">][</span><span class="s1">&#39;raw&#39;</span><span class="p">][</span><span class="s1">&#39;ubi_aligned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">plot_pars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ax</span><span class="p">:</span><span class="nb">list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_pars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ax</span><span class="p">:</span><span class="nb">list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">:</span><span class="n">ax</span><span class="o">=</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span>
@@ -821,17 +840,17 @@ r:MD:ubi
         <span class="k">return</span> <span class="n">ax</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">Ct_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Ct_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">ct</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resids</span><span class="p">)])</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">S2_fit</span>
         <span class="k">for</span> <span class="n">tc0</span><span class="p">,</span><span class="n">A0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tc</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">):</span>
             <span class="n">ct</span><span class="o">+=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">*</span><span class="mf">1e-9</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">tc0</span><span class="p">)))</span><span class="o">*</span><span class="n">A0</span>
         <span class="k">return</span> <span class="n">ct</span><span class="o">.</span><span class="n">T</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">Ct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Ct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_mdtitle</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">R</span>
     
-    <span class="k">def</span> <span class="nf">plot_ct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">resi</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">semilog</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">show_fit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_ct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">resi</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">semilog</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">show_fit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">i</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">resids</span><span class="o">==</span><span class="n">resi</span>
@@ -855,33 +874,33 @@ r:MD:ubi
         <span class="k">return</span> <span class="n">ax</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;p</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">nmr_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nmr_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="s1">&#39;r:NMR:ubi&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;_soln&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">aligned</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
         
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">nmr_sens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nmr_sens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nmr_data</span><span class="o">.</span><span class="n">sens</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">relax_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">relax_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">R</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resids</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">rhoz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">R0</span>
         <span class="k">for</span> <span class="n">z0</span><span class="p">,</span><span class="n">A0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">):</span>
             <span class="n">R</span><span class="o">+=</span><span class="p">(</span><span class="n">A0</span><span class="o">*</span><span class="n">linear_ex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">z</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">rhoz</span><span class="p">,</span><span class="n">z0</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
         <span class="k">return</span> <span class="n">R</span>
     
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">det_relax_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">det_relax_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">==</span><span class="s1">&#39;MD&#39;</span><span class="p">,</span><span class="s1">&#39;Relaxation rates from detectors only from MD&#39;</span>
         <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)]</span>
         <span class="n">data</span><span class="o">.</span><span class="n">detect</span><span class="o">.</span><span class="n">r_target</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nmr_sens</span><span class="o">.</span><span class="n">rhoz</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">remove_data</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">R</span>
     
-    <span class="k">def</span> <span class="nf">plot_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">det</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">det</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
             <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -898,7 +917,7 @@ r:MD:ubi
         <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">ax</span>
     
-    <span class="k">def</span> <span class="nf">plot_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">close_fig</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
@@ -1118,7 +1137,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 <p>Write a function for the effective correlation time (<span class="math notranslate nohighlight">\(\tau_{eff}^i)\)</span> given the internal correlation time (<span class="math notranslate nohighlight">\(\tau_i\)</span>) and the correlation time of tumbling (<span class="math notranslate nohighlight">\(\tau_M\)</span>). This has been started for you: just fill in the line <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">...</span></code>, replacing <code class="docutils literal notranslate"><span class="pre">...</span></code> with the correct formula. Try the formula, and see how it behaves if the internal motion is a lot faster, a lot slower, or similar to the correlation time of the tumbling.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tcEff</span><span class="p">(</span><span class="n">ti</span><span class="p">,</span><span class="n">tM</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tcEff</span><span class="p">(</span><span class="n">ti</span><span class="p">,</span><span class="n">tM</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">...</span>
 </pre></div>
 </div>
@@ -1131,7 +1150,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tcEff</span><span class="p">(</span><span class="n">ti</span><span class="p">,</span><span class="n">tM</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tcEff</span><span class="p">(</span><span class="n">ti</span><span class="p">,</span><span class="n">tM</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ti</span><span class="o">*</span><span class="n">tM</span><span class="o">/</span><span class="p">(</span><span class="n">ti</span><span class="o">+</span><span class="n">tM</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1166,7 +1185,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 <p>Note, in Python, to obtain a power, use the <code class="docutils literal notranslate"><span class="pre">**</span></code> symbol (e.g. <code class="docutils literal notranslate"><span class="pre">2**3=8</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">J</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">J</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
     <span class="n">omega</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">1e6</span>   <span class="c1">#Convert MHz to rad/s</span>
     <span class="k">return</span> <span class="o">...</span>
 </pre></div>
@@ -1180,7 +1199,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">J</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>  <span class="c1">#v in MHz</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">J</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>  <span class="c1">#v in MHz</span>
     <span class="n">omega</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">1e6</span><span class="o">*</span><span class="n">v</span>
     <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">tc</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="n">tc</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
@@ -1240,7 +1259,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 <span class="n">delta</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;dXY&#39;</span><span class="p">]</span>
 <span class="n">DelSigma</span><span class="o">=</span><span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sens</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;CSA&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span>
 
-<span class="k">def</span> <span class="nf">R1</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>  <span class="c1">#v0H in MHz</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">R1</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>  <span class="c1">#v0H in MHz</span>
     <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
     <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
     <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
@@ -1263,7 +1282,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">R2</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">R2</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
     <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
     <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
     <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
@@ -1283,7 +1302,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
         
     <span class="k">return</span> <span class="n">R2</span><span class="o">/</span><span class="mi">5</span> <span class="c1">#Don&#39;t forget the 1/5!</span>
 
-<span class="k">def</span> <span class="nf">NOE</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">NOE</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
     <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
     <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
     <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
@@ -1307,7 +1326,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">R2</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">R2</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
     <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
     <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
     <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
@@ -1327,7 +1346,7 @@ S^2&amp;=&amp;1-\sum_i{A_i} \\
         
     <span class="k">return</span> <span class="n">R2</span><span class="o">/</span><span class="mi">5</span> <span class="c1">#Don&#39;t forget the 1/5!</span>
 
-<span class="k">def</span> <span class="nf">NOE</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">NOE</span><span class="p">(</span><span class="n">tM</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">v0H</span><span class="p">):</span>
     <span class="n">v0N</span><span class="o">=-</span><span class="n">v0H</span><span class="o">/</span><span class="mf">9.862</span>
     <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Could use multi-dimensional inputs</span>
     <span class="n">tceff</span><span class="o">=</span><span class="n">tcEff</span><span class="p">(</span><span class="n">tc</span><span class="p">,</span><span class="n">tM</span><span class="p">)</span> <span class="c1">#Effective correlation times</span>
@@ -1664,6 +1683,15 @@ o7:MD:ubi_aligned
         <p class="prev-next-title"><font color=#2e86c1> Calculating NMR Parameters from MD Simulations 1: S<span class="math notranslate nohighlight">\(^2\)</span> and C(t) </font></p>
       </div>
     </a>
+    <a class="right-next"
+       href="../ssNMR2025/ssNMR2025.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><font color=#5d6d7e> Solid-State NMR 2025 </font></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1671,8 +1699,7 @@ o7:MD:ubi_aligned
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1766,8 +1793,8 @@ By Albert Smith
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

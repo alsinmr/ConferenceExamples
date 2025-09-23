@@ -14,3 +14,6 @@ parts:
     - file: GNMR2025/Exchange
     - file: GNMR2025/MD2NMR
     - file: GNMR2025/MD2NMR_fitting
+  - file: ssNMR2025/ssNMR2025
+    sections:
+    - file: ssNMR2025/R1p
