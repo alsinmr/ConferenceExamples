@@ -654,15 +654,12 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 <span class="n">rho_ex</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;exchange only&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>  <span class="c1">#Make the axis go down to 0</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  <span class="c1">#Show a legend with the labels given above</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  <span class="c1">#Show a legend with the labels given above</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe2d32f31f0&gt;
-</pre></div>
-</div>
-<img alt="../_images/ccf9647b1ad64adaff8fa2524381054009d89b0b74757464040a98970f327115.png" src="../_images/ccf9647b1ad64adaff8fa2524381054009d89b0b74757464040a98970f327115.png" />
+<img alt="../_images/b9044831a2f425a519c94d3b73b85b9c3e2ef1e871f5d8475e6dc10f2ae81c97.png" src="../_images/b9044831a2f425a519c94d3b73b85b9c3e2ef1e871f5d8475e6dc10f2ae81c97.png" />
 </div>
 </div>
 <p><strong>Q:</strong> Compare the curves for hopping only and exchange only. Why do the curves cross?</p>
@@ -911,13 +908,12 @@ J(\omega)=\frac25(1-S^2)\frac{\tau_c}{1+(\omega\tau_c)^2}
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">nu_1$ / Hz&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/97dda1fbeb9307f61d5db3ff34d84b6454bf0b0eb96e82382f6a3bdad0dab007.png" src="../_images/97dda1fbeb9307f61d5db3ff34d84b6454bf0b0eb96e82382f6a3bdad0dab007.png" />
+<img alt="../_images/8b014d4b860d30501c7c490cc59afcb4e5aa598e8cda339573291e8282b43610.png" src="../_images/8b014d4b860d30501c7c490cc59afcb4e5aa598e8cda339573291e8282b43610.png" />
 </div>
 </div>
 <p>Below, we introduce a function to calculate <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> resulting from chemical exchange, and use it to fit the above dataset.</p>
@@ -953,18 +949,17 @@ J(\omega)=\frac25(1-S^2)\frac{\tau_c}{1+(\omega\tau_c)^2}
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p_ex</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="o">*</span><span class="n">popt</span><span class="p">),</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">nu_1$ / Hz&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p1 = 0.19 +- 422.77
-dW = 6.58 +- 5963.58 ppm
-kex = 9890.29 +- 558205.75 s-1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p1 = 0.38 +- 1730.45
+dW = 5.18 +- 4821.04 ppm
+kex = 10304.05 +- 341914.12 s-1
 </pre></div>
 </div>
-<img alt="../_images/9c2497a0474d7a05386baf411224448c785a732feae1336780aed89b78d15410.png" src="../_images/9c2497a0474d7a05386baf411224448c785a732feae1336780aed89b78d15410.png" />
+<img alt="../_images/d1a990a6a592e8947aeba5543e38ca7bfbf88282326774a41ab2bfe1d7d82ec1.png" src="../_images/d1a990a6a592e8947aeba5543e38ca7bfbf88282326774a41ab2bfe1d7d82ec1.png" />
 </div>
 </div>
 <p>Huh - odd. It appears that we have a really well fit curve, but the uncertainties in the populations (p1) and chemical shift difference (dW) are massive! Lets try to investigate this - we’ll plot the root sum squared residual as a function of these two parameters:</p>
@@ -983,13 +978,12 @@ kex = 9890.29 +- 558205.75 s-1
 <span class="n">cb</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">DW</span><span class="p">,</span> <span class="n">P1</span><span class="p">,</span> <span class="n">residual</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">clevels</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cb</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">delta </span><span class="se">\\</span><span class="s2">omega$ / ppm&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$p_</span><span class="si">{1}</span><span class="s2">$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$p_</span><span class="si">{1}</span><span class="s2">$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/79d7e65ecc9ab395906bbfc8a82a88b646b69233ba498b41493f3078c80b4c0a.png" src="../_images/79d7e65ecc9ab395906bbfc8a82a88b646b69233ba498b41493f3078c80b4c0a.png" />
+<img alt="../_images/7e7c944272ebe10ddef47b2c4756355df92252b0d53d496b95e32f3c92376ea1.png" src="../_images/7e7c944272ebe10ddef47b2c4756355df92252b0d53d496b95e32f3c92376ea1.png" />
 </div>
 </div>
 <p><strong>Q:</strong> From the plot above, can you explain why the errors for <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(\delta\omega\)</span> are so high?</p>
@@ -1011,8 +1005,7 @@ kex = 9890.29 +- 558205.75 s-1
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tau_c</span><span class="p">,</span> <span class="n">dR1p</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">tau_c$ / s&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">Delta R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">Delta R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1047,18 +1040,17 @@ kex = 9890.29 +- 558205.75 s-1
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p_ex</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="o">*</span><span class="n">popt</span><span class="p">),</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">nu_1$ / Hz&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>phiex = 916941.31 +- 16836.96
-kex = 10012.90 +- 406.07 s-1
-For p1=0.5, dv=5.08+-0.69
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>phiex = 919779.52 +- 11631.94
+kex = 9893.75 +- 272.88 s-1
+For p1=0.5, dW=5.09+-0.57
 </pre></div>
 </div>
-<img alt="../_images/1f8cb5c07dc81c0a25bc3ff381764baa6c4ea0e5bf6790a0b20e3471bf740e4c.png" src="../_images/1f8cb5c07dc81c0a25bc3ff381764baa6c4ea0e5bf6790a0b20e3471bf740e4c.png" />
+<img alt="../_images/f9702cc5df2cd72a4ed5c6e1f12e98a49f3f142a03de0bb0a863fc4ba2dab759.png" src="../_images/f9702cc5df2cd72a4ed5c6e1f12e98a49f3f142a03de0bb0a863fc4ba2dab759.png" />
 </div>
 </div>
 <p>It appears again that we have a good fit! But let’s double check the parameters to ensure this isn’t a degenerate fit.</p>
@@ -1079,13 +1071,12 @@ For p1=0.5, dv=5.08+-0.69
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cb</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">phi_</span><span class="si">{ex}</span><span class="s2">$ / s$^{-2}$&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$k_</span><span class="si">{ex}</span><span class="s2">$ / s$^{-1}$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$k_</span><span class="si">{ex}</span><span class="s2">$ / s$^{-1}$&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4e31b3dc35049f141c144db5e1f31821b90980e0cde47218c51a37713e0c0d6a.png" src="../_images/4e31b3dc35049f141c144db5e1f31821b90980e0cde47218c51a37713e0c0d6a.png" />
+<img alt="../_images/53b104836de4f276cade0c7f75800a12be4aff5a477871d3c2b3a437a9ae3416.png" src="../_images/53b104836de4f276cade0c7f75800a12be4aff5a477871d3c2b3a437a9ae3416.png" />
 </div>
 </div>
 <p>Then, the parameter <span class="math notranslate nohighlight">\(\phi_{ex}\)</span> becomes well defined, although its interpretation is ambiguous. If we assume two-site exchange, <span class="math notranslate nohighlight">\(\phi_{ex}=p_1p_2(\Delta\omega)^2\)</span>, we can place a lower bound on <span class="math notranslate nohighlight">\(\Delta\omega\)</span>, by assuming <span class="math notranslate nohighlight">\(p_1=0.5\)</span>, but for lower values of <span class="math notranslate nohighlight">\(p_1\)</span>, <span class="math notranslate nohighlight">\(\Delta\omega\)</span> must be larger. Furthermore, it is difficult to know for sure that we have a two-site hopping motion, which further confounds our interpretation of the parameter (but don’t despair, a timescale and a lower bound for <span class="math notranslate nohighlight">\(\Delta\omega\)</span> is a lot of information, especially if we have this information for multiple residues or another source of dynamics information)</p>
