@@ -16,33 +16,36 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -65,6 +68,7 @@
     <link rel="prev" title="Solid-State NMR 2025" href="ssNMR2025.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,15 +148,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -197,9 +186,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -374,24 +368,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -430,10 +416,13 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-multiexpontiality">Sources of multiexpontiality</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-for-relaxation-behavior">Formulas for relaxation behavior</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-formulas">Testing the formulas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#field-strength-and-correlation-time-dependence-of-r-1-rho">Field strength and correlation time dependence of <span class="math notranslate nohighlight">\(R_{1\rho}\)</span></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-edit-the-following-code-to-simulate-t-1-relaxation-instead-of-t-1-rho">Bonus: Edit the following code to simulate T<span class="math notranslate nohighlight">\(_1\)</span> relaxation instead of T<span class="math notranslate nohighlight">\(_{1\rho}\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-fitting-bloch-mcconnell-relaxation-dispersion-data">Part 2: Fitting Bloch-McConnell Relaxation Dispersion Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-for-relaxation-behavior">Formulas for relaxation behavior</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-a-dataset">Simulate a dataset</a></li>
 </ul>
 </li>
 </ul>
@@ -449,10 +438,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="r-1-rho-simulation-and-analysis">
 <h1><font color=#2e86c1> <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> simulation and analysis</font><a class="headerlink" href="#r-1-rho-simulation-and-analysis" title="Link to this heading">#</a></h1>
-<p><a href="https://githubtocolab.com/alsinmr/ConferenceExamples/blob/master/JupyterBook/ssNMR2025/R1p.ipynb" target="_blank"><img alt="https://colab.research.google.com/assets/colab-badge.svg" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<p><a href="https://githubtocolab.com/alsinmr/ConferenceExamples/blob/master/JupyterBook/ssNMR2025/R1p_COLAB.ipynb" target="_blank"><img alt="https://colab.research.google.com/assets/colab-badge.svg" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>The <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> experiment is a useful experiment for characterizing slow (<span class="math notranslate nohighlight">\(\mu\)</span>s/ms) motion in solid-state NMR. The pulse sequence involves flipping magnetization of a spin (often <span class="math notranslate nohighlight">\(^{15}\)</span>N or <span class="math notranslate nohighlight">\(^{13}\)</span>C, CP-based excitation also possible) to the x-axis, spin-locking that magnetization, and observing its decay (again, CP-transfer back to <span class="math notranslate nohighlight">\(^1\)</span>H may be useful).</p>
-<a class="reference internal image-reference" href="../_images/R1p_sequence.png"><img alt="sequence" src="../_images/R1p_sequence.png" style="width: 300px;" />
-</a>
+<a class="reference internal image-reference" href="../_images/R1p_sequence.png"><img alt="sequence" src="../_images/R1p_sequence.png" style="width: 300px;" /></a>
 <p>This experiment is sensitive to both reorientational motion of anisotropic tensors (dipole/CSA) and changes to the isotropic chemical shift. In the first part of this exercise, we will use simulation to explore the relaxation behavior of the <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> experiment, and in the second part, we will fit <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> measurements to extract dynamics parameters from a data set.</p>
 <section id="part-1-simulating-r-1-rho">
 <h2>Part 1: Simulating <span class="math notranslate nohighlight">\(R_{1\rho}\)</span><a class="headerlink" href="#part-1-simulating-r-1-rho" title="Link to this heading">#</a></h2>
@@ -462,11 +450,13 @@ document.write(`
 <p>If SLEEPY is not already installed (e.g. if working in Google Colab), then we need to install it. We then need to import the SLEEPY module, as well as numpy which has a lot of linear algebra and other mathematical tools, and matplotlib, which is used to create figures. We also turn off messages from SLEEPY.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span> <span class="c1">#Colab</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span> <span class="c1">#Colab</span>
     <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>sleepy-nmr
 <span class="kn">import</span><span class="w"> </span><span class="nn">SLEEPY</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sl</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">curve_fit</span>
 <span class="n">sl</span><span class="o">.</span><span class="n">Defaults</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>
 </pre></div>
 </div>
@@ -546,7 +536,7 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 <span class="c1"># For continuous field, we can just specify power</span>
 <span class="c1"># but including a time axis with varying power, phase, and offset is also possible</span>
 <span class="n">_</span><span class="o">=</span><span class="n">seq</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">)</span>
-<span class="c1"># Note that the default sequence length is 1 rotor period if time axis not given</span>
+<span class="c1"># Note that the default sequence length is 1 rotor period if the time axis is not given</span>
 </pre></div>
 </div>
 </div>
@@ -557,7 +547,7 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial state of density matrix, detection matrix</span>
-<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">Op</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="nd">@ex0</span><span class="o">.</span><span class="n">Op</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
 <span class="c1"># Propagate for 100 ms (n is number of steps, use int() to get an integer)</span>
 <span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.1</span><span class="o">*</span><span class="n">ex0</span><span class="o">.</span><span class="n">vr</span><span class="p">))</span> 
 </pre></div>
@@ -575,7 +565,7 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/28b875539d452ea6f4b3978d64f3b4795e83ff9f319ecacf4523edc45211f9e1.png" src="../_images/28b875539d452ea6f4b3978d64f3b4795e83ff9f319ecacf4523edc45211f9e1.png" />
+<img alt="../_images/3b290e57a00afcf214ed153895157186f6efbc3c51a2c55cbb4ae82163a68fcb.png" src="../_images/3b290e57a00afcf214ed153895157186f6efbc3c51a2c55cbb4ae82163a68fcb.png" />
 </div>
 </div>
 </section>
@@ -591,19 +581,21 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">R1pU</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">tc</span><span class="p">,</span><span class="n">p1</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">=</span><span class="n">hop_angle</span><span class="p">,</span><span class="n">DelCS</span><span class="o">=</span><span class="n">DelCS</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
     <span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">],</span><span class="n">vr</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span><span class="n">pwdavg</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">n_gamma</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-    <span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaHN</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">hop_angle</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaCSA</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="n">gamma</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">hop_angle</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="k">if</span> <span class="n">hop_angle</span><span class="p">:</span>
+        <span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaHN</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">hop_angle</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaCSA</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="n">gamma</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">hop_angle</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
     <span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ppm</span><span class="o">=</span><span class="n">DelCS</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
     
     <span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaHN</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaCSA</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="n">gamma</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="k">if</span> <span class="n">hop_angle</span><span class="p">:</span>
+        <span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaHN</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaCSA</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="n">gamma</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
     <span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ppm</span><span class="o">=-</span><span class="n">DelCS</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span>
     <span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">tc</span><span class="p">,</span><span class="n">p1</span><span class="o">=</span><span class="n">p1</span><span class="p">)</span>
     
-    <span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">()</span>
+    <span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">60000</span><span class="p">)</span>
     <span class="n">seq</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">seq</span><span class="o">.</span><span class="n">U</span><span class="p">()</span>
 
@@ -636,18 +628,15 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 <span class="n">rho_ex</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;exchange only&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>  <span class="c1">#Make the axis go down to 0</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  <span class="c1">#Show a legend with the labels given above</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  <span class="c1">#Show a legend with the labels given above</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11a16bad0&gt;
-</pre></div>
-</div>
-<img alt="../_images/bb8cf93083a5760adb43a88b03421e1a381c982a36c8cf143d044adfcd6acad9.png" src="../_images/bb8cf93083a5760adb43a88b03421e1a381c982a36c8cf143d044adfcd6acad9.png" />
+<img alt="../_images/d3bc976e580ba6d880c770c76c454deccd635bbd5526ba199d8e347dedfb4446.png" src="../_images/d3bc976e580ba6d880c770c76c454deccd635bbd5526ba199d8e347dedfb4446.png" />
 </div>
 </div>
-<p>At 35 kHz, what is the dominant relaxation process, reorientational dynamics, or chemical exchange?</p>
+<p><strong>Q:</strong> At 35 kHz, what is the dominant relaxation process, reorientational dynamics, or chemical exchange?</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Answer</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
@@ -675,13 +664,13 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x119f45510&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe2d32f31f0&gt;
 </pre></div>
 </div>
-<img alt="../_images/8140e19390986d6a4103428c33dac3797b02de8cd9749b5166074ad15846f156.png" src="../_images/8140e19390986d6a4103428c33dac3797b02de8cd9749b5166074ad15846f156.png" />
+<img alt="../_images/ccf9647b1ad64adaff8fa2524381054009d89b0b74757464040a98970f327115.png" src="../_images/ccf9647b1ad64adaff8fa2524381054009d89b0b74757464040a98970f327115.png" />
 </div>
 </div>
-<p>Compare the curves for hopping only and exchange only. Why do the curves cross?</p>
+<p><strong>Q:</strong> Compare the curves for hopping only and exchange only. Why do the curves cross?</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Answer</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
@@ -689,17 +678,17 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 </div>
 </details><section id="sources-of-multiexpontiality">
 <h4>Sources of multiexpontiality<a class="headerlink" href="#sources-of-multiexpontiality" title="Link to this heading">#</a></h4>
-<p>Above, we noticed that hopping yields multiexponential decay. Give one reason for the multiexponential decay (there are actually two sources, but we start with the one that is more obvious to me)</p>
+<p><strong>Q:</strong> Above, we noticed that hopping yields multiexponential decay. Give one reason for the multiexponential decay (there are actually two sources, but we start with the one that is more obvious to me)</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Answer</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">The first reason is that different elements of the powder average relax with different rate constants. SLEEPY lets us plot individual elements of the powder average, so let’s check if relaxation becomes monoexponential! (reveal hidden cell below)</p>
 </div>
 </details><div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwd_index</span><span class="o">=</span><span class="mi">5</span>
@@ -709,24 +698,27 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6f1a60cadda1c153c1126ae82d3b7b931cde2ae45cf52214c9c776c1f3a873be.png" src="../_images/6f1a60cadda1c153c1126ae82d3b7b931cde2ae45cf52214c9c776c1f3a873be.png" />
+<img alt="../_images/71eb6da2dc90a5ba0c1cab4cff0a4c1c5111a2b7bfa5cfbbf9e64d91d1bc2d78.png" src="../_images/71eb6da2dc90a5ba0c1cab4cff0a4c1c5111a2b7bfa5cfbbf9e64d91d1bc2d78.png" />
 </div>
 </details>
 </div>
-<p>So, the curve is still bi-exponential. Then, what is the second reason for multi-exponentiality?
+<p><strong>Q:</strong> So, the curve is still bi-exponential. Then, what is the second reason for multi-exponentiality?
 <em>Hint: What interactions undergo reorientational motion?</em></p>
-<div class="highlight-{dropdown}Answer notranslate"><div class="highlight"><pre><span></span>Both the CSA and dipole coupling are undergoing reorientational dynamics. Then, depending if the $^1$H is spin-up or spin-down, the CSA/dipole relaxation will be additive or subtractive, yielding different relaxation rates. Reveal the cell below, where we separate the $^1$H spin-up (alpha) and spin-down (beta) states.
-</pre></div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Answer</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Both the CSA and dipole coupling are undergoing reorientational dynamics. Then, depending if the <span class="math notranslate nohighlight">\(^1\)</span>H is spin-up or spin-down, the CSA/dipole relaxation will be additive or subtractive, yielding different relaxation rates. Reveal the cell below, where we separate the <span class="math notranslate nohighlight">\(^1\)</span>H spin-up (alpha) and spin-down (beta) states.</p>
 </div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+</details><div class="cell tag_hide-cell docutils container">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#ex0.Op are the spin-operator matrices.</span>
 <span class="c1">#Index for the desired spin and then get x,y,z,p(+),m(-),alpha, or beta matrices</span>
+<span class="c1">#Use the @ symbol for matrix multiplication</span>
 <span class="n">HalphaNx</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">Op</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="nd">@ex0</span><span class="o">.</span><span class="n">Op</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alpha</span>
 <span class="n">HbetaNx</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">Op</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="nd">@ex0</span><span class="o">.</span><span class="n">Op</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">beta</span>
 <span class="n">U</span><span class="o">=</span><span class="n">R1pU</span><span class="p">(</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span><span class="n">DelCS</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -758,30 +750,168 @@ twice (ex0,ex1) with different Euler angles, to introduce reorientational motion
 </div>
 </details>
 </div>
-<p>Then, we see that for a single orientation, and single state of the <span class="math notranslate nohighlight">\(^1\)</span>H, we do indeed get monoexponential relaxation. Note that if the <span class="math notranslate nohighlight">\(^1\)</span>H inverts due to <span class="math notranslate nohighlight">\(T_1\)</span> or spin-diffusion, the multi-exponential behavior will be reduced. See below, where we invert the <span class="math notranslate nohighlight">\(^1\)</span>H 100 times per second (stochastic motion).</p>
+<p>Then, we see that for a single orientation, and single state of the <span class="math notranslate nohighlight">\(^1\)</span>H, we do indeed get monoexponential relaxation.</p>
+</section>
+</section>
+<section id="field-strength-and-correlation-time-dependence-of-r-1-rho">
+<h3>Field strength and correlation time dependence of <span class="math notranslate nohighlight">\(R_{1\rho}\)</span><a class="headerlink" href="#field-strength-and-correlation-time-dependence-of-r-1-rho" title="Link to this heading">#</a></h3>
+<p>When we characterize motion using <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> relaxation, we often acquire a field-strength profile, which can then be used to estimate amplitude and correlation time of motion. We simulate such a profile below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="o">=</span><span class="n">R1pU</span><span class="p">(</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span><span class="n">DelCS</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="c1"># Caution below: editing the Liouvillian post propagator creation</span>
-<span class="c1"># is only supported if the propagator is not cached yet</span>
-<span class="n">U</span><span class="o">.</span><span class="n">L</span><span class="o">.</span><span class="n">add_relax</span><span class="p">(</span><span class="s1">&#39;SpinDiffusion&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1">#Adds 1H inversion</span>
-<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="n">HalphaNx</span><span class="p">,</span><span class="n">HbetaNx</span><span class="p">])</span>
-
-<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">U</span><span class="o">**</span><span class="mi">60</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pwd_index</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">det_num</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;N$_x$&#39;</span><span class="p">)</span>
-<span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pwd_index</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">det_num</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;H$^\alpha$N$_x$&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pwd_index</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">det_num</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;H$^\beta$N$_x$&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-
-<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
+<span class="n">v10</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50000</span><span class="p">,</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">v10</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">R1p</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">v1</span> <span class="ow">in</span> <span class="n">v10</span><span class="p">:</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">U</span><span class="o">=</span><span class="n">R1pU</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">R1p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho</span><span class="o">.</span><span class="n">extract_decay_rates</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
+    
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span><span class="n">R1p</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d0a675800f4e87703abd52cbe3fd85f1b40a5d7cf8f14dc722647062586ae6ec.png" src="../_images/d0a675800f4e87703abd52cbe3fd85f1b40a5d7cf8f14dc722647062586ae6ec.png" />
+<img alt="../_images/f64d834146529c3565af4b0c5d1bf77abc20a89f45f2e3f0c54143db1689ad64.png" src="../_images/f64d834146529c3565af4b0c5d1bf77abc20a89f45f2e3f0c54143db1689ad64.png" />
+</div>
+</div>
+<p>To understand how <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> depends timescale of motion, we similarly sweep correlation time and calculate <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> for <span class="math notranslate nohighlight">\(v_1\)</span>=35 kHz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
+<span class="n">tc0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">hop_angle</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">R1p</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">tc</span> <span class="ow">in</span> <span class="n">tc0</span><span class="p">:</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">U</span><span class="o">=</span><span class="n">R1pU</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">tc</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="mi">35000</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">=</span><span class="n">hop_angle</span><span class="p">)</span>
+    <span class="n">R1p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho</span><span class="o">.</span><span class="n">extract_decay_rates</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">tc0</span><span class="p">,</span><span class="n">R1p</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;hop angle = </span><span class="si">{</span><span class="n">hop_angle</span><span class="si">}</span><span class="s1"> $^\circ$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d4fd2a8b9a33c906b2f9853c2057356cc2161cc0e4d31a776de0338cde71040f.png" src="../_images/d4fd2a8b9a33c906b2f9853c2057356cc2161cc0e4d31a776de0338cde71040f.png" />
+</div>
+</div>
+<p><strong>Q:</strong> We repeat the above simulation, but adjust the applied field to a much lower field strength.
+What changes in the result profile, and why?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Answer</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">A second peak appears at longer correlation times. The lower applied field increases the contribution to relaxation coming from chemical exchange vs. reorientation motion. Then, a second peak appears around <span class="math notranslate nohighlight">\(\tau_c=1/(2\pi\v_1)\)</span>, where the high, 35 kHz field in the first example suppressed this peak.</p>
+</div>
+</details><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
+<span class="n">tc0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">hop_angle</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">R1p</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">tc</span> <span class="ow">in</span> <span class="n">tc0</span><span class="p">:</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">U</span><span class="o">=</span><span class="n">R1pU</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">tc</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">=</span><span class="n">hop_angle</span><span class="p">)</span>
+    <span class="n">R1p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho</span><span class="o">.</span><span class="n">extract_decay_rates</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">tc0</span><span class="p">,</span><span class="n">R1p</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s1">&#39;hop angle = </span><span class="si">{</span><span class="n">hop_angle</span><span class="si">}</span><span class="s1"> $^\circ$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8bdeadf002bc31fa0385955c1649ae47e7d853c77b1c32c20fcd3e4f4b8c0d1f.png" src="../_images/8bdeadf002bc31fa0385955c1649ae47e7d853c77b1c32c20fcd3e4f4b8c0d1f.png" />
 </div>
 </div>
 </section>
 </section>
+<section id="bonus-edit-the-following-code-to-simulate-t-1-relaxation-instead-of-t-1-rho">
+<h2>Bonus: Edit the following code to simulate T<span class="math notranslate nohighlight">\(_1\)</span> relaxation instead of T<span class="math notranslate nohighlight">\(_{1\rho}\)</span><a class="headerlink" href="#bonus-edit-the-following-code-to-simulate-t-1-relaxation-instead-of-t-1-rho" title="Link to this heading">#</a></h2>
+<p><em>Hints:</em></p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(T_{1\rho}\)</span> can be simulated in the rotating frame, but <span class="math notranslate nohighlight">\(T_1\)</span> requires non-secular terms which only appear in the lab frame</p></li>
+<li><p>No applied field is required for <span class="math notranslate nohighlight">\(T_1\)</span> relaxation</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_1\)</span> relaxation is sensitive to faster motions than <span class="math notranslate nohighlight">\(T_{1\rho}\)</span> relaxation (~ns)</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_1\)</span> addresses z-magnetization,not x-magnetization (you can also use multiple detection matrices in SLEEPY in a list, i.e. use [] brackets, so consider also seeing what <span class="math notranslate nohighlight">\(^1\)</span>H magnetization is doing.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_1\)</span> occurs on a longer timescale  than <span class="math notranslate nohighlight">\(T_{1\rho}\)</span></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">],</span><span class="n">vr</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span><span class="n">pwdavg</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">n_gamma</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">LF</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaHN</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaCSA</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">120</span><span class="p">])</span>
+
+<span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaHN</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">hop_angle</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaCSA</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">120</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">hop_angle</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span><span class="n">p1</span><span class="o">=</span><span class="n">p1</span><span class="p">)</span>
+
+<span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">()</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">)</span>
+
+<span class="c1"># Initial state of density matrix, detection matrix</span>
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
+<span class="c1"># Propagate for 100 ms (n is number of steps, use int() to get an integer)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span> 
+<span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;t / ms&#39;, ylabel=&#39;&lt;$^{15}N_x$&gt;&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/88d05fbec1da81ebb217e85d7b6444958a770efa82a1fef2894e3aab0f3195c1.png" src="../_images/88d05fbec1da81ebb217e85d7b6444958a770efa82a1fef2894e3aab0f3195c1.png" />
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">],</span><span class="n">vr</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span><span class="n">pwdavg</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">n_gamma</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">LF</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaHN</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaCSA</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">120</span><span class="p">])</span>
+
+<span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaHN</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">hop_angle</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">deltaCSA</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">120</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">hop_angle</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span><span class="n">p1</span><span class="o">=</span><span class="n">p1</span><span class="p">)</span>
+
+<span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">()</span>
+
+<span class="c1"># Initial state of density matrix, detection matrix</span>
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;15Nz&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;15Nz&#39;</span><span class="p">,</span><span class="s1">&#39;1Hz&#39;</span><span class="p">])</span>
+<span class="c1"># Propagate for 100 ms (n is number of steps, use int() to get an integer)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="o">**</span><span class="mi">1000</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span> 
+<span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;t / s&#39;, ylabel=&#39;&lt;Op&gt;&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/1985a5af54577f00e745f2c0391136aed75d465fcdb1e1d490e964b117d03840.png" src="../_images/1985a5af54577f00e745f2c0391136aed75d465fcdb1e1d490e964b117d03840.png" />
+</div>
+</details>
+</div>
+</section>
+<section id="part-2-fitting-bloch-mcconnell-relaxation-dispersion-data">
+<h2>Part 2: Fitting Bloch-McConnell Relaxation Dispersion Data<a class="headerlink" href="#part-2-fitting-bloch-mcconnell-relaxation-dispersion-data" title="Link to this heading">#</a></h2>
+<p>The above discussion has dealt with the simulation of dispersion data: where we have a model for our system, and would like to predict the dispersion profiles arising from this. Now, we consider the inverse problem.</p>
+<p>Experimentally, we may record relaxation dispersion profiles. However, these dispersion profiles do not directly tell us much about our system. For this, we’d like some way of being able to model these. Firstly, some experimental considerations:</p>
+<ul class="simple">
+<li><p>Strong anisotropic interactions in the solid state restrict our lowest <span class="math notranslate nohighlight">\(\nu_1\)</span> RF field strength to <span class="math notranslate nohighlight">\(\approx\)</span> 2 kHz.</p></li>
+<li><p>Proton-driven spin diffusion requires that we consider the MAS frequencies and isotopic labelling we apply.</p></li>
+<li><p>We need to consider possible recoupling conditions which may lead to artefactual elevation in BMRD profiles - for this reason, it is important to consider decoupling the <span class="math notranslate nohighlight">\(^{1}\)</span>H channel.</p></li>
+</ul>
+<p>Before we move on to analysing the dispersion curves, it may be useful to play around with the dispersion model you’ve been using above to see how the form of this curve varies with the difference in chemical shift, populations, and correlation times.</p>
 <section id="formulas-for-relaxation-behavior">
 <h3>Formulas for relaxation behavior<a class="headerlink" href="#formulas-for-relaxation-behavior" title="Link to this heading">#</a></h3>
 <p>The relaxation that was simulated above can be calculated using formulas. For reorientational motion, we typically calculate the orientationally-averaged relaxation rate constant. For exchange, there is no orientation dependence, so the formula simply returns the relaxation rate constant.</p>
@@ -805,7 +935,7 @@ k_{ex}&amp;=&amp;k_{1\rightarrow2}+k_{2\rightarrow1} \\
 \sin^2\beta_e&amp;=&amp;\frac{\omega_1^2}{\omega_1^2+\Omega^2}
 \end{eqnarray}
 \end{split}\]</div>
-<p>Kurbanov et al.<span class="math notranslate nohighlight">\(^2\)</span> provide the formula for the orientationally-averaged <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> relaxation rate due to reorientational motion of a dipolar coupling and chemical shift anisotropy.</p>
+<p>Although we do not use it below, it is also important to note that Kurbanov et al.<span class="math notranslate nohighlight">\(^2\)</span> provide the formula for the orientationally-averaged <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> relaxation rate due to reorientational motion of a dipolar coupling and chemical shift anisotropy.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -825,24 +955,42 @@ J(\omega)=\frac25(1-S^2)\frac{\tau_c}{1+(\omega\tau_c)^2}
 <p>[1] V.Z. Miloushev, A.G. Palmer. <a class="reference external" href="https://doi.org/10.1016/j.jmr.2005.07.023"><em>J. Magn. Reson.</em></a>, <strong>2015</strong>, 177, 221-227</p>
 <p>[2] R. Kurbanov, T. Zinkevich, A. Krushelnitsky. <a class="reference external" href="https://doi.org/10.1063/1.3658383"><em>J. Chem. Phys</em></a>, <strong>2011</strong>, 135, 184104 (1-9)</p>
 <p>Below, we introduce functions for calculating the above formulas. Note that the functions are setup to take a Liouvillian or Propagator from SLEEPY as input and will extract the desired parameters automatically. What is returned is R1p as a function of a sweep of the field strength (v1,R1p returned).</p>
+</section>
+<section id="simulate-a-dataset">
+<h3>Simulate a dataset<a class="headerlink" href="#simulate-a-dataset" title="Link to this heading">#</a></h3>
+<p>Below, we use SLEEPY to simulate a data set, which we will then analyze using the above formulas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pop_kex</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">L</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;Propagator&#39;</span><span class="p">:</span>
-        <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">L</span>
-    <span class="n">k12</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">k21</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">kex</span><span class="o">=</span><span class="n">k12</span><span class="o">+</span><span class="n">k21</span>
-    <span class="n">p1</span><span class="o">=</span><span class="n">k21</span><span class="o">/</span><span class="p">(</span><span class="n">k12</span><span class="o">+</span><span class="n">k21</span><span class="p">)</span>
-    <span class="n">p2</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">p1</span>
-    <span class="k">return</span> <span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">kex</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
+<span class="n">v10</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">R1p</span><span class="o">=</span><span class="p">[]</span>
+<span class="c1"># For each spin lock field strength we calculate the propagator and determine the relaxation rate</span>
+<span class="k">for</span> <span class="n">v1</span> <span class="ow">in</span> <span class="n">v10</span><span class="p">:</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">U</span><span class="o">=</span><span class="n">R1pU</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">DelCS</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">)</span>
+    <span class="n">R1p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho</span><span class="o">.</span><span class="n">extract_decay_rates</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
+<span class="n">R1p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">R1p</span><span class="p">)</span>
+<span class="n">R1p</span><span class="o">+=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">R1p</span><span class="p">))</span><span class="o">*</span><span class="n">R1p</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">*</span><span class="mf">.15</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">R1p_ex</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">50000</span><span class="p">,</span><span class="mi">490</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">L</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;Propagator&#39;</span><span class="p">:</span>
-        <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">L</span>
-    <span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">kex</span><span class="o">=</span><span class="n">pop_kex</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
-    <span class="n">Omega1</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">CS</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;ppm&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">v0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e6</span>
-    <span class="n">Omega2</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">CS</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;ppm&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">v0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e6</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">nu_1$ / Hz&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/97dda1fbeb9307f61d5db3ff34d84b6454bf0b0eb96e82382f6a3bdad0dab007.png" src="../_images/97dda1fbeb9307f61d5db3ff34d84b6454bf0b0eb96e82382f6a3bdad0dab007.png" />
+</div>
+</div>
+<p>Below, we introduce a function to calculate <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> resulting from chemical exchange, and use it to fit the above dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">R1p_ex</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">DelOmega</span><span class="p">,</span> <span class="n">kex</span><span class="p">):</span> <span class="c1"># equivalent to R1p_ex above, parameterised for curve fitting.</span>
+    <span class="n">p2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p1</span>
+    <span class="n">Omega1</span> <span class="o">=</span> <span class="o">-</span><span class="n">DelOmega</span><span class="o">*</span><span class="n">p2</span>
+    <span class="n">Omega2</span> <span class="o">=</span> <span class="n">DelOmega</span><span class="o">*</span><span class="n">p1</span>
     <span class="n">Omega</span><span class="o">=</span><span class="n">p1</span><span class="o">*</span><span class="n">Omega1</span><span class="o">+</span><span class="n">p2</span><span class="o">*</span><span class="n">Omega2</span>
     <span class="n">DelOmega</span><span class="o">=</span><span class="n">Omega1</span><span class="o">-</span><span class="n">Omega2</span>
     <span class="n">omega1</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">v1</span>
@@ -854,114 +1002,164 @@ J(\omega)=\frac25(1-S^2)\frac{\tau_c}{1+(\omega\tau_c)^2}
     <span class="n">f1</span><span class="o">=</span><span class="n">omega_e1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">omega_e2</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">omega_e</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">f2</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">kex</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">p1</span><span class="o">*</span><span class="n">omega_e1</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">p2</span><span class="o">*</span><span class="n">omega_e2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">omega_e1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">omega_e2</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">omega_e</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">kex</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">R1p</span><span class="o">=</span><span class="n">sin2Beta</span><span class="o">*</span><span class="n">p1</span><span class="o">*</span><span class="n">p2</span><span class="o">*</span><span class="n">DelOmega</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">kex</span><span class="o">/</span><span class="p">(</span><span class="n">f1</span><span class="o">+</span><span class="n">kex</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">sin2Beta</span><span class="o">*</span><span class="n">p1</span><span class="o">*</span><span class="n">p2</span><span class="o">*</span><span class="n">DelOmega</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">f2</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">v1</span><span class="p">,</span><span class="n">R1p</span>
+    <span class="k">return</span> <span class="n">R1p</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">R1p_hop</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">50000</span><span class="p">,</span><span class="mi">490</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">L</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;Propagator&#39;</span><span class="p">:</span>
-        <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">L</span>
-    <span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">kex</span><span class="o">=</span><span class="n">pop_kex</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
-    <span class="n">tc</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">kex</span>
-    <span class="c1"># Here, we&#39;re assuming the user entered the hop angle just into the beta angle</span>
-    <span class="k">if</span> <span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">dipole</span><span class="p">:</span>
-        <span class="n">hop_angle</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">dipole</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;euler&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s1">&#39;euler&#39;</span> <span class="ow">in</span> <span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">dipole</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="n">hop_angle</span><span class="o">-=</span><span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">dipole</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;euler&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">CSA</span><span class="p">:</span>
-        <span class="n">hop_angle</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">CSA</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;euler&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s1">&#39;euler&#39;</span> <span class="ow">in</span> <span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">CSA</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="n">hop_angle</span><span class="o">-=</span><span class="n">L</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">CSA</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;euler&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">S2</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">p1</span><span class="o">*</span><span class="n">p2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">hop_angle</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">vr</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">vr</span>
-    <span class="n">v0H</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">v0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">v0N</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">v0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">deltaHN</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">dipole</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;delta&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="k">if</span> <span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">dipole</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="n">CSA</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">CSA</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;delta&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">v0N</span><span class="o">/</span><span class="mf">1e6</span> <span class="k">if</span> <span class="n">L</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">CSA</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="n">J</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span><span class="mi">2</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="n">tc</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">tc</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">R1</span><span class="o">=</span><span class="p">(</span><span class="n">deltaHN</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">J</span><span class="p">(</span><span class="n">v0H</span><span class="o">-</span><span class="n">v0N</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v0N</span><span class="p">)</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v0H</span><span class="o">+</span><span class="n">v0N</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="n">CSA</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v0N</span><span class="p">)</span>
-    <span class="n">R1p</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">R1</span><span class="o">+</span><span class="p">(</span><span class="n">deltaHN</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v0H</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">vr</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v1</span><span class="o">-</span><span class="n">vr</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v1</span><span class="o">+</span><span class="n">vr</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">vr</span><span class="p">))</span><span class="o">+</span>\
-       <span class="mi">2</span><span class="o">/</span><span class="mi">27</span><span class="o">*</span><span class="n">CSA</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">vr</span><span class="p">)</span><span class="o">+</span><span class="n">J</span><span class="p">(</span><span class="n">v1</span><span class="o">-</span><span class="n">vr</span><span class="p">)</span><span class="o">+</span><span class="n">J</span><span class="p">(</span><span class="n">v1</span><span class="o">+</span><span class="n">vr</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span><span class="p">(</span><span class="n">v1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">vr</span><span class="p">))</span>
+<span class="c1"># We use scipy optimize&#39;s curve_fit function to fit the model. If we had experimental uncertainties,</span>
+<span class="c1"># these could be included using the &#39;sigma&#39; and &#39;absolute_sigma&#39; parameters of this function.</span>
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">R1p_ex</span><span class="p">,</span> <span class="n">v10</span><span class="p">,</span> <span class="n">R1p</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">bounds</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)],</span> <span class="n">maxfev</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+<span class="n">perr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">pcov</span><span class="p">))</span> <span class="c1"># take standard deviation as uncertainty from variances in covariance matrix</span>
 
-    <span class="k">return</span> <span class="n">v1</span><span class="p">,</span><span class="n">R1p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">S2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p1 = </span><span class="si">%0.2f</span><span class="s2"> +- </span><span class="si">%0.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">perr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dW = </span><span class="si">%0.2f</span><span class="s2"> +- </span><span class="si">%0.2f</span><span class="s2"> ppm&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">60</span><span class="p">),</span> <span class="n">perr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">60</span><span class="p">)))</span> <span class="c1"># divide to convert from rad/s to ppm</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;kex = </span><span class="si">%0.2f</span><span class="s2"> +- </span><span class="si">%0.2f</span><span class="s2"> s-1&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">perr</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p_ex</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="o">*</span><span class="n">popt</span><span class="p">),</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">nu_1$ / Hz&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p1 = 0.19 +- 422.77
+dW = 6.58 +- 5963.58 ppm
+kex = 9890.29 +- 558205.75 s-1
+</pre></div>
 </div>
-<section id="testing-the-formulas">
-<h4>Testing the formulas<a class="headerlink" href="#testing-the-formulas" title="Link to this heading">#</a></h4>
-<p>We sweep the field strength below in simulation and compare to the formulas above.</p>
+<img alt="../_images/9c2497a0474d7a05386baf411224448c785a732feae1336780aed89b78d15410.png" src="../_images/9c2497a0474d7a05386baf411224448c785a732feae1336780aed89b78d15410.png" />
+</div>
+</div>
+<p>Huh - odd. It appears that we have a really well fit curve, but the uncertainties in the populations (p1) and chemical shift difference (dW) are massive! Lets try to investigate this - we’ll plot the root sum squared residual as a function of these two parameters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
-<span class="n">v10</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50000</span><span class="p">,</span><span class="mi">26</span><span class="p">)</span>
-<span class="n">v10</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1000</span>
-<span class="n">R1p</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">v1</span> <span class="ow">in</span> <span class="n">v10</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sqres</span><span class="p">(</span><span class="n">dw</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="c1"># calculate the root sum squared residual as a function of dW and population</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">R1p</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">R1p_ex</span><span class="p">(</span><span class="n">v10</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">dw</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">60</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">dW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1"># ppm</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">DW</span><span class="p">,</span> <span class="n">P1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">dW</span><span class="p">,</span> <span class="n">p1</span><span class="p">)</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">sqres</span><span class="p">(</span><span class="n">DW</span><span class="p">,</span> <span class="n">P1</span><span class="p">)</span>
+<span class="n">clevels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.05</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">DW</span><span class="p">,</span> <span class="n">P1</span><span class="p">,</span> <span class="n">residual</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">clevels</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cb</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">delta </span><span class="se">\\</span><span class="s2">omega$ / ppm&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$p_</span><span class="si">{1}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/79d7e65ecc9ab395906bbfc8a82a88b646b69233ba498b41493f3078c80b4c0a.png" src="../_images/79d7e65ecc9ab395906bbfc8a82a88b646b69233ba498b41493f3078c80b4c0a.png" />
+</div>
+</div>
+<p><strong>Q:</strong> From the plot above, can you explain why the errors for <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(\delta\omega\)</span> are so high?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Answer</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">The minimum error is not found at a single point, but rather along a contour, so neither <span class="math notranslate nohighlight">\(\delta\omega\)</span>, nor <span class="math notranslate nohighlight">\(p_1\)</span> can be precisely defined.</p>
+<p class="sd-card-text">This is because our exchange rate is greater than the difference in chemical shift between the exchanging sites, we are in what is termed the ‘fast exchange limit’. In this case, the Miloushev-Palmer equation is highly degenerate in populations and chemical shift differences: It is not possible to break the degeneracy in this case.</p>
+<p class="sd-card-text">But does this always need to be the case?</p>
+</div>
+</details><p>To understand which timescales we are sensitive to, we can consider the difference in <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> at 2 and 10 kHz. If we see a large, measurable difference, we can therefore measure exchange processes with this rate. If not, we are unable to distinguish these.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tau_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">dR1p</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">tau</span> <span class="ow">in</span> <span class="n">tau_c</span><span class="p">:</span>
     <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-    <span class="n">U</span><span class="o">=</span><span class="n">R1pU</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">R1p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho</span><span class="o">.</span><span class="n">extract_decay_rates</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span><span class="n">R1p</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simulation&#39;</span><span class="p">)</span>
-<span class="n">v1</span><span class="p">,</span><span class="n">r1ph</span><span class="o">=</span><span class="n">R1p_hop</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
-<span class="n">v1</span><span class="p">,</span><span class="n">r1pe</span><span class="o">=</span><span class="n">R1p_ex</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="n">r1ph</span><span class="o">+</span><span class="n">r1pe</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Calculation&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="n">r1ph</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;hopping only (calc.)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="n">r1pe</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;exchange only (calc.)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">U_1kHz</span> <span class="o">=</span> <span class="n">R1pU</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">tau</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">DelCS</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">R1p_1kHz</span> <span class="o">=</span> <span class="n">rho</span><span class="o">.</span><span class="n">extract_decay_rates</span><span class="p">(</span><span class="n">U_1kHz</span><span class="p">)</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">U_10kHz</span> <span class="o">=</span> <span class="n">R1pU</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">tau</span><span class="p">,</span><span class="n">hop_angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">DelCS</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">R1p_10kHz</span> <span class="o">=</span> <span class="n">rho</span><span class="o">.</span><span class="n">extract_decay_rates</span><span class="p">(</span><span class="n">U_10kHz</span><span class="p">)</span>
+    <span class="n">dR1p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R1p_1kHz</span> <span class="o">-</span> <span class="n">R1p_10kHz</span><span class="p">)</span>
+    
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tau_c</span><span class="p">,</span> <span class="n">dR1p</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">tau_c$ / s&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">Delta R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3d3f47e2a2e6b602c60e2d477566b3d15265f73dc37b824fc7216db04171600d.png" src="../_images/3d3f47e2a2e6b602c60e2d477566b3d15265f73dc37b824fc7216db04171600d.png" />
+<img alt="../_images/369a9840b292b4a8c460768909108553c90bb2b8be9e637b57af6fc3bc7d86b8.png" src="../_images/369a9840b292b4a8c460768909108553c90bb2b8be9e637b57af6fc3bc7d86b8.png" />
 </div>
 </div>
-<p>Note that for the hopping motion, the formulas do not exactly reproduce the expected rate constants. I think this has to do with how rate constants are extracted in SLEEPY. SLEEPY assumes we are only interested in non-oscillating terms, since when analyzing experiments, we would usually try to fit the curves through the middle of any oscillation. However, when these terms become significant, it means that the corresponding elements of the powder average are reduced in their total weighting, affecting the average rate constant somehow (but it’s not clear to me yet)</p>
+<p>As can be seen, because of the limitations of our experiment we are limited to correlation times on the order of 10<span class="math notranslate nohighlight">\(^{-5}\)</span> s to 10<span class="math notranslate nohighlight">\(^{-3}\)</span> s - these correspond to exchange rates from 1000 s<span class="math notranslate nohighlight">\(^{-1}\)</span> to 100,000 s<span class="math notranslate nohighlight">\(^{-1}\)</span>. Consequently, for <span class="math notranslate nohighlight">\(^{15}\)</span>N, unless <span class="math notranslate nohighlight">\(\delta \omega &gt; 16.7\)</span> ppm, we are in fast exchange and cannot separate populations and chemical shifts.</p>
+<p>As a further issue, because of this limitation it is also not possible for us to know that we are in two site exchange. As a result, we should not fit a two site exchange model.</p>
+<p>What is typically done instead is to assume a single process, and fit a scaling amplitude:</p>
+<p><span class="math notranslate nohighlight">\(R_{1\rho} = \frac{\phi_{ex} k_{ex}}{\omega_{1}^{2} + k_{ex}^{2}}\)</span>,</p>
+<p>where (for two-site exchange), <span class="math notranslate nohighlight">\(\phi = p_1 p_2 (\Delta \omega^2)\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span><span class="o">=</span><span class="mi">55000</span>
-<span class="n">tc</span><span class="o">=</span><span class="mf">1e-4</span>
-<span class="n">U</span><span class="o">=</span><span class="n">R1pU</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">tc</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;simulation&#39;</span><span class="p">)</span>
-<span class="n">rates0</span><span class="p">,</span><span class="n">wts0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_decay_rates</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rates&#39;</span><span class="p">)</span>
-<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
-<span class="n">I</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">R0</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">wt_sum</span><span class="o">=</span><span class="mi">0</span>
-<span class="k">for</span> <span class="n">rates</span><span class="p">,</span><span class="n">wts</span><span class="p">,</span><span class="n">pwd_wt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rates0</span><span class="p">,</span><span class="n">wts0</span><span class="p">,</span><span class="n">U</span><span class="o">.</span><span class="n">expsys</span><span class="o">.</span><span class="n">pwdavg</span><span class="o">.</span><span class="n">weight</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">rate</span><span class="p">,</span><span class="n">wt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rates</span><span class="p">,</span><span class="n">wts</span><span class="p">):</span>
-        <span class="n">I</span><span class="o">+=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="o">*</span><span class="n">rate</span><span class="p">)</span><span class="o">*</span><span class="n">wt</span><span class="o">*</span><span class="n">pwd_wt</span>
-        <span class="n">R0</span><span class="o">+=</span><span class="n">rate</span><span class="o">*</span><span class="n">wt</span><span class="o">*</span><span class="n">pwd_wt</span>
-        <span class="n">wt_sum</span><span class="o">+=</span><span class="n">wt</span><span class="o">*</span><span class="n">pwd_wt</span>
-<span class="n">R0</span><span class="o">/=</span><span class="n">wt_sum</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">R1p_ex</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">phiex</span><span class="p">,</span> <span class="n">kex</span><span class="p">):</span>
+    <span class="n">omega1</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">v1</span>
+    <span class="n">Omega</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># transmitter offset</span>
+    <span class="n">omega_e</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">omega1</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">Omega</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">sin2Beta</span><span class="o">=</span><span class="n">omega1</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">omega1</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">Omega</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># R=0</span>
-<span class="c1"># for rates,wts,pwd_wt in zip(rates0,wts0,U.expsys.pwdavg.weight):</span>
-<span class="c1">#     wt_sum=0</span>
-<span class="c1">#     R00=0</span>
-<span class="c1">#     for rate,wt in zip(rates,wts):</span>
-<span class="c1">#         R00+=rate*wt</span>
-<span class="c1">#         wt_sum+=wt</span>
-<span class="c1">#     R+=R00/wt_sum*pwd_wt</span>
+    <span class="n">R1p</span><span class="o">=</span><span class="n">sin2Beta</span><span class="o">*</span><span class="n">phiex</span><span class="o">*</span><span class="n">kex</span><span class="o">/</span><span class="p">(</span><span class="n">omega_e</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">kex</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">R1p</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="sa">fr</span><span class="s1">&#39;Simulated $R_</span><span class="se">{{</span><span class="s1">1\rho</span><span class="se">}}</span><span class="s1">$: </span><span class="si">{</span><span class="n">R0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> s$^</span><span class="se">{{</span><span class="s1">-1</span><span class="se">}}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="sa">fr</span><span class="s1">&#39;Calculated $R_</span><span class="se">{{</span><span class="s1">1\rho</span><span class="se">}}</span><span class="s1">$: </span><span class="si">{</span><span class="n">R1p_hop</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">R1p_ex</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> s$^</span><span class="se">{{</span><span class="s1">-1</span><span class="se">}}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">R1p_ex</span><span class="p">,</span> <span class="n">v10</span><span class="p">,</span> <span class="n">R1p</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">bounds</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)],</span> <span class="n">maxfev</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+<span class="n">perr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">pcov</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;phiex = </span><span class="si">%0.2f</span><span class="s2"> +- </span><span class="si">%0.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">perr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;kex = </span><span class="si">%0.2f</span><span class="s2"> +- </span><span class="si">%0.2f</span><span class="s2"> s-1&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">perr</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">dv</span><span class="p">,</span><span class="n">dve</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">perr</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For p1=0.5, dW=</span><span class="si">{</span><span class="n">dv</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">+-</span><span class="si">{</span><span class="n">dve</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;extracted decay rates only&#39;</span><span class="p">)</span>
-<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="n">R1p_ex</span><span class="p">(</span><span class="n">v10</span><span class="p">,</span> <span class="o">*</span><span class="n">popt</span><span class="p">),</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">nu_1$ / Hz&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$R_{1</span><span class="se">\\</span><span class="s2">rho}$ / s$^{-1}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c459b5475153febbb7068df47a07330221a962135aad1971e095666b6d1f360f.png" src="../_images/c459b5475153febbb7068df47a07330221a962135aad1971e095666b6d1f360f.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>phiex = 916941.31 +- 16836.96
+kex = 10012.90 +- 406.07 s-1
+For p1=0.5, dv=5.08+-0.69
+</pre></div>
+</div>
+<img alt="../_images/1f8cb5c07dc81c0a25bc3ff381764baa6c4ea0e5bf6790a0b20e3471bf740e4c.png" src="../_images/1f8cb5c07dc81c0a25bc3ff381764baa6c4ea0e5bf6790a0b20e3471bf740e4c.png" />
 </div>
 </div>
-</section>
+<p>It appears again that we have a good fit! But let’s double check the parameters to ensure this isn’t a degenerate fit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Appears we have a good fit! But let&#39;s check our parameter degeneracy</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sqres</span><span class="p">(</span><span class="n">phiex</span><span class="p">,</span> <span class="n">kex</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">R1p</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">R1p_ex</span><span class="p">(</span><span class="n">v10</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">phiex</span><span class="p">,</span> <span class="n">kex</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2e6</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">kex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">PHI</span><span class="p">,</span> <span class="n">KEX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">kex</span><span class="p">)</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">sqres</span><span class="p">(</span><span class="n">PHI</span><span class="p">,</span> <span class="n">KEX</span><span class="p">)</span>
+<span class="n">clevels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.02</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">PHI</span><span class="p">,</span> <span class="n">KEX</span><span class="p">,</span> <span class="n">residual</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">clevels</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cb</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">phi_</span><span class="si">{ex}</span><span class="s2">$ / s$^{-2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$k_</span><span class="si">{ex}</span><span class="s2">$ / s$^{-1}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4e31b3dc35049f141c144db5e1f31821b90980e0cde47218c51a37713e0c0d6a.png" src="../_images/4e31b3dc35049f141c144db5e1f31821b90980e0cde47218c51a37713e0c0d6a.png" />
+</div>
+</div>
+<p>Then, the parameter <span class="math notranslate nohighlight">\(\phi_{ex}\)</span> becomes well defined, although its interpretation is ambiguous. If we assume two-site exchange, <span class="math notranslate nohighlight">\(\phi_{ex}=p_1p_2(\Delta\omega)^2\)</span>, we can place a lower bound on <span class="math notranslate nohighlight">\(\Delta\omega\)</span>, by assuming <span class="math notranslate nohighlight">\(p_1=0.5\)</span>, but for lower values of <span class="math notranslate nohighlight">\(p_1\)</span>, <span class="math notranslate nohighlight">\(\Delta\omega\)</span> must be larger. Furthermore, it is difficult to know for sure that we have a two-site hopping motion, which further confounds our interpretation of the parameter (but don’t despair, a timescale and a lower bound for <span class="math notranslate nohighlight">\(\Delta\omega\)</span> is a lot of information, especially if we have this information for multiple residues or another source of dynamics information)</p>
 </section>
 </section>
 </section>
@@ -1012,7 +1210,8 @@ J(\omega)=\frac25(1-S^2)\frac{\tau_c}{1+(\omega\tau_c)^2}
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1036,10 +1235,13 @@ J(\omega)=\frac25(1-S^2)\frac{\tau_c}{1+(\omega\tau_c)^2}
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-multiexpontiality">Sources of multiexpontiality</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-for-relaxation-behavior">Formulas for relaxation behavior</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-formulas">Testing the formulas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#field-strength-and-correlation-time-dependence-of-r-1-rho">Field strength and correlation time dependence of <span class="math notranslate nohighlight">\(R_{1\rho}\)</span></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-edit-the-following-code-to-simulate-t-1-relaxation-instead-of-t-1-rho">Bonus: Edit the following code to simulate T<span class="math notranslate nohighlight">\(_1\)</span> relaxation instead of T<span class="math notranslate nohighlight">\(_{1\rho}\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-fitting-bloch-mcconnell-relaxation-dispersion-data">Part 2: Fitting Bloch-McConnell Relaxation Dispersion Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas-for-relaxation-behavior">Formulas for relaxation behavior</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-a-dataset">Simulate a dataset</a></li>
 </ul>
 </li>
 </ul>
@@ -1090,8 +1292,8 @@ By Albert Smith
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
