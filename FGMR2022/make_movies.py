@@ -41,8 +41,16 @@ v=np.random.rand(10)*5+5
 ex.make_movie('hahn_echo_static.mp4','movie_hahn_static',v=v)
 ex.v1=5
 ex.v2=10
-ex.k12=50
-ex.make_movie('hahn_echo_dynamic.mp4','movie_hahn_dynamic',v=v)
+ex.k12=.5
+ex.make_movie(f'hahn_echo_dynamic_{ex.k12}.mp4','movie_hahn_dynamic',v=v)
+
+
+ex.k12=1
+ex.make_movie(f'm1D_dynamic_{ex.k12}_big.mp4','movie_1D_dynamic')
+ex.k12=10
+ex.make_movie(f'm1D_dynamic_{ex.k12}_big.mp4','movie_1D_dynamic')
+ex.k12=100
+ex.make_movie(f'm1D_dynamic_{ex.k12}_big.mp4','movie_1D_dynamic')
 
 #%% Create T1 movies
 T1=T1movie(v0=2,CSA=.4,delta=0.1)
@@ -59,3 +67,8 @@ T1.make_movie('T1slow.mp4','movie_all')
 
 T1.nsteps=14
 T1.make_movie('T1accum.mp4','movie_accu')
+
+
+
+
+

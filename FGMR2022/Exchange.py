@@ -854,6 +854,63 @@ class Exchange():
         self.v1,self.v2=v1,v2
         
         
+    def movie_1D_dynamic(self,ax=None):
+        """
+        Generates stochastic trajectories and plots these, without any refocusing
+
+        Parameters
+        ----------
+        ax : TYPE, optional
+            DESCRIPTION. The default is None.
+
+        Returns
+        -------
+        None.
+
+        """
+        
+        v=np.random.rand(11)*(self.v2-self.v1)+self.v1
+        v=np.ones(11)*np.mean(np.abs([self.v1,self.v2]))*5
+        n=len(v)
+        v1,v2=self.v1,self.v2
+        dv=(v1-v2)*np.array([-0.5,0.5])
+        
+        if ax is None:
+            self.fig=plt.figure()
+            ax=self.fig.add_subplot(1,1,1,projection='3d')
+        
+        self.make3Daxis(ax)
+        nt,tf=450,1/v.mean()*5
+        
+        c1,s1=[getattr(np,x)(np.linspace(0,np.pi,10)) for x in ['cos','sin']]
+        Mall=list()
+        for k,v0 in enumerate(v):
+            self.v1,self.v2=v0+dv
+            out=self.single_spin_traj(state0=1 if np.mod(k,2) else 2,nt=nt,tf=tf)
+            # out=self.single_spin_traj(state0=1)
+            M=np.array([out['I'].real,out['I'].imag,np.zeros(out['I'].shape)])
+            # M1=np.array([np.ones(c1.shape)*M[0][-1],c1*M[1][-1],-s1*M[1][-1]])       
+            # out=self.single_spin_traj(state0=out['state'][-1],nt=nt,tf=tf)
+            # M2=np.array([out['I'].real*M1[0][-1]-out['I'].imag*M1[1][-1],
+            #              out['I'].imag*M1[0][-1]+out['I'].real*M1[1][-1],M1[2][-1]*np.ones(out['I'].shape)])
+            Mall.append(np.concatenate((M,),axis=1))
+        Mall=np.moveaxis(Mall,-1,0)
+        
+        cmap=plt.get_cmap('tab10')
+        hdl=[ax.plot3D([0,1],[0,0],[0,0],linewidth=2,color=cmap(k))[0] for k in range(n)]
+        hdla=ax.plot3D([0,1],[0,0],[0,0],linewidth=3,color='black')[0]
+        
+        for M0 in Mall:
+            self.single_frame()
+            for M00,h in zip(M0,hdl):
+                h.set_data_3d([0,M00[0]],[0,M00[1]],[0,M00[2]])
+            MA=M0.mean(0)
+            hdla.set_data_3d([0,MA[0]],[0,MA[1]],[0,MA[2]])
+        self.single_frame()
+        
+        self.v1,self.v2=v1,v2
+        
+        
         
         
         
