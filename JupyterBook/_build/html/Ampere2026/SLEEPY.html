@@ -510,7 +510,7 @@ document.write(`
 </ol>
 <section id="python-imports">
 <h3>Python imports<a class="headerlink" href="#python-imports" title="Link to this heading">#</a></h3>
-<p><strong>Jupyter Notebook/Google Colab Tip:</strong> Notesbooks have “cells”. There are code cells and text (Markdown) cells. Both types of cells are executed by pressing Shift+Enter. A code cell will run the code, and a text cell will interpret the Markdown input. Note that code cells can be run out of order, but you may mess up the results if you’re not careful when running out of order.</p>
+<p><strong>Jupyter Notebook/Google Colab Tip:</strong> Notebooks have “cells”. There are code cells and text (Markdown) cells. Both types of cells are executed by pressing Shift+Enter. A code cell will run the code, and a text cell will interpret the Markdown input. Note that code cells can be run out of order, but you may mess up the results if you’re not careful when running out of order.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">SLEEPY</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sl</span>
@@ -671,7 +671,9 @@ quadrupole, with args:
 <p>Once we have added exchange, we plot again. Here, we plot the absolute value, since the exchange part will be real and the coherent part imaginary. Then, we can see all terms in our plot, but we lose the sign of terms.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Lex&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;re&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_coal</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">500</span><span class="o">-</span><span class="mi">100</span><span class="p">))</span>  <span class="c1">#Correlation time for coalescence</span>
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">t_coal</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#Puts us just into the slow-exchange regime.</span>
+<span class="n">_</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Lex&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;re&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -681,9 +683,7 @@ quadrupole, with args:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_coal</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">500</span><span class="o">-</span><span class="mi">100</span><span class="p">))</span>  <span class="c1">#Correlation time for coalescence</span>
-<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">t_coal</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#Puts us just into the slow-exchange regime.</span>
-<span class="n">_</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;abs&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;abs&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -812,13 +812,13 @@ State-space reduction: 8-&gt;2
 <h3>Define the experimental conditions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate size of the one-bond dipole coupling for H–N</span>
-<span class="n">delta</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">dipole_coupling</span><span class="p">(</span><span class="mf">.102</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span>  <span class="c1">#Distance, nuc1, nuc2</span>
-
-<span class="c1"># Define field, nuclei, spinning speed, powder average</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define field, nuclei, spinning speed, powder average</span>
 <span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">],</span><span class="n">vr</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span><span class="n">pwdavg</span><span class="o">=</span><span class="s1">&#39;rep320&#39;</span><span class="p">)</span>
 <span class="c1"># This powder average is too big, and we&#39;ll change it later</span>
 <span class="c1"># We want it here for displaying the couplings</span>
+
+<span class="c1"># Calculate size of the one-bond dipole coupling for H–N</span>
+<span class="n">delta</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">dipole_coupling</span><span class="p">(</span><span class="mf">.102</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span>  <span class="c1">#Distance, nuc1, nuc2</span>
 
 <span class="c1"># Define interactions (dipole, CSA, chemical shift)</span>
 <span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">)</span>
@@ -828,8 +828,8 @@ State-space reduction: 8-&gt;2
 <span class="c1"># Copy system</span>
 <span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="c1"># Redefine dipole, CSA, with same magnitude, but different orientation (20 degree hop)</span>
-<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">45</span><span class="p">])</span>  
-<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="mi">113</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">45</span><span class="p">]])</span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>  
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="mi">113</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
 <span class="c1"># Redefine chemical shift, with 10 ppm change</span>
 <span class="n">_</span><span class="o">=</span><span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ppm</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -847,7 +847,7 @@ State-space reduction: 8-&gt;2
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/125d42d49f1e7e3a015a4316707c56d2e4aa666bf9574fe1aff97ff33c095431.png" src="../_images/125d42d49f1e7e3a015a4316707c56d2e4aa666bf9574fe1aff97ff33c095431.png" />
-<img alt="../_images/4fce5467496af5e24bb1f00d6cc5983bd23ec45cb82270eab9b1213ea29b1137.png" src="../_images/4fce5467496af5e24bb1f00d6cc5983bd23ec45cb82270eab9b1213ea29b1137.png" />
+<img alt="../_images/97c5c8402b189f2f507b1370ee0d869fcfbf3138e09eaa9a49d6815ff5efe247.png" src="../_images/97c5c8402b189f2f507b1370ee0d869fcfbf3138e09eaa9a49d6815ff5efe247.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -987,7 +987,7 @@ Hamiltonians are coupled by exchange matrix:
 	       [ 3333333.33333333, -6666666.66666667,  3333333.33333333],
 	       [ 3333333.33333333,  3333333.33333333, -6666666.66666667]])
 
-&lt;SLEEPY.SLEEPY.Liouvillian.Liouvillian object at 0x117ee5350&gt;
+&lt;SLEEPY.SLEEPY.Liouvillian.Liouvillian object at 0x119581e90&gt;
 </pre></div>
 </div>
 </div>
@@ -1021,7 +1021,7 @@ Hamiltonians are coupled by exchange matrix:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;13Cx&#39;</span><span class="p">,</span><span class="s1">&#39;13Cx&#39;</span><span class="p">)</span>
-<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1032,10 +1032,10 @@ Hamiltonians are coupled by exchange matrix:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Density Matrix/Detection Operator
 rho0: 13Cx
 detect[0]: 13Cx
-Current time is 937.500 microseconds
-75 time points have been recorded
+Current time is 500.000 microseconds
+40 time points have been recorded
 
-&lt;SLEEPY.SLEEPY.Rho.Rho object at 0x11426fd90&gt;
+&lt;SLEEPY.SLEEPY.Rho.Rho object at 0x119903550&gt;
 </pre></div>
 </div>
 </div>
@@ -1053,9 +1053,9 @@ Current time is 937.500 microseconds
 <p>Now, slow down the motion and see what changes!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">nSite_sym</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">nSite_sym</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">)</span>
 <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 <span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1064,14 +1064,14 @@ Current time is 937.500 microseconds
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 48-&gt;24
 </pre></div>
 </div>
-<img alt="../_images/17f54230387a97a7c6f81f85283ffb3b162f512a45193a2a852b1b880ff8ad2a.png" src="../_images/17f54230387a97a7c6f81f85283ffb3b162f512a45193a2a852b1b880ff8ad2a.png" />
+<img alt="../_images/c98c562a6edb553b95c6ad9687bb30bf7285b2a0836c4a39eb4cac5e18a1d3a2.png" src="../_images/c98c562a6edb553b95c6ad9687bb30bf7285b2a0836c4a39eb4cac5e18a1d3a2.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">nSite_sym</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">nSite_sym</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">5e-5</span><span class="p">)</span>
 <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 <span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1080,7 +1080,7 @@ Current time is 937.500 microseconds
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 48-&gt;24
 </pre></div>
 </div>
-<img alt="../_images/877d56d36995d8fcde2d0abf3b319c7eff16f4f462986ae8e1e883b8b49449cb.png" src="../_images/877d56d36995d8fcde2d0abf3b319c7eff16f4f462986ae8e1e883b8b49449cb.png" />
+<img alt="../_images/cb9287be0988ed13eb5ca2d32ecf343c827ed826d305ab2df9b9679c84cfcaa0.png" src="../_images/cb9287be0988ed13eb5ca2d32ecf343c827ed826d305ab2df9b9679c84cfcaa0.png" />
 </div>
 </div>
 </section>
