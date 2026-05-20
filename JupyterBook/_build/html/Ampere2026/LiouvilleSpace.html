@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -501,15 +501,15 @@ document.write(`
 </div>
 <p>In Hilbert space, the current state of the spin system is described by a square density matrix (also <span class="math notranslate nohighlight">\(mxm\)</span>), often denoted with <span class="math notranslate nohighlight">\(\hat{\rho}(t)\)</span>. Diagonal elements of the density matrix specify how much population is in each of the eigenstates of the Zeeman Hamiltonian, and off-diagonal elements specify populations of coherences between those  states. <span class="math notranslate nohighlight">\(\hat{\rho}(t)\)</span> will evolve in time depending on the Hamiltonian, according to:
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c725db0d-ea06-4275-a8b9-1dd84802636f">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c725db0d-ea06-4275-a8b9-1dd84802636f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-65edd7e9-0d62-4ffe-ab2d-48b0ce6abc06">
+<span class="eqno">(1)<a class="headerlink" href="#equation-65edd7e9-0d62-4ffe-ab2d-48b0ce6abc06" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\rho}(t+\Delta t)=\exp{(-i\hat{H}\Delta t)}\hat{\rho}(t)\exp{(i\hat{H}\Delta t)}
 \end{equation}\]</div>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
 Note, here we assume a time-independent Hamiltonian. In SLEEPY simulations, we handle time-dependence by breaking simulations into small, time-independent steps, a common approach in NMR simulation. Note that to propagate the density matrix, we have sandwiched it between two matrix exponentials. \\*A few notes of caution:* These operations require matrix multiplication, not elementwise multiplication, and the $\exp$ indicates a matrix exponential, not an elementwise exponential. Our notation here assumes the Hamiltonian in radians/s, not Hz, which would require multiplying by $2\pi$.\\Often, we define a propagator, such that\end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-3b40fbef-dbdd-4776-95bd-0e221d363a08">
-<span class="eqno">(2)<a class="headerlink" href="#equation-3b40fbef-dbdd-4776-95bd-0e221d363a08" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-b811eab8-67fe-4592-a272-1fc66b9a2b7a">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b811eab8-67fe-4592-a272-1fc66b9a2b7a" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
 \hat{U}(\Delta t)&amp;=&amp;\exp{(-i\hat{H} \Delta t)} \\
 \hat{\rho}(t+\Delta t)&amp;=&amp;\hat{U}(\Delta t)\hat{\rho}(t)\hat{U}^\dagger(\Delta t)
 \end{eqnarray}\]</div>
@@ -520,8 +520,8 @@ Note, here we assume a time-independent Hamiltonian. In SLEEPY simulations, we h
 <h2>Liouville space<a class="headerlink" href="#liouville-space" title="Link to this heading">#</a></h2>
 <p>Liouville space may be constructed from Hilbert space, by first stretching the <span class="math notranslate nohighlight">\(m\times m\)</span> density matrix into a length <span class="math notranslate nohighlight">\(m^2\)</span> vector, and second, calculating the coherent Liouvillian from the Hamiltonian, according to
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-43faabc1-b2fe-4f50-a00c-028589f35994">
-<span class="eqno">(3)<a class="headerlink" href="#equation-43faabc1-b2fe-4f50-a00c-028589f35994" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-91c32b32-61c4-446b-8b1b-8bc7a4752e13">
+<span class="eqno">(3)<a class="headerlink" href="#equation-91c32b32-61c4-446b-8b1b-8bc7a4752e13" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\hat{L}}_{coh}=-i*(\hat{H}\otimes\hat{\mathbf{1}}-\hat{\mathbf{1}}\otimes\hat{H}^T)
 \end{equation}\]</div>
 <p>$<span class="math notranslate nohighlight">\(
@@ -542,8 +542,8 @@ In the above equation, \)</span>\otimes<span class="math notranslate nohighlight
 <h3>Dissipative terms in Liouville space: Relaxation<a class="headerlink" href="#dissipative-terms-in-liouville-space-relaxation" title="Link to this heading">#</a></h3>
 <p>The main advantage of working in Liouville space is that we can introduce dissipative terms (i.e. non-coherent) that induce exchange or relaxation. For example, in the above Liouvillian, we can introduce <span class="math notranslate nohighlight">\(T_2\)</span> relaxation to both spins, so that the total Liouvillian becomes
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8adc9173-c4bf-430d-9dc0-5eef84cbec42">
-<span class="eqno">(4)<a class="headerlink" href="#equation-8adc9173-c4bf-430d-9dc0-5eef84cbec42" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b9ce24c5-2a7e-499a-bfa8-272d7118d836">
+<span class="eqno">(4)<a class="headerlink" href="#equation-b9ce24c5-2a7e-499a-bfa8-272d7118d836" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\hat{L}}_{total}=\hat{\hat{L}}_{coh}+\hat{\hat{L}}_{relax}
 \end{equation}\]</div>
 <p>$<span class="math notranslate nohighlight">\(
@@ -591,8 +591,8 @@ Below, we plot \)</span>\hat{\hat{L}}_{relax}$</p>
 </div>
 <p>Now, the total Liouvillian also contains an exchange term, such that
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c426e80a-2449-43ba-99c1-b808bb19e47b">
-<span class="eqno">(5)<a class="headerlink" href="#equation-c426e80a-2449-43ba-99c1-b808bb19e47b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a1c5599b-52ad-42ab-8f5a-abff6087b39b">
+<span class="eqno">(5)<a class="headerlink" href="#equation-a1c5599b-52ad-42ab-8f5a-abff6087b39b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\hat{L}}_{total}=\hat{\hat{L}}_{coh}+\hat{\hat{L}}_{relax}+\hat{\hat{L}}_{ex}
 \end{equation}\]</div>
 <p>$$</p>
@@ -613,16 +613,16 @@ $$</p>
 <h2>Propagation with the Liouvillian<a class="headerlink" href="#propagation-with-the-liouvillian" title="Link to this heading">#</a></h2>
 <p>In Liouville space, a propagator is calculated according to
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b857e306-ef4d-47cd-ad80-61ad3d429820">
-<span class="eqno">(6)<a class="headerlink" href="#equation-b857e306-ef4d-47cd-ad80-61ad3d429820" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4cda57d3-f139-4567-98c7-b44dc030c15f">
+<span class="eqno">(6)<a class="headerlink" href="#equation-4cda57d3-f139-4567-98c7-b44dc030c15f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\hat{U}} (\Delta t)=\exp{(\Delta t\hat{\hat{L}})}
 \end{equation}\]</div>
 <div class="math notranslate nohighlight">
 \[
 The density matrix is reshaped into a column vector, at which point propagation can be calculated as follows:
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-5ee15920-4481-4789-8069-9d32ddbdf54b">
-<span class="eqno">(7)<a class="headerlink" href="#equation-5ee15920-4481-4789-8069-9d32ddbdf54b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8201b400-017d-46d4-9a5c-bf56ceb86dac">
+<span class="eqno">(7)<a class="headerlink" href="#equation-8201b400-017d-46d4-9a5c-bf56ceb86dac" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\rho}(t+\Delta t)=\hat{\hat{U}} (\Delta t)\hat{\rho}(t)
 \end{equation}\]</div>
 <p>$$

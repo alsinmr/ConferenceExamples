@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -508,15 +508,15 @@ document.write(`
 </div>
 <p>In Hilbert space, the current state of the spin system is described by a square density matrix (also <span class="math notranslate nohighlight">\(mxm\)</span>), often denoted with <span class="math notranslate nohighlight">\(\hat{\rho}(t)\)</span>. Diagonal elements of the density matrix specify how much population is in each of the eigenstates of the Zeeman Hamiltonian, and off-diagonal elements specify populations of coherences between those  states. <span class="math notranslate nohighlight">\(\hat{\rho}(t)\)</span> will evolve in time depending on the Hamiltonian, according to:
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-096305a6-432d-4576-969f-b887671384c6">
-<span class="eqno">()<a class="headerlink" href="#equation-096305a6-432d-4576-969f-b887671384c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8392aa55-42c2-4c00-ad9f-2eeb2fbf2f7a">
+<span class="eqno">()<a class="headerlink" href="#equation-8392aa55-42c2-4c00-ad9f-2eeb2fbf2f7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\rho}(t+\Delta t)=\exp{(-i\hat{H}\Delta t)}\hat{\rho}(t)\exp{(i\hat{H}\Delta t)}
 \end{equation}\]</div>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
 Note, here we assume a time-independent Hamiltonian. In SLEEPY simulations, we handle time-dependence by breaking simulations into small, time-independent steps, a common approach in NMR simulation. Note that to propagate the density matrix, we have sandwiched it between two matrix exponentials. \\*A few notes of caution:* These operations require matrix multiplication, not elementwise multiplication, and the $\exp$ indicates a matrix exponential, not an elementwise exponential. Our notation here assumes the Hamiltonian in radians/s, not Hz, which would require multiplying by $2\pi$.\\Often, we define a propagator, such that\end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-28bf030c-875a-46b1-8fd5-770fcca143c8">
-<span class="eqno">()<a class="headerlink" href="#equation-28bf030c-875a-46b1-8fd5-770fcca143c8" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-3be8e400-6a25-42e4-af96-e6bb0f323a55">
+<span class="eqno">()<a class="headerlink" href="#equation-3be8e400-6a25-42e4-af96-e6bb0f323a55" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
 \hat{U}(\Delta t)&amp;=&amp;\exp{(-i\hat{H} \Delta t)} \\
 \hat{\rho}(t+\Delta t)&amp;=&amp;\hat{U}(\Delta t)\hat{\rho}(t)\hat{U}^\dagger(\Delta t)
 \end{eqnarray}\]</div>
@@ -525,14 +525,14 @@ Note, here we assume a time-independent Hamiltonian. In SLEEPY simulations, we h
 </section>
 <section id="liouville-space">
 <h2>Liouville space<a class="headerlink" href="#liouville-space" title="Link to this heading">#</a></h2>
-<p>Liouville space may be constructed from Hilbert space, by first stretching the <span class="math notranslate nohighlight">\(m\times m\)</span> density matrix into a length <span class="math notranslate nohighlight">\(m^2\)</span> vector, and second, calculating the coherent Liouvillian from the Hamiltonian, according to
-$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-944355fa-b2e2-4052-af09-b449faf6e4d2">
-<span class="eqno">()<a class="headerlink" href="#equation-944355fa-b2e2-4052-af09-b449faf6e4d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Liouville space may be constructed from Hilbert space, by first stretching the <span class="math notranslate nohighlight">\(m\times m\)</span> density matrix into a length <span class="math notranslate nohighlight">\(m^2\)</span> vector, and second, calculating the coherent Liouvillian from the Hamiltonian, according to</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
 \hat{\hat{L}}_{coh}=-i*(\hat{H}\otimes\hat{\mathbf{1}}-\hat{\mathbf{1}}\otimes\hat{H}^T)
-\end{equation}\]</div>
-<p>$<span class="math notranslate nohighlight">\(
-In the above equation, \)</span>\otimes<span class="math notranslate nohighlight">\( is the [Kronecker product](https://en.wikipedia.org/wiki/Kronecker_product), \)</span>\hat{\mathbf{1}}<span class="math notranslate nohighlight">\( is an identity matrix with the same dimensions as the Hamiltonian, and \)</span>\hat{H}^T<span class="math notranslate nohighlight">\( is the transpose (not the complex transpose!) of the Hamiltonian. The result is an \)</span>m^2\times m^2<span class="math notranslate nohighlight">\( matrix. In SLEEPY, we absorb the factor of \)</span>-i$ into the Liouvillian, although one may also keep this separate.</p>
+\end{equation}
+\]</div>
+<p>In the above equation, <span class="math notranslate nohighlight">\(\otimes\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a>, <span class="math notranslate nohighlight">\(\hat{\mathbf{1}}\)</span> is an identity matrix with the same dimensions as the Hamiltonian, and <span class="math notranslate nohighlight">\(\hat{H}^T\)</span> is the transpose (not the complex transpose!) of the Hamiltonian. The result is an <span class="math notranslate nohighlight">\(m^2\times m^2\)</span> matrix. In SLEEPY, we absorb the factor of <span class="math notranslate nohighlight">\(-i\)</span> into the Liouvillian, although one may also keep this separate.</p>
 <p>We plot the result in SLEEPY below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -549,8 +549,8 @@ In the above equation, \)</span>\otimes<span class="math notranslate nohighlight
 <h3>Dissipative terms in Liouville space: Relaxation<a class="headerlink" href="#dissipative-terms-in-liouville-space-relaxation" title="Link to this heading">#</a></h3>
 <p>The main advantage of working in Liouville space is that we can introduce dissipative terms (i.e. non-coherent) that induce exchange or relaxation. For example, in the above Liouvillian, we can introduce <span class="math notranslate nohighlight">\(T_2\)</span> relaxation to both spins, so that the total Liouvillian becomes
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-384d70d7-1e15-49e0-8bd3-37e9261b78ea">
-<span class="eqno">()<a class="headerlink" href="#equation-384d70d7-1e15-49e0-8bd3-37e9261b78ea" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6bdf8ee9-1897-4586-886c-3cdab6e945dd">
+<span class="eqno">()<a class="headerlink" href="#equation-6bdf8ee9-1897-4586-886c-3cdab6e945dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\hat{L}}_{total}=\hat{\hat{L}}_{coh}+\hat{\hat{L}}_{relax}
 \end{equation}\]</div>
 <p>$<span class="math notranslate nohighlight">\(
@@ -598,8 +598,8 @@ Below, we plot \)</span>\hat{\hat{L}}_{relax}$</p>
 </div>
 <p>Now, the total Liouvillian also contains an exchange term, such that
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f1357a71-ee21-46ac-a2e2-dbbdd655a36a">
-<span class="eqno">()<a class="headerlink" href="#equation-f1357a71-ee21-46ac-a2e2-dbbdd655a36a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6218323d-dd6d-4342-adb9-f5fd31cea852">
+<span class="eqno">()<a class="headerlink" href="#equation-6218323d-dd6d-4342-adb9-f5fd31cea852" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\hat{L}}_{total}=\hat{\hat{L}}_{coh}+\hat{\hat{L}}_{relax}+\hat{\hat{L}}_{ex}
 \end{equation}\]</div>
 <p>$$</p>
@@ -618,22 +618,21 @@ $$</p>
 </section>
 <section id="propagation-with-the-liouvillian">
 <h2>Propagation with the Liouvillian<a class="headerlink" href="#propagation-with-the-liouvillian" title="Link to this heading">#</a></h2>
-<p>In Liouville space, a propagator is calculated according to
-$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0d08a94e-d411-4102-a9c6-6b708fccd6bf">
-<span class="eqno">()<a class="headerlink" href="#equation-0d08a94e-d411-4102-a9c6-6b708fccd6bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\hat{\hat{U}} (\Delta t)=\exp{(\Delta t\hat{\hat{L}})}
-\end{equation}\]</div>
+<p>In Liouville space, a propagator is calculated according to</p>
 <div class="math notranslate nohighlight">
 \[
-The density matrix is reshaped into a column vector, at which point propagation can be calculated as follows:
+\begin{equation}
+\hat{\hat{U}} (\Delta t)=\exp{(\Delta t\hat{\hat{L}})}
+\end{equation}
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-595381a2-1401-483f-89aa-3bf7d466c7b7">
-<span class="eqno">()<a class="headerlink" href="#equation-595381a2-1401-483f-89aa-3bf7d466c7b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>The density matrix is reshaped into a column vector, at which point propagation can be calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
 \hat{\rho}(t+\Delta t)=\hat{\hat{U}} (\Delta t)\hat{\rho}(t)
-\end{equation}\]</div>
-<p>$$
-So, sandwiching the density matrix is no longer required in Liouville space</p>
+\end{equation}
+\]</div>
+<p>So, sandwiching the density matrix is no longer required in Liouville space</p>
 </section>
 </section>
 
