@@ -17,3 +17,8 @@ parts:
   - file: ssNMR2025/ssNMR2025
     sections:
     - file: ssNMR2025/R1p
+  - file: Ampere2026/AMPERE2026
+    sections:
+    - file: Ampere2026/SLEEPY
+    - file: Ampere2026/LiouvilleSpace
+    - file: Ampere2026/RateConstantExtraction

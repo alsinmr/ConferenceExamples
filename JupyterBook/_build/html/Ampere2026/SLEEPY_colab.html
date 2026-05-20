@@ -1,0 +1,1303 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SLEEPY Tutorial &#8212; Conference Tutorials</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Ampere2026/SLEEPY_colab';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Conference Tutorials</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    <font color=#A80000> Andy’s Conference Tutorials </font>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Software.html">Software</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../GNMR2025/GNMR2025.html"><font color="#5d6d7e"> G-NMR 2025 </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../GNMR2025/Exchange.html"><font color="#2e86c1"> Chemical Exchange </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GNMR2025/MD2NMR.html"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 1: S<span class="math notranslate nohighlight">\(^2\)</span> and C(t) </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GNMR2025/MD2NMR_fitting.html"><font color="#2e86c1"> Calculating NMR Parameters from MD Simulations 2: Calculating Relaxation </font></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ssNMR2025/ssNMR2025.html"><font color="#5d6d7e"> Solid-State NMR 2025 </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ssNMR2025/R1p.html"><font color="#2e86c1"> <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> simulation and analysis</font></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="AMPERE2026.html"><font color="#5d6d7e"> AMPERE 2026 </font></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SLEEPY.html"><font color="#2e86c1"> SLEEPY Tutorial </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="LiouvilleSpace.html"><font color="#2e86c1"> What’s Liouville space? </font></a></li>
+<li class="toctree-l2"><a class="reference internal" href="RateConstantExtraction.html"><font color="#2e86c1"> Extracting decay rates for quantifying relaxation </font></a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/alsinmr/ConferenceExamples/blob/master/JupyterBook/Ampere2026/SLEEPY_colab.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/alsinmr/ConferenceExamples" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/alsinmr/ConferenceExamples/issues/new?title=Issue%20on%20page%20%2FAmpere2026/SLEEPY_colab.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Ampere2026/SLEEPY_colab.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><font color=#2e86c1> SLEEPY Tutorial </font></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-another-simulation-program">Why another simulation program?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-compare-to-other-software">How does it compare to other software?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-i-need-to-define-for-a-simulation-to-work">What do I need to define for a simulation to work?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-imports">Python imports</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-chemical-exchange">Example 1: Chemical Exchange</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-experimental-conditions">Define the experimental conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-dynamics">Add dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagate-the-system">Propagate the system</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-dynamics-to-view-results">Modify dynamics to view results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-r-1-rho-relaxation">Example 2: <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> relaxation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Define the experimental conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-dynamics-generate-pulse-sequence">Add dynamics, generate pulse sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Propagate the system</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-field-strength-dependence">Check field-strength dependence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-redor-simplified">Example 3: REDOR (simplified)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Define the experimental conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-pulse-sequence">Define the pulse sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-density-matrix-and-detection-propagate">Define density matrix and detection, propagate</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-t-1-and-noe-in-the-lab-frame">Example 4: <span class="math notranslate nohighlight">\(T_1\)</span> and NOE in the Lab Frame</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sleepy-tutorial">
+<h1><font color=#2e86c1> SLEEPY Tutorial </font><a class="headerlink" href="#sleepy-tutorial" title="Link to this heading">#</a></h1>
+<p><em>Spins in Liouville space for rElaxation and Exchange in PYthon</em></p>
+<p>Click <a class="reference download internal" download="" href="../_downloads/a232c518a9956a76e416860004123f13/SLEEPY_intro.pdf"><span class="xref download myst">here</span></a> for the slides that were presented at the beginning of this tutorial.</p>
+<p>SLEEPY is described in <a class="reference external" href="https://doi.org/10.1038/s41467-025-65091-6">Nature Communications</a>, and includes a comprehensive online <a class="reference external" href="http://sleepy-nmr.org">tutorial</a>.</p>
+<section id="why-another-simulation-program">
+<h2>Why another simulation program?<a class="headerlink" href="#why-another-simulation-program" title="Link to this heading">#</a></h2>
+<p>SLEEPY is NMR simulation software that is focused on simulations under dynamic conditions, where dynamic effects are introduced via exchange processes that stochastically modulate terms in the Hamiltonian. These are the types of processes that lead to <em>relaxation</em>: <span class="math notranslate nohighlight">\(T_1\)</span>, <span class="math notranslate nohighlight">\(T_2\)</span>, <span class="math notranslate nohighlight">\(T_{1\rho}\)</span>, NOE, etc. We think relaxation is important, so we wanted to make it easier to simulate it!</p>
+<section id="how-does-it-compare-to-other-software">
+<h3>How does it compare to other software?<a class="headerlink" href="#how-does-it-compare-to-other-software" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><a class="reference external" href="https://inano.au.dk/about/research-centers-and-projects/nmr/software/simpson">SIMPSON</a></p>
+<p>Compared to SIMPSON, SLEEPY will almost always be slower. This is because SLEEPY operates in <em>Liouville space</em>, which requires matrices significantly larger than the <em>Hilbert space</em> matrices used in SIMPSON, e.g. when the Hilbert space matrix is <span class="math notranslate nohighlight">\(m\times m\)</span>, the Liouville space matrix is <span class="math notranslate nohighlight">\(m^2\times m^2\)</span>. This is the cost of including exchange or relaxation, which cannot be generally included in Hilbert space. SLEEPY was designed to accept similar inputs as SIMPSON, although this happens now in a Python (ideally interactive!) environment rather than TCL.</p>
+</li>
+<li><p><a class="reference external" href="https://spindynamics.org/?page_id=12">Spinach</a></p>
+<p>Spinach is a general purpose NMR simulation software running in MATLAB, with full relaxation and dynamics capabilities. We guess that if you can simulate it in SLEEPY, it should also be possible in Spinach. We’d also bet that the same simulation in SLEEPY and Spinach would require a lot less coding in SLEEPY. SLEEPY is also designed with interacive coding in mind, i.e. creating an object, possibly inspecting it, and combining it with other objects to build a simulation.</p>
+</li>
+<li><p><a class="reference external" href="https://spinevolution.com/">SpinEvolution</a></p>
+<p>SpinEvolution is fast, powerful software for NMR dynamics simulations. It is also behind a significant paywall, where dynamics simulations require a $1650 annual subscription. We think SLEEPY has a wider range of dynamics capabilities, but we weren’t interested in paying the annual fee to make sure…..</p>
+</li>
+</ul>
+<p>There’s a lot else out there: these are three of the most well-known. For getting familiar with dynamic effects, however, we think SLEEPY is a great place to start.</p>
+</section>
+</section>
+<section id="what-do-i-need-to-define-for-a-simulation-to-work">
+<h2>What do I need to define for a simulation to work?<a class="headerlink" href="#what-do-i-need-to-define-for-a-simulation-to-work" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Experimental conditions, Spin system</strong></p>
+<p>Experimental conditions: Magnetic field, spinning frequency, rotor angle, temperature, powder average, etc.</p>
+<p>Spin system: Nuclei, interactions, lab frame or rotating frame</p>
+<p><em>These are defined by the <code class="docutils literal notranslate"><span class="pre">ExpSys</span></code> object</em></p>
+</li>
+<li><p><strong>Dynamics and Relaxation</strong></p>
+<p>Add an exchange matrix to couple changing interactions (define two or more ExpSys objects), add relaxation if needed. Note that most simulations do not include these effects, so this will be the least familiar part of SLEEPY if you’ve done NMR simulation before.</p>
+<p><em>These are defined via the <code class="docutils literal notranslate"><span class="pre">Liouvillian</span></code>, which is created from one or more ExpSys objects</em></p>
+</li>
+<li><p><strong>Pulse sequence</strong></p>
+<p>Add continuous irradiation fields or time-dependent pulse sequences.</p>
+<p><em>This is defined via the <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>, which is created from the Liouvillian</em></p>
+</li>
+<li><p><strong>Density matrix and detection operator(s)</strong></p>
+<p>Define where the spin-system starts, and what to detect</p>
+<p><em>This is defined by the <code class="docutils literal notranslate"><span class="pre">Rho</span></code> object</em></p>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SETUP SLEEPY</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>sleepy-nmr
+</pre></div>
+</div>
+</div>
+</div>
+<section id="python-imports">
+<h3>Python imports<a class="headerlink" href="#python-imports" title="Link to this heading">#</a></h3>
+<p><strong>Jupyter Notebook/Google Colab Tip:</strong> Notesbooks have “cells”. There are code cells and text (Markdown) cells. Both types of cells are executed by pressing Shift+Enter. A code cell will run the code, and a text cell will interpret the Markdown input. Note that code cells can be run out of order, but you may mess up the results if you’re not careful when running out of order.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">SLEEPY</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">14</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading Defaults from file
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Python Tip:</strong> A Python session usually starts with module imports, see above. SLEEPY is the module we developed, which contains a lot of functions and objects used for simulating the impact of dynamics on NMR experiments. “sl” is the abbreviation we use for it in our code, which is just faster to type than SLEEPY. numpy (abbreviated “np”) is a module with lots of tools for doing matrix mathematics. matplotlib.pyplot (abbreviated “plt”) is a submodule of Matplotlib for making nice plots. You can install and then import any module you like to use in combination with SLEEPY (e.g. import your experimental data with <a class="reference external" href="http://127.0.0.1:8888/tree?token=524457c1a2cf549f68815e6adc33e11b78f1351c50be77f2">nmrglue</a> and then simulate it with SLEEPY within one Python terminal). numpy and pyplot are very frequently used for scientific programming, and so most of our scripts include importing these. Functions and classes found within a module are accessed by typing the module abbreviation followed by a period (.), and ending with the desired function/class/etc. from the module. For example, below we access the physical constants used in SLEEPY.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">Constants</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;h&#39;: 6.62607015e-34,
+ &#39;kB&#39;: 1.380649e-23,
+ &#39;mub&#39;: -13996244936.072704,
+ &#39;ge&#39;: 2.0023193043609235,
+ &#39;mun&#39;: 7622593.158495312,
+ &#39;mu0&#39;: 1.256637e-06}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-1-chemical-exchange">
+<h2>Example 1: Chemical Exchange<a class="headerlink" href="#example-1-chemical-exchange" title="Link to this heading">#</a></h2>
+<p>Chemical exchange is perhaps the simplest example of the influence of dynamics in NMR. We have a molecule that changes structure, resulting in the modulation of the chemical shift between two or more states. If this process is fast, then only one peak appears at the averaged chemical shift, and if it is slow, two peaks arise, one for each chemical shift. If the process approximately matches the chemical shift difference, then a broad peak arises.</p>
+<section id="define-the-experimental-conditions">
+<h3>Define the experimental conditions<a class="headerlink" href="#define-the-experimental-conditions" title="Link to this heading">#</a></h3>
+<p>The ExpSys <em><a class="reference external" href="https://en.wikipedia.org/wiki/Class_(programming)">class</a></em> defines <em><a class="reference external" href="https://en.wikipedia.org/wiki/Object_(computer_science)">objects</a></em> which contain information about the experimental conditions. For example:</p>
+<ul class="simple">
+<li><p>Magnetic field (<code class="docutils literal notranslate"><span class="pre">ex.B0</span></code>)</p></li>
+<li><p>Nuclei (<code class="docutils literal notranslate"><span class="pre">ex.Nucs</span></code>)</p></li>
+<li><p>Spinning speed (<code class="docutils literal notranslate"><span class="pre">ex.vr</span></code>)</p></li>
+<li><p>Spins (<code class="docutils literal notranslate"><span class="pre">ex.S</span></code>)</p></li>
+<li><p>Temperature (<code class="docutils literal notranslate"><span class="pre">ex.T</span></code>)</p></li>
+<li><p>Interactions (<code class="docutils literal notranslate"><span class="pre">ex.CS</span></code> gives a list of chemical shifts)</p></li>
+<li><p>Spin operators (<code class="docutils literal notranslate"><span class="pre">ex.Op</span></code>: index first to select spin, then gives x, y, z, etc.)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1H&#39;</span><span class="p">])</span>  <span class="c1">#Magnetic field, Nuclei in system</span>
+<span class="n">ex</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>      <span class="c1">#Interaction type, spin index (use i0,i1 for spin-spin coupling)</span>
+                                   <span class="c1">#Here, defined in Hz. Set ppm= to define in ppm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-spin system (1H)
+B0 = 11.743 T (500.000 MHz 1H frequency)
+rotor angle = 54.736 degrees
+rotor frequency = 10.0 kHz
+Temperature = 298 K
+Powder Average: JCP59 with 99 angles
+Interactions:
+	CS on spin 0 with arguments: (Hz=500.00)
+
+&lt;SLEEPY.SLEEPY.ExpSys.ExpSys object at 0x114248590&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check various experimental parameters below. You can type <code class="docutils literal notranslate"><span class="pre">ex.</span></code> and then press the tab key to access autocompletions, or type <code class="docutils literal notranslate"><span class="pre">dir(ex)</span></code> to see all <em>attributes</em> of ex. Note, you’ll access functions attached to the ExpSys object as well.</p>
+<p><strong>Python tip:</strong> Typing <code class="docutils literal notranslate"><span class="pre">dir(ex)</span></code> will reveal many attributes that start with one or two underscores (<code class="docutils literal notranslate"><span class="pre">_XXX</span></code>, <code class="docutils literal notranslate"><span class="pre">__XXX__</span></code>), whereas tab will not. These are hidden variables (<code class="docutils literal notranslate"><span class="pre">_XXX</span></code>) or <a class="reference external" href="https://www.geeksforgeeks.org/python/dunder-magic-methods-python/">dunder</a> methods (<code class="docutils literal notranslate"><span class="pre">__XXX__</span></code>). While you’re welcome to explore what’s in these variables, editing them directly has a good chance of breaking SLEEPY. That’s why we hid them! For example, if you adjust <code class="docutils literal notranslate"><span class="pre">ex.rotor_angle</span></code>, SLEEPY will reset calculations of tensors (e.g. dipole, CSA), because these change with the rotor angle. If you adjust <code class="docutils literal notranslate"><span class="pre">ex._rotor_angle</span></code>, these resets won’t occur and your simulation will be incorrect.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex</span><span class="o">.</span><span class="n">CS</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;Type&#39;: &#39;CS&#39;, &#39;i&#39;: 0, &#39;Hz&#39;: 500}]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SLEEPY tip:</strong> If you don’t know what interactions are available, or what arguments they require, type <code class="docutils literal notranslate"><span class="pre">ex.list_interactions</span></code>. <code class="docutils literal notranslate"><span class="pre">i</span></code> or <code class="docutils literal notranslate"><span class="pre">i0</span></code>/<code class="docutils literal notranslate"><span class="pre">i1</span></code> are always required, and we have to define the magnitude of the interaction. Euler angles can be omitted, yielding <span class="math notranslate nohighlight">\(\alpha=0,\beta=0,\gamma=0\)</span>. <code class="docutils literal notranslate"><span class="pre">euler</span></code> is defined in radians, but can be replaced by <code class="docutils literal notranslate"><span class="pre">euler_d</span></code>, which is in degrees. <code class="docutils literal notranslate"><span class="pre">ppm</span></code> and <code class="docutils literal notranslate"><span class="pre">Hz</span></code> both define the <code class="docutils literal notranslate"><span class="pre">CS</span></code> magnitude, just in different units (<code class="docutils literal notranslate"><span class="pre">delta</span></code> and <code class="docutils literal notranslate"><span class="pre">deltaHz</span></code> are similarly defined for the CSA, and <code class="docutils literal notranslate"><span class="pre">Cq</span></code>, <code class="docutils literal notranslate"><span class="pre">delta</span></code>, and <code class="docutils literal notranslate"><span class="pre">DelPP</span></code> all define the quadrupole magnitude).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex</span><span class="o">.</span><span class="n">list_interactions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CS, with args:
+	i,ppm,Hz
+CSA, with args:
+	i,delta,deltaHz,eta,euler
+J, with args:
+	i0,i1,J
+ZeroField, with args:
+	i,D,E,euler
+dipole, with args:
+	i0,i1,D,delta,eta,euler
+g, with args:
+	i,gxx,gyy,gzz,euler
+hyperfine, with args:
+	i0,i1,Axx,Ayy,Azz,euler
+quadrupole, with args:
+	i,order,Cq,delta,DelPP,eta,euler
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we go on, we will check what the Hamitonian and Liouvillian look like. The Hamiltonian for a 1 spin-1/2 system is a pretty simple 2x2 matrix, whereas the Liouvillian expands into a 4x4 matrix. This Hamiltonian only leads to phase oscillation of the coherences, so we only obtain two non-zero values on the Liouvillian diagonal.</p>
+<p>For more details on Hilbert space (Hamiltonian) and Liouville space (Liouvillian), click <a class="reference internal" href="LiouvilleSpace.html"><span class="std std-doc">here</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span><span class="o">=</span><span class="n">ex</span><span class="o">.</span><span class="n">Hamiltonian</span><span class="p">()</span>  <span class="c1">#Create the Hamiltonian</span>
+<span class="n">H</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;re&#39;</span><span class="p">)</span>   <span class="c1">#Plot the Hamiltonian, real part (most SLEEPY objects have some kind of plotting)</span>
+<span class="n">L</span><span class="o">=</span><span class="n">ex</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">()</span>  <span class="c1">#Create the Liouvillian</span>
+<span class="n">_</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;im&#39;</span><span class="p">)</span>   <span class="c1">#Plot the Liouvillian, imaginary part</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/572f50334f45e615cbcb0d4686d3fe589f87a0ba2fe6c8971b8107169eba06b6.png" src="../_images/572f50334f45e615cbcb0d4686d3fe589f87a0ba2fe6c8971b8107169eba06b6.png" />
+<img alt="../_images/8eb84b4dd1a86b9626ada39cef38934e325f63a1ee5d2b8e61ef4268027ab19d.png" src="../_images/8eb84b4dd1a86b9626ada39cef38934e325f63a1ee5d2b8e61ef4268027ab19d.png" />
+</div>
+</div>
+</section>
+<section id="add-dynamics">
+<h3>Add dynamics<a class="headerlink" href="#add-dynamics" title="Link to this heading">#</a></h3>
+<p>To add dynamics, we first need something to change! So, we define a second ExpSys object with a different chemical shift. Rather than retyping all the experimental systems, we copy the first ExpSys object (<code class="docutils literal notranslate"><span class="pre">ex1=ex.copy()</span></code>). This saves us some time, but also links together some settings of the systems in case you decide to change something.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex1</span><span class="o">=</span><span class="n">ex</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1">#Suppress text output by setting equal to _</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we combine the two systems into a Liouvillian, and plot the result</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Lcoh&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;im&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/301ced8cc851459d9097d0ac00d600f060bee7c608119fd0fd539ec6fc2d762e.png" src="../_images/301ced8cc851459d9097d0ac00d600f060bee7c608119fd0fd539ec6fc2d762e.png" />
+</div>
+</div>
+<p>The upper right contains the first Liouvillian, and the lower left contains the second. But, we’re not done, because we’d like these to exchange. This is achieved by setting the exchange matrix for the Liouvillian. Since we have two states in exchange, the exchange matrix must be <span class="math notranslate nohighlight">\(2\times2\)</span>. The exchange matrix should also be mass-conserving, i.e. the columns should sum to zero, and should usually obey detailed balance except in special cases.</p>
+<p>SLEEPY provides a number of functions for generating exchange matrices. Here, we use the <code class="docutils literal notranslate"><span class="pre">twoSite_kex</span></code> function in <code class="docutils literal notranslate"><span class="pre">Tools</span></code>, which takes a correlation time, <code class="docutils literal notranslate"><span class="pre">tc</span></code>, and an optional <code class="docutils literal notranslate"><span class="pre">p1</span></code> argument for the population of state 1 (defaults to 0.5).</p>
+<p>Once we have added exchange, we plot again. Here, we plot the absolute value, since the exchange part will be real and the coherent part imaginary. Then, we can see all terms in our plot, but we lose the sign of terms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Lex&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;re&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/19bd795416f6edc5ff30c2fd6a41b89256b528b4bad3d45b4a089c0df21da54e.png" src="../_images/19bd795416f6edc5ff30c2fd6a41b89256b528b4bad3d45b4a089c0df21da54e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_coal</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">500</span><span class="o">-</span><span class="mi">100</span><span class="p">))</span>  <span class="c1">#Correlation time for coalescence</span>
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">t_coal</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#Puts us just into the slow-exchange regime.</span>
+<span class="n">_</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;abs&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/103f0bafc7cb1408c94e6f6b2f031cf797d55a2f035265974035e1e7e9699df6.png" src="../_images/103f0bafc7cb1408c94e6f6b2f031cf797d55a2f035265974035e1e7e9699df6.png" />
+</div>
+</div>
+<p>The off-diagonal terms are introduced by the exchange matrix. Note what they do: they link a state in the upper left to the same state in the lower left, e.g. <span class="math notranslate nohighlight">\(S_0^\alpha\)</span> in the upper left to <span class="math notranslate nohighlight">\(S_0^\alpha\)</span> in the lower right. So exchange doesn’t change the state of the system, it changes the interactions of the system given by the Liouvillian.</p>
+</section>
+<section id="propagate-the-system">
+<h3>Propagate the system<a class="headerlink" href="#propagate-the-system" title="Link to this heading">#</a></h3>
+<p>In order to propagate the system, we first need something to propagate! We generate a density matrix, <code class="docutils literal notranslate"><span class="pre">rho</span></code>. In SLEEPY, we must decide what state to start the system in when <code class="docutils literal notranslate"><span class="pre">rho</span></code> is generated, but also what to detect. Text-based arguments are accepted, e.g. <code class="docutils literal notranslate"><span class="pre">1Hx</span></code> would start all <span class="math notranslate nohighlight">\(^{1}\)</span>H in the system along the x-direction. We can also start on a specific spin, e.g. <code class="docutils literal notranslate"><span class="pre">S0z</span></code> would start in the z-direction on the 0<span class="math notranslate nohighlight">\(^{th}\)</span> spin (the first spin, but according to Python convention, we number from zero). We often detect the <span class="math notranslate nohighlight">\(\hat{S}^+\)</span> if we want to simulate spectra.</p>
+<p><em>Note:</em> SLEEPY also accepts numeric spin-matrices, which lets the user start in and detect arbitrary states of the spin-system, such as zero/double-quantum coherences, spin-order, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;S0x&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;S0p&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We then generate a sequence followed by a propagator, <code class="docutils literal notranslate"><span class="pre">U</span></code>. We need to decide how long it should be. If we use spinning, then propagators will have a default length of one rotor period, but here, spinning was automatically turned off because we do not have any interactions that are affected by it, and so there is also no default propagator/sequence length.</p>
+<p>Note that here, we don’t add any radio-frequency irradiation; later, the sequence will allow us to define continuous or pulsed irradiation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">500</span><span class="p">))</span>
+<span class="n">U</span><span class="o">=</span><span class="n">seq</span><span class="o">.</span><span class="n">U</span><span class="p">()</span> 
+<span class="c1">#500 Hz is the largest chemical shift, so this time step will be short enough to avoid backfolding it.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get a spectrum, we have to detect the state of the system, then propagate, then detect, then propagate, and so on. Detection in SLEEPY is done by <em>calling</em> the density matrix, i.e. <code class="docutils literal notranslate"><span class="pre">rho()</span></code>. Propagation is done by simply multiplying by a propagator (one can also multiply by a sequence, if that sequence has a defined length; this approach is computationally less efficient).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1024</span><span class="p">):</span>  <span class="c1">#Run k over 1024 steps</span>
+    <span class="n">rho</span><span class="p">()</span>     <span class="c1">#Detect</span>
+    <span class="n">U</span><span class="o">*</span><span class="n">rho</span>     <span class="c1">#Propagate for a time Dt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, rho contains the signal for 1024 time points (<code class="docutils literal notranslate"><span class="pre">rho.I</span></code>). It also calculates the time from the beginning of the experiment of each detection (<code class="docutils literal notranslate"><span class="pre">rho.t_axis</span></code>). It also has the Fourier transformed signal (<code class="docutils literal notranslate"><span class="pre">rho.FT</span></code>), and the corresponding frequency axis (<code class="docutils literal notranslate"><span class="pre">rho.v_axis</span></code>). The user may use these for plotting or other further analysis. However, if we would just like to see the spectrum, we can run <code class="docutils literal notranslate"><span class="pre">rho.plot(FT=True)</span></code>, where <code class="docutils literal notranslate"><span class="pre">FT</span></code> determines whether to Fourier Transform the signal for a spectrum (<code class="docutils literal notranslate"><span class="pre">True</span></code>) or just show the time-trace (<code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FT</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/37c48411a80836e78cdc2fab8d8d8d0722e8f8739ced36665009ed0e16ceef43.png" src="../_images/37c48411a80836e78cdc2fab8d8d8d0722e8f8739ced36665009ed0e16ceef43.png" />
+</div>
+</div>
+<p>The for-loop above can be eliminated with additional SLEEPY functions. To demonstrate, we first clear the data out of <code class="docutils literal notranslate"><span class="pre">rho</span></code>, and then use the built-in <code class="docutils literal notranslate"><span class="pre">DetProp</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FT</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 8-&gt;2
+</pre></div>
+</div>
+<img alt="../_images/37c48411a80836e78cdc2fab8d8d8d0722e8f8739ced36665009ed0e16ceef43.png" src="../_images/37c48411a80836e78cdc2fab8d8d8d0722e8f8739ced36665009ed0e16ceef43.png" />
+</div>
+</div>
+<p>The result is the same. <code class="docutils literal notranslate"><span class="pre">DetProp</span></code> is not only less to type, but it is also more efficient: it automatically reduces the matrix size wherever possible (see the message above: <code class="docutils literal notranslate"><span class="pre">State-space</span> <span class="pre">reduction:</span> <span class="pre">8-&gt;2</span></code>, means that the 8x8 matrices were replaced with 2x2 matrices). It also uses eigenbasis propagation, which avoids a large number of matrix multiplications. Here we don’t notice such a difference since the simulation is fairly small, but these features become critical elsehwere. Note that some experiments, however, for example REDOR with refocusing of the chemical shift, need to be done with the for-loop.</p>
+</section>
+<section id="modify-dynamics-to-view-results">
+<h3>Modify dynamics to view results<a class="headerlink" href="#modify-dynamics-to-view-results" title="Link to this heading">#</a></h3>
+<p>Below, we try a number of different correlation times, to see how it impacts the spectrum. We have previously calculated <span class="math notranslate nohighlight">\(\tau_{coalescence}\)</span>, which is the correlation time at which the two peaks merge into one. Here, we calculate for motion 10 times faster, 3 times faster, at coalescence, 3 times slower, and 10 times slower.</p>
+<p><strong>Python tip:</strong> <code class="docutils literal notranslate"><span class="pre">plt.subplots</span></code> sets up one figure with multiple axes, which we may then insert our plots into those axes. We tell it how many rows, how many columns, and optionally provide a size. <code class="docutils literal notranslate"><span class="pre">sharey=True</span></code> forces all y-axes to be the same for the plots, making it easier to compare the signal amplitudes.</p>
+<p><strong>Python tip:</strong> for-loops in python loop over any iterable. For example, we put all our desired correlation times into <code class="docutils literal notranslate"><span class="pre">tc0</span></code>, and put this in the for-loop, so we get a new <code class="docutils literal notranslate"><span class="pre">tc</span></code> at every step of the loop. However, we also have the 5 axes generated by <code class="docutils literal notranslate"><span class="pre">plt.subplots</span></code>, which we also want to loop over at the same time. We can loop over both by <em>zipping</em> them together, with the <code class="docutils literal notranslate"><span class="pre">zip</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tc0</span><span class="o">=</span><span class="p">[</span><span class="n">t_coal</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span><span class="n">t_coal</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="n">t_coal</span><span class="p">,</span><span class="n">t_coal</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span><span class="n">t_coal</span><span class="o">*</span><span class="mi">10</span><span class="p">]</span>  <span class="c1">#5 correlation times</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">14</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#Creates figure with 5 axes to plot into</span>
+<span class="k">for</span> <span class="n">tc</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tc0</span><span class="p">,</span><span class="n">ax</span><span class="p">):</span>
+    <span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="n">tc</span><span class="p">)</span>  <span class="c1">#Reset the exchange matrix</span>
+    <span class="n">U</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">500</span><span class="p">))</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>  <span class="c1">#Clear the density matrix</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FT</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>  <span class="c1">#ax=a tells it where to plot the figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 8-&gt;2
+State-space reduction: 8-&gt;2
+State-space reduction: 8-&gt;2
+State-space reduction: 8-&gt;2
+State-space reduction: 8-&gt;2
+</pre></div>
+</div>
+<img alt="../_images/c63c8790f90a16bc51358112559f7d3a5ae4a5cc57c8b1fe444d6a0b6cbcfe9a.png" src="../_images/c63c8790f90a16bc51358112559f7d3a5ae4a5cc57c8b1fe444d6a0b6cbcfe9a.png" />
+</div>
+</div>
+<p><strong>Fun(?) challenge:</strong></p>
+<p>The following is just one (rather long) line of code. Can you see how it generates the results from above?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;S0x&#39;</span><span class="p">,</span><span class="s1">&#39;S0p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="mi">500</span><span class="p">),</span>
+                                           <span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+                                           <span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">400</span><span class="p">)))</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2000</span><span class="p">),</span>
+                                           <span class="n">n</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">FT</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 8-&gt;2
+</pre></div>
+</div>
+<img alt="../_images/71e464395e7557dfaa1d2acbb2bb1ddb80f3aab18f01d03ecd5d5ef1a11f85ae.png" src="../_images/71e464395e7557dfaa1d2acbb2bb1ddb80f3aab18f01d03ecd5d5ef1a11f85ae.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="example-2-r-1-rho-relaxation">
+<h2>Example 2: <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> relaxation<a class="headerlink" href="#example-2-r-1-rho-relaxation" title="Link to this heading">#</a></h2>
+<p>A critical dynamics experiment in solid-state NMR is the <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> measurement (relaxation under a spin-lock). <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> relaxation in solids can be induced by reorientation of anisotropic interactions (e.g. CSA, dipole), but also in both solids and liquids by stochastic changes in the chemical shift.</p>
+<p>To simulate it, we need to introduce two systems, which have a CSA, dipole, and chemical shift. The CSA and dipole exhibit different orientations in the two systems, whereas the chemical shift changes its isotropic value.</p>
+<section id="id1">
+<h3>Define the experimental conditions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate size of the one-bond dipole coupling for H–N</span>
+<span class="n">delta</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">dipole_coupling</span><span class="p">(</span><span class="mf">.102</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span>  <span class="c1">#Distance, nuc1, nuc2</span>
+
+<span class="c1"># Define field, nuclei, spinning speed, powder average</span>
+<span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">],</span><span class="n">vr</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span><span class="n">pwdavg</span><span class="o">=</span><span class="s1">&#39;rep320&#39;</span><span class="p">)</span>
+<span class="c1"># This powder average is too big, and we&#39;ll change it later</span>
+<span class="c1"># We want it here for displaying the couplings</span>
+
+<span class="c1"># Define interactions (dipole, CSA, chemical shift)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="mi">113</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ppm</span><span class="o">=-</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Copy system</span>
+<span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># Redefine dipole, CSA, with same magnitude, but different orientation (20 degree hop)</span>
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">45</span><span class="p">])</span>  
+<span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="mi">113</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">45</span><span class="p">]])</span>
+<span class="c1"># Redefine chemical shift, with 10 ppm change</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ppm</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can check what our motion looks like for the dipole and CSA couplings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="o">=</span><span class="mi">0</span>  <span class="c1">#0 for the dipole coupling, 1 for the CSA</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">plot_inter</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ex1</span><span class="o">.</span><span class="n">plot_inter</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/125d42d49f1e7e3a015a4316707c56d2e4aa666bf9574fe1aff97ff33c095431.png" src="../_images/125d42d49f1e7e3a015a4316707c56d2e4aa666bf9574fe1aff97ff33c095431.png" />
+<img alt="../_images/4fce5467496af5e24bb1f00d6cc5983bd23ec45cb82270eab9b1213ea29b1137.png" src="../_images/4fce5467496af5e24bb1f00d6cc5983bd23ec45cb82270eab9b1213ea29b1137.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">.</span><span class="n">pwdavg</span><span class="o">=</span><span class="mi">2</span> <span class="c1">#We used a larger powder average above to make nicer plots</span>
+<span class="c1"># Here, we reduce the size for calculations, since we don&#39;t really need a big average</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="add-dynamics-generate-pulse-sequence">
+<h3>Add dynamics, generate pulse sequence<a class="headerlink" href="#add-dynamics-generate-pulse-sequence" title="Link to this heading">#</a></h3>
+<p>We generate the Liouvillian as before, followed by the sequence. Now, however, we add a channel for irradiation on <span class="math notranslate nohighlight">\(^{15}\)</span>N. For <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> relaxation, this is continuous irradiation, and so all we need to do is define <code class="docutils literal notranslate"><span class="pre">v1</span></code>, the strength in Hz (it will be applied along the x-axis by default). A time axis may also be defined to set pulses with specific lengths, phases, strengths, and offsets, which we demonstrate later for the REDOR experiment.</p>
+<p>Note that we can check what our pulse sequence looks like with <code class="docutils literal notranslate"><span class="pre">seq.plot()</span></code>, although it is not so useful here: it’s just a constant field!</p>
+<p>Now that we are spinning, the sequence obtains a default length of one rotor period.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">,</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">twoSite_kex</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">))</span>
+<span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">()</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="mi">15000</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">seq</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5897e5942fc458b52c55989fea88aee0e60f726f4d90705fce5e6aa6f989fa2f.png" src="../_images/5897e5942fc458b52c55989fea88aee0e60f726f4d90705fce5e6aa6f989fa2f.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Propagate the system<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p><strong>SLEEPY tip:</strong> One can also provide <code class="docutils literal notranslate"><span class="pre">seq</span></code> to <code class="docutils literal notranslate"><span class="pre">rho.DetProp</span></code> directly, rather than first generating the propagator (<code class="docutils literal notranslate"><span class="pre">U=seq.U()</span></code>) and then inserting it. If you first generate the propagator, the result from calculating the propagator is saved into <code class="docutils literal notranslate"><span class="pre">U</span></code>, whereas if you use <code class="docutils literal notranslate"><span class="pre">seq</span></code>, then the propagator must be regenerated every time you use <code class="docutils literal notranslate"><span class="pre">seq</span></code>. However, providing <code class="docutils literal notranslate"><span class="pre">seq</span></code> lets one break the sequence into multiple propagation steps, allowing greater flexibility (e.g. if you want to obtain spinning sidebands). In the case below, we don’t recycle the propagator, so it really doesn’t make a difference.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">12000</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 32-&gt;16
+</pre></div>
+</div>
+<img alt="../_images/9da162a31ad97d7cb6754c21071e601aaf8b27be3d760b3019f3c12eb3c0cced.png" src="../_images/9da162a31ad97d7cb6754c21071e601aaf8b27be3d760b3019f3c12eb3c0cced.png" />
+</div>
+</div>
+</section>
+<section id="check-field-strength-dependence">
+<h3>Check field-strength dependence<a class="headerlink" href="#check-field-strength-dependence" title="Link to this heading">#</a></h3>
+<p>We sweep over multiple fields to see field-strength dependence. We use <code class="docutils literal notranslate"><span class="pre">rho.extract_decay_rates</span></code> to get the rates without explicit propagation. See <a class="reference internal" href="RateConstantExtraction.html"><span class="std std-doc">Rate Constant Extraction</span></a> for more details on what this function does.</p>
+<p><strong>Python tip:</strong> Use <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> in the for loop to obtain a loop counter as one steps through the iterable (<code class="docutils literal notranslate"><span class="pre">v10</span></code> in the example here). Here, we’re just using the counter to check the status of our calculation (since we do 29 simulations, it takes  little longer).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">Defaults</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">v10</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">56100</span><span class="p">,</span><span class="mi">29</span><span class="p">)</span>
+<span class="n">R1p</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;15Nx&#39;</span><span class="p">,</span><span class="s1">&#39;15Nx&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">v10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">k</span><span class="o">%</span><span class="k">5</span>==0:print(k)
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">)</span>
+    <span class="n">R1p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho</span><span class="o">.</span><span class="n">extract_decay_rates</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+5
+10
+15
+20
+25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v10</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span><span class="n">R1p</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\nu_1$ / kHz&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$R_{1\rho}$ / s$^{-1}$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8b85b50a82930e92bcd663d6b7cb9cc0584a6b2af64017cbada8a092508c2e12.png" src="../_images/8b85b50a82930e92bcd663d6b7cb9cc0584a6b2af64017cbada8a092508c2e12.png" />
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(R_{1\rho}\)</span> relaxation due to reorientational dynamics is fastest as the spin-lock strength approaches the rotor frequency, so the fast relaxation near <span class="math notranslate nohighlight">\(\nu_1\approx\)</span> 50 kHz comes from dipolar and CSA motion. On the other hand, relaxation due to chemical shift modulation occurs near <span class="math notranslate nohighlight">\(\nu_1=\)</span> 0 kHz. We can see both effects in this field dependence.</p>
+</section>
+</section>
+<section id="example-3-redor-simplified">
+<h2>Example 3: REDOR (simplified)<a class="headerlink" href="#example-3-redor-simplified" title="Link to this heading">#</a></h2>
+<p>In this example, we will simulate a pulse sequence (REDOR), which recouples the dipole coupling. We use this experiment in dynamics measurements to quantify amplitude of motion. Usually, we neglect its dependence on rate of motion, but this is not always correct (see <a class="reference external" href="https://mr.copernicus.org/articles/5/69/2024/">Aebischer et al.</a>) which we can demonstrate here.</p>
+<p>Note that the full REDOR sequence refocuses the chemical shift. For the sake of this tutorial, we will not include the chemical shift, and also skip the refocusing step, which simplifies the setup considerably. See the full setup with refocusing <a class="reference external" href="http://sleepy-nmr.org/html/Chapter3/Ch3_REDOR.html">here</a>.</p>
+<section id="id3">
+<h3>Define the experimental conditions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>We’ll use a methyl-hopping type motion. SLEEPY has a number of tools for setting up specific motions. We’ll use one of these (<code class="docutils literal notranslate"><span class="pre">sl.Tools.Setup3siteSym</span></code>) to setup three-site symmetric exchange. This program defaults to a tetrahedral geometry for the exchange. These programs take a single ExpSys as argument, and create ExpSys copies with new geometry, and finally combine them into a Liouvillian with the appropriate geometry and exchange matrix. Inspect L after its creation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">dipole_coupling</span><span class="p">(</span><span class="mf">.109</span><span class="p">,</span><span class="s1">&#39;13C&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span>  <span class="c1">#Distance, nuc1, nuc2</span>
+<span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="n">v0H</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;13C&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">],</span><span class="n">vr</span><span class="o">=</span><span class="mi">80000</span><span class="p">,</span><span class="n">n_gamma</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">pwdavg</span><span class="o">=</span><span class="s1">&#39;bcr20&#39;</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">)</span>
+
+<span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">Setup3siteSym</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">)</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Liouvillian under the following conditions:
+	2-spin system (13C,1H)
+	B0 = 11.743 T (500.000 MHz 1H frequency)
+	rotor angle = 54.736 degrees
+	rotor frequency = 80.0 kHz
+	Temperature = 298 K
+	Powder Average: bcr20 with 600 angles
+
+The individual Hamiltonians have the following interactions
+	Hamiltonian #0
+		dipole between spins 0,1 with arguments:
+			(delta=46656.37,eta=0.00,euler=[0.00,0.00,0.00],[0.00,109.47,0.00])
+	
+	Hamiltonian #1
+		dipole between spins 0,1 with arguments:
+			(delta=46656.37,eta=0.00,euler=[0.00,0.00,0.00],[0.00,109.47,120.00])
+	
+	Hamiltonian #2
+		dipole between spins 0,1 with arguments:
+			(delta=46656.37,eta=0.00,euler=[0.00,0.00,0.00],[0.00,109.47,240.00])
+	
+	
+Hamiltonians are coupled by exchange matrix:
+	array([[-6666666.66666667,  3333333.33333333,  3333333.33333333],
+	       [ 3333333.33333333, -6666666.66666667,  3333333.33333333],
+	       [ 3333333.33333333,  3333333.33333333, -6666666.66666667]])
+
+&lt;SLEEPY.SLEEPY.Liouvillian.Liouvillian object at 0x117ee5350&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-the-pulse-sequence">
+<h3>Define the pulse sequence<a class="headerlink" href="#define-the-pulse-sequence" title="Link to this heading">#</a></h3>
+<p>We need two <span class="math notranslate nohighlight">\(\pi\)</span>-pulses, equally spaced within one rotor period. Note thet <code class="docutils literal notranslate"><span class="pre">L.taur</span></code> gives us the rotor period automatically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span><span class="o">=</span><span class="mi">150000</span> <span class="c1">#Field strength on 1H</span>
+<span class="n">tpi</span><span class="o">=</span><span class="mf">0.5</span><span class="o">/</span><span class="n">v1</span> <span class="c1">#pi-pulse length</span>
+<span class="n">dly0</span><span class="o">=</span><span class="mf">0.25</span><span class="o">*</span><span class="n">L</span><span class="o">.</span><span class="n">taur</span><span class="o">-</span><span class="n">tpi</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">seq</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">Sequence</span><span class="p">()</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="s1">&#39;1H&#39;</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">dly0</span><span class="p">,</span><span class="n">dly0</span><span class="o">+</span><span class="n">tpi</span><span class="p">,</span><span class="mi">3</span><span class="o">*</span><span class="n">dly0</span><span class="o">+</span><span class="n">tpi</span><span class="p">,</span><span class="mi">3</span><span class="o">*</span><span class="n">dly0</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">tpi</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">taur</span><span class="p">],</span><span class="n">v1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">v1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">v1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">phase</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&lt;Axes: ylabel=&#39;$v_1$ / kHz&#39;&gt;,
+       &lt;Axes: xlabel=&#39;t / $\\mu$s&#39;, ylabel=&#39;$v_1$ / kHz&#39;&gt;], dtype=object)
+</pre></div>
+</div>
+<img alt="../_images/a97553d0c0bcad73aa6644729f24d7c429be827dab7944cd2feadcef342abfba.png" src="../_images/a97553d0c0bcad73aa6644729f24d7c429be827dab7944cd2feadcef342abfba.png" />
+</div>
+</div>
+</section>
+<section id="define-density-matrix-and-detection-propagate">
+<h3>Define density matrix and detection, propagate<a class="headerlink" href="#define-density-matrix-and-detection-propagate" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;13Cx&#39;</span><span class="p">,</span><span class="s1">&#39;13Cx&#39;</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 48-&gt;24
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Density Matrix/Detection Operator
+rho0: 13Cx
+detect[0]: 13Cx
+Current time is 937.500 microseconds
+75 time points have been recorded
+
+&lt;SLEEPY.SLEEPY.Rho.Rho object at 0x11426fd90&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b90319b71b0052b3d2047773da55ede2bb1c300bba1c0beeb12375b9ad0f3053.png" src="../_images/b90319b71b0052b3d2047773da55ede2bb1c300bba1c0beeb12375b9ad0f3053.png" />
+</div>
+</div>
+<p>Now, slow down the motion and see what changes!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">nSite_sym</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 48-&gt;24
+</pre></div>
+</div>
+<img alt="../_images/17f54230387a97a7c6f81f85283ffb3b162f512a45193a2a852b1b880ff8ad2a.png" src="../_images/17f54230387a97a7c6f81f85283ffb3b162f512a45193a2a852b1b880ff8ad2a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">nSite_sym</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">)</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 48-&gt;24
+</pre></div>
+</div>
+<img alt="../_images/877d56d36995d8fcde2d0abf3b319c7eff16f4f462986ae8e1e883b8b49449cb.png" src="../_images/877d56d36995d8fcde2d0abf3b319c7eff16f4f462986ae8e1e883b8b49449cb.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="example-4-t-1-and-noe-in-the-lab-frame">
+<h2>Example 4: <span class="math notranslate nohighlight">\(T_1\)</span> and NOE in the Lab Frame<a class="headerlink" href="#example-4-t-1-and-noe-in-the-lab-frame" title="Link to this heading">#</a></h2>
+<p>SLEEPY can also reproduce polarization transfer effects, resulting from dynamics. Here, we investigate <span class="math notranslate nohighlight">\(T_1\)</span> and Nuclear Overhauser Effect (NOE), resulting from an <span class="math notranslate nohighlight">\(^1\)</span>H–<span class="math notranslate nohighlight">\(^{15}\)</span>N dipole coupling and <span class="math notranslate nohighlight">\(^{15}N\)</span> CSA undergoing a tumbling-like motion.</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">SetupTumbling</span></code> function in <code class="docutils literal notranslate"><span class="pre">sl.Tools</span></code> to easily build the Liouvillian. Parameters are the ExpSys object, a quality factor, determining the number of orientations sampled by tumbling, and a correlation time of tumbling.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1H&#39;</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">],</span><span class="n">LF</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">dipole_coupling</span><span class="p">(</span><span class="mf">.102</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">))</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="mi">113</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">SetupTumbling</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">q</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">5e-10</span><span class="p">)</span>
+
+<span class="n">U</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;1Hz&#39;</span><span class="p">,[</span><span class="s1">&#39;1Hz&#39;</span><span class="p">,</span><span class="s1">&#39;15Nz&#39;</span><span class="p">])</span>
+
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 320-&gt;80
+</pre></div>
+</div>
+<img alt="../_images/6bc127773f4279cb6939edf1c3838910debe458282557577aa1aafbd023bf782.png" src="../_images/6bc127773f4279cb6939edf1c3838910debe458282557577aa1aafbd023bf782.png" />
+</div>
+</div>
+<p>It doesn’t work! So, why not?</p>
+<p>The answer is that longitudinal relaxation (and also part of transverse relaxation) are driven by terms that are discarded when we go into the rotating frame. Then, we need to switch the simulation over to the lab frame to observe relaxation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1H&#39;</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">],</span><span class="n">LF</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">dipole_coupling</span><span class="p">(</span><span class="mf">.102</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">))</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="mi">113</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">SetupTumbling</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">q</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">5e-10</span><span class="p">)</span>
+
+<span class="n">U</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;1Hz&#39;</span><span class="p">,[</span><span class="s1">&#39;1Hz&#39;</span><span class="p">,</span><span class="s1">&#39;15Nz&#39;</span><span class="p">])</span>
+
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1b4cfc6ae281bcd134996fe3e50b6904af7b91d5c35cf72cb146124739f2935f.png" src="../_images/1b4cfc6ae281bcd134996fe3e50b6904af7b91d5c35cf72cb146124739f2935f.png" />
+</div>
+</div>
+<p>Here, the simulation is started with magnetization on the <span class="math notranslate nohighlight">\(^1\)</span>H and it both decays and is partially transferred to the <span class="math notranslate nohighlight">\(^{15}\)</span>N (<span class="math notranslate nohighlight">\(T_1\)</span> and NOE). Note that magnetization decays to zero. For it to recover to thermal equilibrium, it must be thermalized. SLEEPY has a few thermalization modes. If relaxation is brought about by motion, then the ‘DynamicThermal’ option must be used (this is an <em>orientation-specific</em> relaxation method, which means to find it, we need to set <code class="docutils literal notranslate"><span class="pre">OS=True</span></code>). We’ll start the system from zero magnetization to see how the process evolves.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1H&#39;</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">],</span><span class="n">LF</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">dipole_coupling</span><span class="p">(</span><span class="mf">.102</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">))</span>
+<span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CSA&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="mi">113</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">SetupTumbling</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">q</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">tc</span><span class="o">=</span><span class="mf">5e-10</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">add_relax</span><span class="p">(</span><span class="s1">&#39;DynamicThermal&#39;</span><span class="p">,</span><span class="n">OS</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">U</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;zero&#39;</span><span class="p">,[</span><span class="s1">&#39;1Hz&#39;</span><span class="p">,</span><span class="s1">&#39;15Nz&#39;</span><span class="p">])</span>
+
+<span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">())</span> <span class="c1">#This keeps the x-axis from changing</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">Peq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ex0</span><span class="o">.</span><span class="n">Peq</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span><span class="n">Peq</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6022f4c60e1414e4bee0fd4002f031a9372d9a9d740009ef20851b51a2815fc2.png" src="../_images/6022f4c60e1414e4bee0fd4002f031a9372d9a9d740009ef20851b51a2815fc2.png" />
+</div>
+</div>
+<p>Note that thermalizing systems with sub-nanosecond motion can induce numerical error in SLEEPY. The relaxation process occurs on the order of seconds to 10s of seconds, but the motion is on the order of 100s of ps, so about 12 orders of magnitude. Then, it can be that small numerical errors can cause the magnetization to fail to arrive at the correct thermal equilibrium. One should also note: the thermal equilibrium values stored in ex0.Peq are based only on the Zeeman energy, and do not account for large quadrupoles, hyperfines, g-tensors, etc.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Ampere2026"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-another-simulation-program">Why another simulation program?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-compare-to-other-software">How does it compare to other software?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-i-need-to-define-for-a-simulation-to-work">What do I need to define for a simulation to work?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-imports">Python imports</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-chemical-exchange">Example 1: Chemical Exchange</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-experimental-conditions">Define the experimental conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-dynamics">Add dynamics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagate-the-system">Propagate the system</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-dynamics-to-view-results">Modify dynamics to view results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-r-1-rho-relaxation">Example 2: <span class="math notranslate nohighlight">\(R_{1\rho}\)</span> relaxation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Define the experimental conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-dynamics-generate-pulse-sequence">Add dynamics, generate pulse sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Propagate the system</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-field-strength-dependence">Check field-strength dependence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-redor-simplified">Example 3: REDOR (simplified)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Define the experimental conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-pulse-sequence">Define the pulse sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-density-matrix-and-detection-propagate">Define density matrix and detection, propagate</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-t-1-and-noe-in-the-lab-frame">Example 4: <span class="math notranslate nohighlight">\(T_1\)</span> and NOE in the Lab Frame</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Albert Smith
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
