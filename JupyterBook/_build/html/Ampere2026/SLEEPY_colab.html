@@ -562,9 +562,15 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an experimental system at 500 MHz field, with just a single proton</span>
-<span class="n">ex</span><span class="o">=</span>                                <span class="c1">#Magnetic field, Nuclei in system</span>
+<span class="n">ex</span><span class="o">=</span> <span class="c1">#Use a 500 MHz magnetic field, include a single 1H, Nucs=[&#39;1H&#39;]</span>
 <span class="c1"># Add a chemical shift with ex.set_inter, set to 500 Hz</span>
-<span class="n">ex</span><span class="o">.</span><span class="n">set</span>                             <span class="c1">#Interaction type, spin index (use i for spin-field interaction, i0,i1 for spin-spin coupling)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex</span><span class="o">.</span><span class="n">set</span>  <span class="c1">#Interaction type, spin index (use i for spin-field interaction, i0,i1 for spin-spin coupling)</span>
                                    <span class="c1">#Use Hz= to define in Hz, ppm= to define in ppm</span>
 </pre></div>
 </div>
@@ -593,7 +599,13 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span><span class="o">=</span>  <span class="c1">#Create the Hamiltonian</span>
    <span class="c1">#Plot the Hamiltonian, real part (most SLEEPY objects have some kind of plotting)</span>
-<span class="n">L</span><span class="o">=</span>   <span class="c1">#Create the Liouvillian</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=</span>   <span class="c1">#Create the Liouvillian</span>
    <span class="c1">#Plot the Liouvillian, imaginary part</span>
 </pre></div>
 </div>
@@ -658,7 +670,13 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span><span class="o">=</span> <span class="c1">#Define the sequence and its length (Dt=1/(4*500) to easily see a 500 Hz shift))</span>
-<span class="n">U</span><span class="o">=</span> <span class="c1">#Create a propagator from the empty sequence</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="o">=</span> <span class="c1">#Create a propagator from the empty sequence</span>
 <span class="c1">#500 Hz is the largest chemical shift, so this time step will be short enough to avoid backfolding it.</span>
 </pre></div>
 </div>
@@ -667,7 +685,7 @@ document.write(`
 <p>To get a spectrum, we have to detect the state of the system, then propagate, then detect, then propagate, and so on. Detection in SLEEPY is done by <em>calling</em> the density matrix, i.e. <code class="docutils literal notranslate"><span class="pre">rho()</span></code>. Propagation is done by simply multiplying by a propagator (one can also multiply by a sequence, if that sequence has a defined length; this approach is computationally less efficient).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1024</span><span class="p">):</span>  <span class="c1">#Run k over 1024 steps</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">128</span><span class="p">):</span>  <span class="c1">#Run k over 128 steps</span>
     <span class="c1">#Detect by calling rho</span>
     <span class="c1">#Propagate for a time Dt by multiplying by U</span>
 </pre></div>
@@ -686,7 +704,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>     <span class="c1">#Clear data in rho before reusing</span>
-  <span class="c1">#Use rho.DetProp to take 1024 steps (n=1024)</span>
+  <span class="c1">#Use rho.DetProp to take 128 steps (n=128)</span>
   <span class="c1">#Plot the result, including a Fourier transform</span>
 </pre></div>
 </div>
@@ -752,12 +770,17 @@ State-space reduction: 8-&gt;2
 <h3>Define the experimental conditions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define field, nuclei, spinning speed (vr=60000), powder average (start with pwdavg=&#39;rep320&#39;) below</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define field (600), nuclei (Nucs=[&#39;15N&#39;,&#39;1H&#39;], spinning speed (vr=60000), powder average (start with pwdavg=&#39;rep320&#39;) below</span>
 <span class="n">ex0</span><span class="o">=</span>
 <span class="c1"># The &#39;rep320&#39; powder average is too big, and we&#39;ll change it later</span>
 <span class="c1"># We want it here for displaying the couplings</span>
-
-<span class="c1"># Define interactions (dipole, CSA, chemical shift)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define interactions (dipole, CSA, chemical shift)</span>
 
 <span class="c1"># Calculate size of the one-bond dipole coupling for H–N</span>
 <span class="n">delta</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Tools</span><span class="o">.</span><span class="n">dipole_coupling</span><span class="p">(</span><span class="mf">.102</span><span class="p">,</span><span class="s1">&#39;15N&#39;</span><span class="p">,</span><span class="s1">&#39;1H&#39;</span><span class="p">)</span>  <span class="c1">#Distance, nuc1, nuc2</span>
@@ -768,8 +791,13 @@ State-space reduction: 8-&gt;2
 <span class="n">ex0</span><span class="o">.</span>
 <span class="c1"># Define chemical shift (&#39;CS&#39;) to have a value of -5 ppm</span>
 <span class="n">ex0</span><span class="o">.</span>
-
-<span class="c1"># Copy system</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy system</span>
 <span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="c1"># Redefine dipole, CSA, with same magnitude, but different orientation (20 degree hop)</span>
 <span class="n">ex1</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;dipole&#39;</span><span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">,</span><span class="n">euler_d</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>  
@@ -808,7 +836,13 @@ State-space reduction: 8-&gt;2
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=</span> <span class="c1">#Generate a Liouvillian from ex0,ex1</span>
 <span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span> <span class="c1">#Add an exchange matrix to the Liouvillian with equal populations and tc=1e-4</span>
-<span class="n">seq</span><span class="o">=</span> <span class="c1">#Generate a pulse sequence (Dt not required with MAS!)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span><span class="o">=</span> <span class="c1">#Generate a pulse sequence (Dt not required with MAS!)</span>
 <span class="n">seq</span><span class="o">.</span> <span class="c1">#Add a field (v1=15000) on the 15N channel</span>
 <span class="n">_</span><span class="o">=</span><span class="n">seq</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1">#Plot the sequence</span>
 </pre></div>
@@ -903,7 +937,7 @@ State-space reduction: 8-&gt;2
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span><span class="o">=</span><span class="mi">150000</span> <span class="c1">#Field strength on 1H</span>
 <span class="n">tpi</span><span class="o">=</span><span class="mf">0.5</span><span class="o">/</span><span class="n">v1</span> <span class="c1">#pi-pulse length</span>
 <span class="n">dly0</span><span class="o">=</span><span class="mf">0.25</span><span class="o">*</span><span class="n">L</span><span class="o">.</span><span class="n">taur</span><span class="o">-</span><span class="n">tpi</span><span class="o">/</span><span class="mi">2</span>   <span class="c1">#Quarter rotor period minus half of the pi-pulse</span>
-<span class="n">seq</span><span class="o">=</span>   <span class="c1">#Create an empty sequencee</span>
+<span class="n">seq</span><span class="o">=</span>   <span class="c1">#Create an empty sequence</span>
 <span class="n">seq</span><span class="o">.</span><span class="n">add_channel</span><span class="p">()</span>  <span class="c1">#Add pulses to the proton. Define t, v1, and phase</span>
 <span class="n">seq</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>  <span class="c1">#Plot the pulse sequence</span>
 </pre></div>
