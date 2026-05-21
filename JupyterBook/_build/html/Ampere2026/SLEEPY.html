@@ -524,11 +524,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading Defaults from file
-</pre></div>
-</div>
-</div>
 </div>
 <p><strong>Python Tip:</strong> A Python session usually starts with module imports, see above. SLEEPY is the module we developed, which contains a lot of functions and objects used for simulating the impact of dynamics on NMR experiments. “sl” is the abbreviation we use for it in our code, which is just faster to type than SLEEPY. numpy (abbreviated “np”) is a module with lots of tools for doing matrix mathematics. matplotlib.pyplot (abbreviated “plt”) is a submodule of Matplotlib for making nice plots. You can install and then import any module you like to use in combination with SLEEPY (e.g. import your experimental data with <a class="reference external" href="http://127.0.0.1:8888/tree?token=524457c1a2cf549f68815e6adc33e11b78f1351c50be77f2">nmrglue</a> and then simulate it with SLEEPY within one Python terminal). numpy and pyplot are very frequently used for scientific programming, and so most of our scripts include importing these. Functions and classes found within a module are accessed by typing the module abbreviation followed by a period (.), and ending with the desired function/class/etc. from the module. For example, below we access the physical constants used in SLEEPY.</p>
 <div class="cell docutils container">
@@ -583,7 +578,7 @@ Powder Average: JCP59 with 99 angles
 Interactions:
 	CS on spin 0 with arguments: (Hz=500.00)
 
-&lt;SLEEPY.SLEEPY.ExpSys.ExpSys object at 0x114248590&gt;
+&lt;SLEEPY.SLEEPY.ExpSys.ExpSys object at 0x11b5c9510&gt;
 </pre></div>
 </div>
 </div>
@@ -750,9 +745,6 @@ quadrupole, with args:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State-space reduction: 8-&gt;2
-</pre></div>
-</div>
 <img alt="../_images/37c48411a80836e78cdc2fab8d8d8d0722e8f8739ced36665009ed0e16ceef43.png" src="../_images/37c48411a80836e78cdc2fab8d8d8d0722e8f8739ced36665009ed0e16ceef43.png" />
 </div>
 </div>
@@ -785,7 +777,7 @@ State-space reduction: 8-&gt;2
 State-space reduction: 8-&gt;2
 </pre></div>
 </div>
-<img alt="../_images/c63c8790f90a16bc51358112559f7d3a5ae4a5cc57c8b1fe444d6a0b6cbcfe9a.png" src="../_images/c63c8790f90a16bc51358112559f7d3a5ae4a5cc57c8b1fe444d6a0b6cbcfe9a.png" />
+<img alt="../_images/732031a24e5f3842f36d8b3f7eaa9eeeb2dcefa9081d3aba4fcac13b6ab36b5f.png" src="../_images/732031a24e5f3842f36d8b3f7eaa9eeeb2dcefa9081d3aba4fcac13b6ab36b5f.png" />
 </div>
 </div>
 <p><strong>Fun(?) challenge:</strong></p>
@@ -991,7 +983,7 @@ Hamiltonians are coupled by exchange matrix:
 	       [ 3333333.33333333, -6666666.66666667,  3333333.33333333],
 	       [ 3333333.33333333,  3333333.33333333, -6666666.66666667]])
 
-&lt;SLEEPY.SLEEPY.Liouvillian.Liouvillian object at 0x119581e90&gt;
+&lt;SLEEPY.SLEEPY.Liouvillian.Liouvillian object at 0x11f9e2610&gt;
 </pre></div>
 </div>
 </div>
@@ -1039,7 +1031,7 @@ detect[0]: 13Cx
 Current time is 500.000 microseconds
 40 time points have been recorded
 
-&lt;SLEEPY.SLEEPY.Rho.Rho object at 0x119903550&gt;
+&lt;SLEEPY.SLEEPY.Rho.Rho object at 0x11f7a31d0&gt;
 </pre></div>
 </div>
 </div>
@@ -1051,7 +1043,7 @@ Current time is 500.000 microseconds
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b90319b71b0052b3d2047773da55ede2bb1c300bba1c0beeb12375b9ad0f3053.png" src="../_images/b90319b71b0052b3d2047773da55ede2bb1c300bba1c0beeb12375b9ad0f3053.png" />
+<img alt="../_images/f099ee56929cb06ba654aa4823e7955dacd66904139d8258887b424187f7ab84.png" src="../_images/f099ee56929cb06ba654aa4823e7955dacd66904139d8258887b424187f7ab84.png" />
 </div>
 </div>
 <p>Now, slow down the motion and see what changes!</p>
