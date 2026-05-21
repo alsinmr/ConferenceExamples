@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -506,21 +506,23 @@ document.write(`
 <img alt="../_images/da5f79f3137da621954c115e498fbd279a2b332ab14cfc78c84dad406eea3a68.png" src="../_images/da5f79f3137da621954c115e498fbd279a2b332ab14cfc78c84dad406eea3a68.png" />
 </div>
 </div>
-<p>In Hilbert space, the current state of the spin system is described by a square density matrix (also <span class="math notranslate nohighlight">\(mxm\)</span>), often denoted with <span class="math notranslate nohighlight">\(\hat{\rho}(t)\)</span>. Diagonal elements of the density matrix specify how much population is in each of the eigenstates of the Zeeman Hamiltonian, and off-diagonal elements specify populations of coherences between those  states. <span class="math notranslate nohighlight">\(\hat{\rho}(t)\)</span> will evolve in time depending on the Hamiltonian, according to:
-$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8392aa55-42c2-4c00-ad9f-2eeb2fbf2f7a">
-<span class="eqno">()<a class="headerlink" href="#equation-8392aa55-42c2-4c00-ad9f-2eeb2fbf2f7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\hat{\rho}(t+\Delta t)=\exp{(-i\hat{H}\Delta t)}\hat{\rho}(t)\exp{(i\hat{H}\Delta t)}
-\end{equation}\]</div>
+<p>In Hilbert space, the current state of the spin system is described by a square density matrix (also <span class="math notranslate nohighlight">\(mxm\)</span>), often denoted with <span class="math notranslate nohighlight">\(\hat{\rho}(t)\)</span>. Diagonal elements of the density matrix specify how much population is in each of the eigenstates of the Zeeman Hamiltonian, and off-diagonal elements specify populations of coherences between those  states. <span class="math notranslate nohighlight">\(\hat{\rho}(t)\)</span> will evolve in time depending on the Hamiltonian, according to:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-Note, here we assume a time-independent Hamiltonian. In SLEEPY simulations, we handle time-dependence by breaking simulations into small, time-independent steps, a common approach in NMR simulation. Note that to propagate the density matrix, we have sandwiched it between two matrix exponentials. \\*A few notes of caution:* These operations require matrix multiplication, not elementwise multiplication, and the $\exp$ indicates a matrix exponential, not an elementwise exponential. Our notation here assumes the Hamiltonian in radians/s, not Hz, which would require multiplying by $2\pi$.\\Often, we define a propagator, such that\end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-3be8e400-6a25-42e4-af96-e6bb0f323a55">
-<span class="eqno">()<a class="headerlink" href="#equation-3be8e400-6a25-42e4-af96-e6bb0f323a55" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+\[
+\begin{equation}
+\hat{\rho}(t+\Delta t)=\exp{(-i\hat{H}\Delta t)}\hat{\rho}(t)\exp{(i\hat{H}\Delta t)}
+\end{equation}
+\]</div>
+<p>Note, here we assume a time-independent Hamiltonian. In SLEEPY simulations, we handle time-dependence by breaking simulations into small, time-independent steps, a common approach in NMR simulation. Note that to propagate the density matrix, we have sandwiched it between two matrix exponentials.</p>
+<p><em>A few notes of caution:</em> First, these operations require matrix multiplication, not elementwise multiplication, and where the <span class="math notranslate nohighlight">\(\exp\)</span> indicates a matrix exponential, not an elementwise exponential. In MATLAB, one obtains the matrix exponential with expm. In Python, we need the scipy module, and run <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">scipy.linalg</span> <span class="pre">import</span> <span class="pre">expm</span></code> to also obtain this function. Second, our notation here assumes the Hamiltonian in radians/s, not Hz, which would require multiplying by <span class="math notranslate nohighlight">\(2\pi\)</span>.</p>
+<p>Often, we define a propagator, such that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
 \hat{U}(\Delta t)&amp;=&amp;\exp{(-i\hat{H} \Delta t)} \\
 \hat{\rho}(t+\Delta t)&amp;=&amp;\hat{U}(\Delta t)\hat{\rho}(t)\hat{U}^\dagger(\Delta t)
-\end{eqnarray}\]</div>
-<p>$$</p>
+\end{eqnarray}
+\end{split}\]</div>
 <p>So, here arises the problem with Hilbert space: It is not straightforward to create a system that exchanges between two or more Hamiltonians in a stochastic manner when we have the square density matrix and sandwiched multiplication. This brings us to Liouville space.</p>
 </section>
 <section id="liouville-space">
@@ -549,8 +551,8 @@ Note, here we assume a time-independent Hamiltonian. In SLEEPY simulations, we h
 <h3>Dissipative terms in Liouville space: Relaxation<a class="headerlink" href="#dissipative-terms-in-liouville-space-relaxation" title="Link to this heading">#</a></h3>
 <p>The main advantage of working in Liouville space is that we can introduce dissipative terms (i.e. non-coherent) that induce exchange or relaxation. For example, in the above Liouvillian, we can introduce <span class="math notranslate nohighlight">\(T_2\)</span> relaxation to both spins, so that the total Liouvillian becomes
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6bdf8ee9-1897-4586-886c-3cdab6e945dd">
-<span class="eqno">()<a class="headerlink" href="#equation-6bdf8ee9-1897-4586-886c-3cdab6e945dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b7e92235-f846-4882-aec4-44c559f0c2c2">
+<span class="eqno">()<a class="headerlink" href="#equation-b7e92235-f846-4882-aec4-44c559f0c2c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\hat{L}}_{total}=\hat{\hat{L}}_{coh}+\hat{\hat{L}}_{relax}
 \end{equation}\]</div>
 <p>$<span class="math notranslate nohighlight">\(
@@ -598,8 +600,8 @@ Below, we plot \)</span>\hat{\hat{L}}_{relax}$</p>
 </div>
 <p>Now, the total Liouvillian also contains an exchange term, such that
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6218323d-dd6d-4342-adb9-f5fd31cea852">
-<span class="eqno">()<a class="headerlink" href="#equation-6218323d-dd6d-4342-adb9-f5fd31cea852" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d38f7444-331b-43bb-8816-62a11807b49a">
+<span class="eqno">()<a class="headerlink" href="#equation-d38f7444-331b-43bb-8816-62a11807b49a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat{\hat{L}}_{total}=\hat{\hat{L}}_{coh}+\hat{\hat{L}}_{relax}+\hat{\hat{L}}_{ex}
 \end{equation}\]</div>
 <p>$$</p>
