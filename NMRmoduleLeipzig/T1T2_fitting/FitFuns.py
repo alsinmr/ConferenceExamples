@@ -77,7 +77,11 @@ def T1fit(t,I):
     
     """
     ax,T1=PlotFit(t,I,mode='IR')
-    ax.text(np.mean(ax.get_xlim()),np.mean(ax.get_ylim()),fr'$T_1$ = {T1:.2f} s')
+    if T1<1:
+        st=fr'$T_1$ = {T1*1e3:.2f} ms'
+    else:
+        st=fr'$T_1$ = {T1:.2f} s'
+    ax.text(np.mean(ax.get_xlim()),np.mean(ax.get_ylim()),st)
     return T1
 
 def T2fit(t,I):
@@ -95,5 +99,9 @@ def T2fit(t,I):
     """
     
     ax,T2=PlotFit(t,I,mode='T2')
-    ax.text(np.mean(ax.get_xlim()),np.mean(ax.get_ylim()),fr'$T_2$ = {T2:.2f} s')
+    if T2<1:
+        st=fr'$T_2$ = {T2*1e3:.2f} ms'
+    else:
+        st=fr'$T_2$ = {T2:.2f} s'
+    ax.text(np.mean(ax.get_xlim()),np.mean(ax.get_ylim()),st)
     return T2
