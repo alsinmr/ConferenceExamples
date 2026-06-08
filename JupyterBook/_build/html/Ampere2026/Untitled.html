@@ -458,6 +458,39 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1H&#39;</span><span class="p">])</span>
+<span class="n">ex</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">H</span><span class="o">=</span><span class="n">ex</span><span class="o">.</span><span class="n">Hamiltonian</span><span class="p">()</span>
+
+<span class="n">U</span><span class="o">=</span><span class="n">L</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="n">Dt</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+<span class="n">U</span><span class="o">*</span><span class="n">rho</span>
+
+<span class="n">rho</span><span class="p">()</span>
+
+<span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;1Hx&#39;</span><span class="p">,</span><span class="s1">&#39;1Hp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">.</span><span class="n">DetProp</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">rho</span><span class="p">()</span>
+    <span class="n">U</span><span class="o">*</span><span class="n">rho</span>
+
+<span class="n">L</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Liouvillian</span><span class="p">(</span><span class="n">ex0</span><span class="p">,</span><span class="n">ex1</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Lcoh&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;im&#39;</span><span class="p">)</span>
+
+<span class="n">L</span><span class="o">.</span><span class="n">kex</span><span class="o">=</span><span class="p">[[</span><span class="o">-</span><span class="mf">1e-4</span><span class="p">,</span><span class="mf">1e-4</span><span class="p">],[</span><span class="mf">1e-4</span><span class="p">,</span><span class="o">-</span><span class="mf">1e-4</span><span class="p">]]</span>
+<span class="n">L</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;Lex&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;re&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex0</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="n">Nucs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1H&#39;</span><span class="p">])</span>
 <span class="n">ex0</span><span class="o">.</span><span class="n">set_inter</span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Hz</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">ex1</span><span class="o">=</span><span class="n">ex0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -511,7 +544,7 @@ Interactions:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="s1">&#39;1Hx&#39;</span><span class="p">,</span><span class="s1">&#39;1Hp&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">Rho</span><span class="p">(</span><span class="n">rho0</span><span class="o">=</span><span class="s1">&#39;1Hx&#39;</span><span class="p">,</span><span class="n">detect</span><span class="o">=</span><span class="s1">&#39;1Hp&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -763,6 +796,13 @@ quadrupole, with args:
 </pre></div>
 </div>
 <img alt="../_images/4c4206224686c4fb60f3bc1bad384a95157532304fe47c1f4b5349ceac67cff4.png" src="../_images/4c4206224686c4fb60f3bc1bad384a95157532304fe47c1f4b5349ceac67cff4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex</span><span class="o">=</span><span class="n">sl</span><span class="o">.</span><span class="n">ExpSys</span><span class="p">(</span>
+</pre></div>
+</div>
 </div>
 </div>
 
